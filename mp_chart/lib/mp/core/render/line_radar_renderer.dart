@@ -49,20 +49,20 @@ abstract class LineRadarRenderer extends LineScatterCandleRadarRenderer {
 //      c.restore();
 //    } else {
     // save
-      var previous = renderPaint!.style;
-      Color previousColor = renderPaint!.color;
+    var previous = renderPaint!.style;
+    Color previousColor = renderPaint!.color;
 
-      // set
-      renderPaint
-        ..style = PaintingStyle.fill
-        ..color = Color(color);
+    // set
+    renderPaint
+      ?..style = PaintingStyle.fill
+      ..color = Color(color);
 
-      c.drawPath(filledPath, renderPaint!);
+    c.drawPath(filledPath, renderPaint!);
 
-      // restore
-      renderPaint
-        ..style = previous
-        ..color = previousColor;
+    // restore
+    renderPaint
+      ?..style = previous
+      ..color = previousColor;
 //    }
   }
 
@@ -77,32 +77,32 @@ abstract class LineRadarRenderer extends LineScatterCandleRadarRenderer {
 //      c.drawColor(Color(color), BlendMode.srcOver);
 //      c.restore();
 //    } else {
-      // save
-      var previous = renderPaint!.style;
-      Color previousColor = renderPaint!.color;
+    // save
+    var previous = renderPaint!.style;
+    Color previousColor = renderPaint!.color;
 
-      final Gradient gradient = LinearGradient(
-        begin: Alignment.topCenter,
-        end: Alignment.bottomCenter,
-        colors: [Color(sc), Color(ec)],
-      );
-      Rect bounds = filledPath.getBounds();
-      // set
-      renderPaint
-        ..style = PaintingStyle.fill
-        ..shader = gradient.createShader(Rect.fromLTWH(
-          bounds.left,
-          bounds.top,
-          bounds.width,
-          bounds.height,
-        ));
+    final Gradient gradient = LinearGradient(
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+      colors: [Color(sc), Color(ec)],
+    );
+    Rect bounds = filledPath.getBounds();
+    // set
+    renderPaint
+      ?..style = PaintingStyle.fill
+      ..shader = gradient.createShader(Rect.fromLTWH(
+        bounds.left,
+        bounds.top,
+        bounds.width,
+        bounds.height,
+      ));
 
-      c.drawPath(filledPath, renderPaint!);
+    c.drawPath(filledPath, renderPaint!);
 
-      // restore
-      renderPaint
-        ..style = previous
-        ..color = previousColor;
+    // restore
+    renderPaint
+      ?..style = previous
+      ..color = previousColor;
 //    }
   }
 

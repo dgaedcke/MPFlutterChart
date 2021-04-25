@@ -2,22 +2,22 @@ class MPPointF extends Poolable {
   static ObjectPool<Poolable> pool = ObjectPool.create(32, MPPointF(0, 0))
     ..setReplenishPercentage(0.5);
 
-  double? _x;
-  double? _y;
+  double _x;
+  double _y;
 
   // ignore: unnecessary_getters_setters
-  double? get y => _y;
+  double get y => _y;
 
   // ignore: unnecessary_getters_setters
-  set y(double? value) {
+  set y(double value) {
     _y = value;
   }
 
   // ignore: unnecessary_getters_setters
-  double? get x => _x;
+  double get x => _x;
 
   // ignore: unnecessary_getters_setters
-  set x(double? value) {
+  set x(double value) {
     _x = value;
   }
 
@@ -26,7 +26,7 @@ class MPPointF extends Poolable {
     return "x:$_x y:$_y";
   }
 
-  static MPPointF getInstance1(double? x, double? y) {
+  static MPPointF getInstance1(double x, double y) {
     MPPointF result = pool.get() as MPPointF;
     result._x = x;
     result._y = y;
@@ -64,7 +64,7 @@ class MPPointD extends Poolable {
   static ObjectPool<Poolable> pool = ObjectPool.create(64, new MPPointD(0, 0))
     ..setReplenishPercentage(0.5);
 
-  static MPPointD getInstance1(double? x, double? y) {
+  static MPPointD getInstance1(double x, double y) {
     MPPointD result = pool.get() as MPPointD;
     result.x = x;
     result.y = y;
@@ -79,8 +79,8 @@ class MPPointD extends Poolable {
     pool.recycle2(instances);
   }
 
-  double? x;
-  double? y;
+  double x;
+  double y;
 
   @override
   Poolable instantiate() {
@@ -108,9 +108,9 @@ class ObjectPool<T extends Poolable> {
   static int ids = 0;
 
   int? poolId;
-  int? desiredCapacity;
+  int desiredCapacity = 1;
   late List<Object?> objects;
-  int? objectsPointer;
+  int objectsPointer = 0;
   late T modelObject;
   double? replenishPercentage;
 
@@ -140,8 +140,7 @@ class ObjectPool<T extends Poolable> {
           "Object Pool must be instantiated with a capacity greater than 0!");
     }
     this.desiredCapacity = withCapacity;
-    this.objects = List(this.desiredCapacity);
-    this.objectsPointer = 0;
+    this.objects = List.filled(withCapacity, null);
     this.modelObject = object;
     this.replenishPercentage = 1.0;
     this.refillPool1();
@@ -170,12 +169,12 @@ class ObjectPool<T extends Poolable> {
   }
 
   void refillPool2(double percentage) {
-    int portionOfCapacity = (desiredCapacity! * percentage).toInt();
+    int portionOfCapacity = (desiredCapacity * percentage).toInt();
 
     if (portionOfCapacity < 1) {
       portionOfCapacity = 1;
-    } else if (portionOfCapacity > desiredCapacity!) {
-      portionOfCapacity = desiredCapacity!;
+    } else if (portionOfCapacity > desiredCapacity) {
+      portionOfCapacity = desiredCapacity;
     }
 
     for (int i = 0; i < portionOfCapacity; i++) {
@@ -194,7 +193,7 @@ class ObjectPool<T extends Poolable> {
       this.refillPool1();
     }
 
-    T result = objects[this.objectsPointer!] as T;
+    T result = objects[this.objectsPointer] as T;
     result.currentOwnerId = Poolable.NO_OWNER;
     this.objectsPointer--;
 
@@ -217,12 +216,12 @@ class ObjectPool<T extends Poolable> {
     }
 
     this.objectsPointer++;
-    if (this.objectsPointer! >= objects.length) {
+    if (this.objectsPointer >= objects.length) {
       this.resizePool();
     }
 
     object.currentOwnerId = this.poolId;
-    objects[this.objectsPointer!] = object;
+    objects[this.objectsPointer] = object;
   }
 
   /// Recycle a List of Poolables that this pool is capable of generating.
@@ -230,7 +229,7 @@ class ObjectPool<T extends Poolable> {
   ///
   /// @param objects A list of objects of type T to recycle
   void recycle2(List<T> objects) {
-    while (objects.length + this.objectsPointer! + 1 > this.desiredCapacity!) {
+    while (objects.length + this.objectsPointer + 1 > this.desiredCapacity) {
       this.resizePool();
     }
     final int objectsListSize = objects.length;
@@ -248,15 +247,15 @@ class ObjectPool<T extends Poolable> {
         }
       }
       object.currentOwnerId = this.poolId;
-      this.objects[this.objectsPointer! + 1 + i] = object;
+      this.objects[this.objectsPointer + 1 + i] = object;
     }
     this.objectsPointer += objectsListSize;
   }
 
   void resizePool() {
-    final int oldCapacity = this.desiredCapacity!;
+    final int oldCapacity = this.desiredCapacity;
     this.desiredCapacity *= 2;
-    List<Object?> temp = List(this.desiredCapacity);
+    List<Object?> temp = List.filled(this.desiredCapacity, null);
     for (int i = 0; i < oldCapacity; i++) {
       temp[i] = this.objects[i];
     }
@@ -276,6 +275,6 @@ class ObjectPool<T extends Poolable> {
   ///
   /// @return The number of objects remaining in the pool.
   int getPoolCount() {
-    return this.objectsPointer! + 1;
+    return this.objectsPointer + 1;
   }
 }

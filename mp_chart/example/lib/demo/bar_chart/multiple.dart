@@ -18,8 +18,8 @@ import 'package:mp_chart/mp/core/image_loader.dart';
 import 'package:mp_chart/mp/core/utils/color_utils.dart';
 import 'package:mp_chart/mp/core/value_formatter/large_value_formatter.dart';
 import 'package:mp_chart/mp/core/value_formatter/value_formatter.dart';
-import 'package:example/demo/action_state.dart';
-import 'package:example/demo/util.dart';
+import '../action_state.dart';
+import '../util.dart';
 
 class BarChartMultiple extends StatefulWidget {
   @override
@@ -194,7 +194,7 @@ class BarChartMultipleState extends BarActionState<BarChartMultiple>
   bool isDataInitial = false;
 
   void _initBarData(int count, double range) async {
-    List<ui.Image> imgs = List(3);
+    List<ui.Image> imgs = List.filled(3, null);
     imgs[0] = await ImageLoader.loadImage('assets/img/star.png');
     imgs[1] = await ImageLoader.loadImage('assets/img/add.png');
     imgs[2] = await ImageLoader.loadImage('assets/img/close.png');
@@ -202,10 +202,10 @@ class BarChartMultipleState extends BarActionState<BarChartMultiple>
     startYear = 1980;
     endYear = startYear + groupCount;
 
-    List<BarEntry> values1 = List();
-    List<BarEntry> values2 = List();
-    List<BarEntry> values3 = List();
-    List<BarEntry> values4 = List();
+    List<BarEntry> values1 = [];
+    List<BarEntry> values2 = [];
+    List<BarEntry> values3 = [];
+    List<BarEntry> values4 = [];
 
     double randomMultiplier = range * 100000;
 

@@ -10,7 +10,7 @@ import 'package:mp_chart/mp/core/entry/entry.dart';
 import 'package:mp_chart/mp/core/highlight/highlight.dart';
 
 class CombinedData extends BarLineScatterCandleBubbleData<
-    IBarLineScatterCandleBubbleDataSet<Entry?>> {
+    IBarLineScatterCandleBubbleDataSet<Entry>> {
   LineData? _lineData;
   BarData? _barData;
   ScatterData? _scatterData;
@@ -47,7 +47,7 @@ class CombinedData extends BarLineScatterCandleBubbleData<
   @override
   void calcMinMax1() {
     if (dataSets == null) {
-      dataSets = List();
+      dataSets = [];
     }
     dataSets!.clear();
 
@@ -66,7 +66,8 @@ class CombinedData extends BarLineScatterCandleBubbleData<
     for (ChartData? data in allData) {
       data!.calcMinMax1();
 
-      List<IBarLineScatterCandleBubbleDataSet<Entry?>> sets = data.dataSets as List<IBarLineScatterCandleBubbleDataSet<Entry?>>;
+      List<IBarLineScatterCandleBubbleDataSet<Entry>> sets =
+          data.dataSets as List<IBarLineScatterCandleBubbleDataSet<Entry>>;
       dataSets!.addAll(sets);
 
       if (data.getYMax1()! > yMax!) yMax = data.getYMax1();
@@ -111,8 +112,7 @@ class CombinedData extends BarLineScatterCandleBubbleData<
   ///
   /// @return
   List<BarLineScatterCandleBubbleData?> getAllData() {
-    List<BarLineScatterCandleBubbleData?> data =
-        List<BarLineScatterCandleBubbleData?>();
+    List<BarLineScatterCandleBubbleData?> data = [];
     if (_lineData != null) data.add(_lineData);
     if (_barData != null) data.add(_barData);
     if (_scatterData != null) data.add(_scatterData);
@@ -166,7 +166,7 @@ class CombinedData extends BarLineScatterCandleBubbleData<
   ///
   /// @param highlight current highlight
   /// @return dataset related to highlight
-  IBarLineScatterCandleBubbleDataSet<Entry?>? getDataSetByHighlight(
+  IBarLineScatterCandleBubbleDataSet<Entry>? getDataSetByHighlight(
       Highlight highlight) {
     if (highlight.dataIndex >= getAllData().length || highlight.dataIndex < 0)
       return null;
@@ -179,11 +179,12 @@ class CombinedData extends BarLineScatterCandleBubbleData<
   }
 
   int getDataIndex(ChartData data) {
-    return getAllData().indexOf(data as BarLineScatterCandleBubbleData<IBarLineScatterCandleBubbleDataSet<Entry?>>?);
+    return getAllData().indexOf(data as BarLineScatterCandleBubbleData<
+        IBarLineScatterCandleBubbleDataSet<Entry>>);
   }
 
   @override
-  bool removeDataSet1(IBarLineScatterCandleBubbleDataSet<Entry?> d) {
+  bool removeDataSet1(IBarLineScatterCandleBubbleDataSet<Entry> d) {
     List<BarLineScatterCandleBubbleData?> datas = getAllData();
     bool success = false;
     for (ChartData? data in datas) {

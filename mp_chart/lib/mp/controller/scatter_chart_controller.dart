@@ -130,7 +130,7 @@ class ScatterChartController
             touchEventListener: touchEventListener,
             chartTransListener: chartTransListener);
 
-  ScatterData? get data => super.data as ScatterData?;
+  ScatterData get data => super.data as ScatterData;
 
   ScatterChartState? get state => super.state as ScatterChartState?;
 

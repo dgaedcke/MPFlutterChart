@@ -130,7 +130,7 @@ class BubbleChartController
             touchEventListener: touchEventListener,
             chartTransListener: chartTransListener);
 
-  BubbleData? get data => super.data as BubbleData?;
+  BubbleData get data => super.data as BubbleData;
 
   BubbleChartState? get state => super.state as BubbleChartState?;
 

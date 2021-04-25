@@ -32,8 +32,8 @@ class BarChartRenderer extends BarLineScatterCandleBubbleRenderer {
   Paint? _shadowPaint;
   Paint? _barBorderPaint;
 
-  BarChartRenderer(
-      BarDataProvider chart, Animator? animator, ViewPortHandler? viewPortHandler)
+  BarChartRenderer(BarDataProvider chart, Animator? animator,
+      ViewPortHandler? viewPortHandler)
       : super(animator, viewPortHandler) {
     this._provider = chart;
 
@@ -83,7 +83,7 @@ class BarChartRenderer extends BarLineScatterCandleBubbleRenderer {
   @override
   void initBuffers() {
     BarData barData = _provider!.getBarData()!;
-    _barBuffers = List(barData.getDataSetCount());
+    _barBuffers = List.filled(barData.getDataSetCount(), null);
 
     for (int i = 0; i < _barBuffers!.length; i++) {
       IBarDataSet set = barData.getDataSetByIndex(i)!;
@@ -110,9 +110,9 @@ class BarChartRenderer extends BarLineScatterCandleBubbleRenderer {
   void drawDataSet(Canvas c, IBarDataSet dataSet, int index) {
     Transformer? trans = _provider!.getTransformer(dataSet.getAxisDependency());
 
-    _barBorderPaint..color = dataSet.getBarBorderColor();
     _barBorderPaint
-      ..strokeWidth = Utils.convertDpToPixel(dataSet.getBarBorderWidth())!;
+      ?..color = dataSet.getBarBorderColor()
+      ..strokeWidth = Utils.convertDpToPixel(dataSet.getBarBorderWidth());
 
     final bool drawBorder = dataSet.getBarBorderWidth() > 0.0;
 
@@ -121,7 +121,7 @@ class BarChartRenderer extends BarLineScatterCandleBubbleRenderer {
 
     // draw the bar shadow before the values
     if (_provider!.isDrawBarShadowEnabled()) {
-      _shadowPaint..color = dataSet.getBarShadowColor();
+      _shadowPaint?..color = dataSet.getBarShadowColor();
 
       BarData barData = _provider!.getBarData()!;
 
@@ -172,7 +172,7 @@ class BarChartRenderer extends BarLineScatterCandleBubbleRenderer {
     final bool isSingleColor = dataSet.getColors()!.length == 1;
 
     if (isSingleColor) {
-      renderPaint..color = dataSet.getColor1();
+      renderPaint?..color = dataSet.getColor1();
     }
 
     for (int j = 0; j < buffer.size(); j += 4) {
@@ -183,15 +183,15 @@ class BarChartRenderer extends BarLineScatterCandleBubbleRenderer {
       if (!isSingleColor) {
         // Set the color for the currently drawn value. If the index
         // is out of bounds, reuse colors.
-        renderPaint..color = dataSet.getColor2(j ~/ 4);
+        renderPaint?..color = dataSet.getColor2(j ~/ 4);
       }
 
       if (dataSet.getGradientColor1() != null) {
         GradientColor gradientColor = dataSet.getGradientColor1()!;
 
         renderPaint
-          ..shader = (LinearGradient(
-                  colors: List()
+          ?..shader = (LinearGradient(
+                  colors: []
                     ..add(gradientColor.startColor)
                     ..add(gradientColor.endColor),
                   tileMode: TileMode.mirror))
@@ -204,8 +204,8 @@ class BarChartRenderer extends BarLineScatterCandleBubbleRenderer {
 
       if (dataSet.getGradientColors() != null) {
         renderPaint
-          ..shader = (LinearGradient(
-                  colors: List()
+          ?..shader = (LinearGradient(
+                  colors: []
                     ..add(dataSet.getGradientColor2(j ~/ 4).startColor)
                     ..add(dataSet.getGradientColor2(j ~/ 4).endColor),
                   tileMode: TileMode.mirror))
@@ -325,8 +325,8 @@ class BarChartRenderer extends BarLineScatterCandleBubbleRenderer {
                   ? (buffer.buffer![j + 1]! + posOffset)
                   : (buffer.buffer![j + 3]! + negOffset);
 
-              px += iconsOffset.x!;
-              py += iconsOffset.y!;
+              px += iconsOffset.x;
+              py += iconsOffset.y;
 
               if (entry.mIcon != null && dataSet.isDrawIconsEnabled()) {
                 CanvasUtils.drawImage(
@@ -346,9 +346,9 @@ class BarChartRenderer extends BarLineScatterCandleBubbleRenderer {
             BarEntry entry = dataSet.getEntryForIndex(index)!;
 
             List<double>? vals = entry.yVals;
-            double x =
-                (buffer!.buffer![bufferIndex]! + buffer.buffer![bufferIndex + 2]!) /
-                    2.0;
+            double x = (buffer!.buffer![bufferIndex]! +
+                    buffer.buffer![bufferIndex + 2]!) /
+                2.0;
 
             Color color = dataSet.getValueTextColor2(index);
 
@@ -379,18 +379,18 @@ class BarChartRenderer extends BarLineScatterCandleBubbleRenderer {
                 double py = buffer.buffer![bufferIndex + 1]! +
                     (entry.y! >= 0 ? posOffset : negOffset);
 
-                px += iconsOffset.x!;
-                py += iconsOffset.y!;
+                px += iconsOffset.x;
+                py += iconsOffset.y;
 
                 if (entry.mIcon != null && dataSet.isDrawIconsEnabled()) {
-                  CanvasUtils.drawImage(
-                      c, Offset(px, py), entry.mIcon!, Size(15, 15), drawPaint!);
+                  CanvasUtils.drawImage(c, Offset(px, py), entry.mIcon!,
+                      Size(15, 15), drawPaint!);
                 }
               }
 
               // draw stack values
             } else {
-              List<double?> transformed = List(vals.length * 2);
+              List<double?> transformed = List.filled(vals.length * 2, null);
 
               double posY = 0.0;
               double negY = -entry.negativeSum!;
@@ -441,7 +441,7 @@ class BarChartRenderer extends BarLineScatterCandleBubbleRenderer {
                 if (entry.mIcon != null && dataSet.isDrawIconsEnabled()) {
                   CanvasUtils.drawImage(
                       c,
-                      Offset(x + iconsOffset.x!, y + iconsOffset.y!),
+                      Offset(x + iconsOffset.x, y + iconsOffset.y),
                       entry.mIcon!,
                       Size(15, 15),
                       drawPaint!);
@@ -466,8 +466,8 @@ class BarChartRenderer extends BarLineScatterCandleBubbleRenderer {
     valuePaint = PainterUtils.create(valuePaint, valueText, color, textSize,
         fontFamily: typeFace?.fontFamily, fontWeight: typeFace?.fontWeight);
     valuePaint!.layout();
-    valuePaint!.paint(
-        c, Offset(x - valuePaint!.width / 2, y - valuePaint!.height));
+    valuePaint!
+        .paint(c, Offset(x - valuePaint!.width / 2, y - valuePaint!.height));
   }
 
   @override

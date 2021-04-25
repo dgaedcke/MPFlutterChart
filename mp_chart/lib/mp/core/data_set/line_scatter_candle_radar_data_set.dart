@@ -6,7 +6,7 @@ import 'package:mp_chart/mp/core/entry/entry.dart';
 import 'package:mp_chart/mp/core/utils/utils.dart';
 
 abstract class LineScatterCandleRadarDataSet<T extends Entry>
-    extends BarLineScatterCandleBubbleDataSet<T?>
+    extends BarLineScatterCandleBubbleDataSet<T>
     implements ILineScatterCandleRadarDataSet<T> {
   bool _drawVerticalHighlightIndicator = true;
   bool _drawHorizontalHighlightIndicator = true;
@@ -117,7 +117,7 @@ abstract class LineScatterCandleRadarDataSet<T extends Entry>
   /// and Cur's x value(Cur: Entry at index).
   @override
   bool addEntryByIndex(int index, T? e) {
-    if(index < 0 || index > getEntryCount()){
+    if (index < 0 || index > getEntryCount()) {
       return false;
     }
 
@@ -126,17 +126,17 @@ abstract class LineScatterCandleRadarDataSet<T extends Entry>
       return addEntry(e);
     }
 
-    if(index == 0){
+    if (index == 0) {
       T cur = valueDatas![index]!;
       if (e!.x! >= cur.x!) {
         return false;
       }
-    } else if(index == getEntryCount()){
+    } else if (index == getEntryCount()) {
       T pre = valueDatas![index - 1]!;
-      if(e!.x! <= pre.x!){
+      if (e!.x! <= pre.x!) {
         return false;
       }
-    }else {
+    } else {
       T cur = valueDatas![index]!;
       var pre = valueDatas[index - 1];
       if (e!.x! >= cur.x! || e.x! <= pre!.x!) {

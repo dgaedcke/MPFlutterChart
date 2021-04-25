@@ -19,11 +19,11 @@ import 'package:mp_chart/mp/core/utils/utils.dart';
 class CandleStickChartRenderer extends LineScatterCandleRadarRenderer {
   CandleDataProvider? _porvider;
 
-  List<double?> _shadowBuffers = List(8);
-  List<double?> _bodyBuffers = List(4);
-  List<double?> _rangeBuffers = List(4);
-  List<double?> _openBuffers = List(4);
-  List<double?> _closeBuffers = List(4);
+  List<double?> _shadowBuffers = List.filled(8, null);
+  List<double?> _bodyBuffers = List.filled(4, null);
+  List<double?> _rangeBuffers = List.filled(4, null);
+  List<double?> _openBuffers = List.filled(4, null);
+  List<double?> _closeBuffers = List.filled(4, null);
 
   CandleStickChartRenderer(CandleDataProvider chart, Animator? animator,
       ViewPortHandler? viewPortHandler)
@@ -148,8 +148,8 @@ class CandleStickChartRenderer extends LineScatterCandleRadarRenderer {
           renderPaint!.style = PaintingStyle.fill;
 
           c.drawRect(
-              Rect.fromLTRB(_bodyBuffers[0]!, _bodyBuffers[3]!, _bodyBuffers[2]!,
-                  _bodyBuffers[1]!),
+              Rect.fromLTRB(_bodyBuffers[0]!, _bodyBuffers[3]!,
+                  _bodyBuffers[2]!, _bodyBuffers[1]!),
               renderPaint!);
         } else if (open < close) {
           if (dataSet.getIncreasingColor() == ColorUtils.COLOR_NONE) {
@@ -161,8 +161,8 @@ class CandleStickChartRenderer extends LineScatterCandleRadarRenderer {
           renderPaint!.style = PaintingStyle.fill;
 
           c.drawRect(
-              Rect.fromLTRB(_bodyBuffers[0]!, _bodyBuffers[1]!, _bodyBuffers[2]!,
-                  _bodyBuffers[3]!),
+              Rect.fromLTRB(_bodyBuffers[0]!, _bodyBuffers[1]!,
+                  _bodyBuffers[2]!, _bodyBuffers[3]!),
               renderPaint!);
         } else {
           // equal values
@@ -300,8 +300,8 @@ class CandleStickChartRenderer extends LineScatterCandleRadarRenderer {
     valuePaint = PainterUtils.create(valuePaint, valueText, color, textSize,
         fontFamily: typeFace?.fontFamily, fontWeight: typeFace?.fontWeight);
     valuePaint!.layout();
-    valuePaint!.paint(
-        c, Offset(x - valuePaint!.width / 2, y - valuePaint!.height));
+    valuePaint!
+        .paint(c, Offset(x - valuePaint!.width / 2, y - valuePaint!.height));
   }
 
   @override

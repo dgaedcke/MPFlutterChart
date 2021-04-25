@@ -139,10 +139,10 @@ abstract class Controller<P extends ChartPainter>
       xAxis = initXAxis();
     }
     if (legendSettingFunction != null) {
-      legendSettingFunction!(legend, this);
+      legendSettingFunction!(legend!, this);
     }
     if (xAxisSettingFunction != null) {
-      xAxisSettingFunction!(xAxis, this);
+      xAxisSettingFunction!(xAxis!, this);
     }
   }
 

@@ -12,7 +12,7 @@ import 'package:mp_chart/mp/core/enums/legend_form.dart';
 import 'package:mp_chart/mp/core/highlight/highlight.dart';
 import 'package:mp_chart/mp/core/image_loader.dart';
 import 'package:mp_chart/mp/core/utils/color_utils.dart';
-import 'package:example/demo/action_state.dart';
+import '../action_state.dart';
 
 class LineChartInvertAxis extends StatefulWidget {
   @override
@@ -159,7 +159,7 @@ class LineChartInvertAxisState extends LineActionState<LineChartInvertAxis>
 
   void _initLineData(int count, double range) async {
     var img = await ImageLoader.loadImage('assets/img/star.png');
-    List<Entry> entries = List();
+    List<Entry> entries = [];
 
     for (int i = 0; i < count; i++) {
       double xVal = (random.nextDouble() * range);

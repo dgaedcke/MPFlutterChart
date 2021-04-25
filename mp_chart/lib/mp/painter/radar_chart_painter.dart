@@ -20,7 +20,7 @@ import 'package:mp_chart/mp/core/utils/utils.dart';
 import 'package:mp_chart/mp/core/view_port.dart';
 import 'package:mp_chart/mp/painter/pie_redar_chart_painter.dart';
 
-class RadarChartPainter extends PieRadarChartPainter<RadarData?> {
+class RadarChartPainter extends PieRadarChartPainter<RadarData> {
   /// width of the main web lines
   final double _webLineWidth;
 
@@ -64,7 +64,7 @@ class RadarChartPainter extends PieRadarChartPainter<RadarData?> {
   YAxis? get yAxis => _yAxis;
 
   RadarChartPainter(
-      RadarData? data,
+      RadarData data,
       Animator? animator,
       ViewPortHandler? viewPortHandler,
       double? maxHighlightDistance,
@@ -145,10 +145,10 @@ class RadarChartPainter extends PieRadarChartPainter<RadarData?> {
   @override
   void calcMinMax() {
     super.calcMinMax();
-    _yAxis!.calculate(getData()!.getYMin2(AxisDependency.LEFT),
-        getData()!.getYMax2(AxisDependency.LEFT));
+    _yAxis!.calculate(getData().getYMin2(AxisDependency.LEFT),
+        getData().getYMax2(AxisDependency.LEFT));
     xAxis!.calculate(
-        0, getData()!.getMaxEntryCountSet()!.getEntryCount().toDouble());
+        0, getData().getMaxEntryCountSet()!.getEntryCount().toDouble());
   }
 
   @override
@@ -206,7 +206,7 @@ class RadarChartPainter extends PieRadarChartPainter<RadarData?> {
   ///
   /// @return
   double getSliceAngle() {
-    return 360 / getData()!.getMaxEntryCountSet()!.getEntryCount();
+    return 360 / getData().getMaxEntryCountSet()!.getEntryCount();
   }
 
   @override
@@ -216,7 +216,7 @@ class RadarChartPainter extends PieRadarChartPainter<RadarData?> {
 
     double sliceangle = getSliceAngle();
 
-    int max = getData()!.getMaxEntryCountSet()!.getEntryCount();
+    int max = getData().getMaxEntryCountSet()!.getEntryCount();
 
     int index = 0;
 

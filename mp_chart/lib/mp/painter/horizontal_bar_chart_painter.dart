@@ -32,7 +32,7 @@ import 'package:mp_chart/mp/painter/bar_chart_painter.dart';
 
 class HorizontalBarChartPainter extends BarChartPainter {
   HorizontalBarChartPainter(
-      BarData? data,
+      BarData data,
       Animator? animator,
       ViewPortHandler? viewPortHandler,
       double? maxHighlightDistance,
@@ -214,7 +214,7 @@ class HorizontalBarChartPainter extends BarChartPainter {
 
   @override
   List<double?> getMarkerPosition(Highlight high) {
-    return new List()..add(high.drawY)..add(high.drawX);
+    return [high.drawX, high.drawY];
   }
 
   @override
@@ -243,7 +243,7 @@ class HorizontalBarChartPainter extends BarChartPainter {
     return getTransformer(set.getAxisDependency())!.rectValueToPixel(bounds);
   }
 
-  List<double?> mGetPositionBuffer = List(2);
+  List<double?> mGetPositionBuffer = List.filled(2, null);
 
   /// Returns a recyclable MPPointF instance.
   ///
@@ -252,8 +252,6 @@ class HorizontalBarChartPainter extends BarChartPainter {
   /// @return
   @override
   MPPointF getPosition(Entry e, AxisDependency axis) {
-    if (e == null) return null;
-
     List<double?> vals = mGetPositionBuffer;
     vals[0] = e.y;
     vals[1] = e.x;

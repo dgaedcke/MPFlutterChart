@@ -8,7 +8,7 @@ import 'package:mp_chart/mp/core/highlight/highlight.dart';
 import 'package:mp_chart/mp/core/utils/dart_adapter_utils.dart';
 import 'package:mp_chart/mp/core/value_formatter/value_formatter.dart';
 
-class ChartData<T extends IDataSet<Entry?>> {
+class ChartData<T extends IDataSet<Entry>> {
   /// maximum y-value in the value array across all axes
   double? _yMax = -double.infinity;
 
@@ -34,7 +34,7 @@ class ChartData<T extends IDataSet<Entry?>> {
 
   /// Default constructor.
   ChartData() {
-    _dataSets = List<T>();
+    _dataSets = [];
   }
 
   /// Constructor taking single or multiple DataSet objects.
@@ -234,7 +234,7 @@ class ChartData<T extends IDataSet<Entry?>> {
   ///
   /// @return
   List<String?> getDataSetLabels() {
-    List<String?> types = List(_dataSets!.length);
+    List<String?> types = List.filled(_dataSets!.length, null);
 
     for (int i = 0; i < _dataSets!.length; i++) {
       types[i] = _dataSets![i].getLabel();
@@ -467,7 +467,7 @@ class ChartData<T extends IDataSet<Entry?>> {
       clrcnt += _dataSets![i].getColors()!.length;
     }
 
-    List<ui.Color?> colors = List(clrcnt);
+    List<ui.Color?> colors = List.filled(clrcnt, null);
     int cnt = 0;
 
     for (int i = 0; i < _dataSets!.length; i++) {

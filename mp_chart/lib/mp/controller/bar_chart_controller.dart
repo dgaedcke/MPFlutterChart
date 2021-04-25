@@ -204,7 +204,7 @@ class BarChartController
   @override
   IMarker initMarker() => BarChartMarker();
 
-  BarData? get data => super.data as BarData?;
+  BarData get data => super.data as BarData;
 
   void groupBars(double fromX, double groupSpace, double barSpace) {
     if (data == null) {

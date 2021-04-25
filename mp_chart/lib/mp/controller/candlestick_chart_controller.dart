@@ -130,7 +130,7 @@ class CandlestickChartController
             touchEventListener: touchEventListener,
             chartTransListener: chartTransListener);
 
-  CandleData? get data => super.data as CandleData?;
+  CandleData get data => super.data as CandleData;
 
   CandlestickChartState? get state => super.state as CandlestickChartState?;
 

@@ -9,7 +9,7 @@ import 'package:mp_chart/mp/core/enums/rounding.dart';
 import 'package:mp_chart/mp/core/poolable/point.dart';
 import 'package:mp_chart/mp/core/value_formatter/value_formatter.dart';
 
-mixin IDataSet<T extends Entry?> {
+mixin IDataSet<T extends Entry> {
   double? getYMin();
 
   double? getYMax();
@@ -24,13 +24,13 @@ mixin IDataSet<T extends Entry?> {
 
   void calcMinMaxY(double fromX, double toX);
 
-  T getEntryForXValue1(double? xValue, double closestToY, Rounding rounding);
+  T? getEntryForXValue1(double? xValue, double closestToY, Rounding rounding);
 
-  T getEntryForXValue2(double? xValue, double? closestToY);
+  T? getEntryForXValue2(double? xValue, double? closestToY);
 
   List<T> getEntriesForXValue(double? xValue);
 
-  T getEntryForIndex(int? index);
+  T? getEntryForIndex(int? index);
 
   int getEntryIndex1(double xValue, double closestToY, Rounding rounding);
 

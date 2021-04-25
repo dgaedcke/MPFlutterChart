@@ -138,8 +138,8 @@ abstract class AxisRenderer extends Renderer {
     double range = (yMax - yMin).abs();
 
     if (labelCount == 0 || range <= 0 || range.isInfinite) {
-      _axis!.entries = List<double>();
-      _axis!.centeredEntries = List<double>();
+      _axis!.entries = [];
+      _axis!.centeredEntries = [];
       _axis!.entryCount = 0;
       return;
     }
@@ -155,8 +155,8 @@ abstract class AxisRenderer extends Renderer {
 
     // Normalize interval
     try {
-      double intervalMagnitude =
-          Utils.roundToNextSignificant(pow(10.0, log(interval) ~/ ln10) as double);
+      double intervalMagnitude = Utils.roundToNextSignificant(
+          pow(10.0, log(interval) ~/ ln10) as double);
       int intervalSigDigit = interval ~/ intervalMagnitude;
       if (intervalSigDigit > 5) {
         // Use one order of magnitude higher, to avoid intervals like 0.9 or
@@ -176,7 +176,7 @@ abstract class AxisRenderer extends Renderer {
 
       if (_axis!.entries.length < labelCount) {
         // Ensure stops contains at least numStops elements.
-        _axis!.entries = List(labelCount);
+        _axis!.entries = List.filled(labelCount, null);
       }
 
       double v = min;
@@ -213,7 +213,7 @@ abstract class AxisRenderer extends Renderer {
 
       if (_axis!.entries.length < num) {
         // Ensure stops contains at least numStops elements.
-        _axis!.entries = List(num);
+        _axis!.entries = List.filled(num, null);
       }
 
       i = 0;
@@ -235,7 +235,7 @@ abstract class AxisRenderer extends Renderer {
 
     if (_axis!.isCenterAxisLabelsEnabled()) {
       if (_axis!.centeredEntries.length < num) {
-        _axis!.centeredEntries = List(num);
+        _axis!.centeredEntries = List.filled(num, null);
       }
 
       int offset = interval ~/ 2;

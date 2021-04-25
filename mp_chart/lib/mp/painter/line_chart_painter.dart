@@ -19,10 +19,10 @@ import 'package:mp_chart/mp/core/transformer/transformer.dart';
 import 'package:mp_chart/mp/core/view_port.dart';
 import 'package:mp_chart/mp/painter/bar_line_chart_painter.dart';
 
-class LineChartPainter extends BarLineChartBasePainter<LineData?>
+class LineChartPainter extends BarLineChartBasePainter<LineData>
     implements LineDataProvider {
   LineChartPainter(
-      LineData? data,
+      LineData data,
       Animator? animator,
       ViewPortHandler? viewPortHandler,
       double? maxHighlightDistance,

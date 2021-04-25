@@ -22,7 +22,7 @@ import 'package:mp_chart/mp/painter/painter.dart';
 
 import 'radar_chart_painter.dart';
 
-abstract class PieRadarChartPainter<T extends ChartData<IDataSet<Entry?>>?>
+abstract class PieRadarChartPainter<T extends ChartData<IDataSet<Entry>>>
     extends ChartPainter<T> {
   /// holds the normalized version of the current rotation angle of the chart
   double _rotationAngle; //270
@@ -98,7 +98,7 @@ abstract class PieRadarChartPainter<T extends ChartData<IDataSet<Entry?>>?>
 
   @override
   int getMaxVisibleCount() {
-    return getData()!.getEntryCount();
+    return getData().getEntryCount();
   }
 
   @override
@@ -126,7 +126,8 @@ abstract class PieRadarChartPainter<T extends ChartData<IDataSet<Entry?>>?>
             double xLegendOffset = 0.0;
 
             if (legend!.horizontalAlignment == LegendHorizontalAlignment.LEFT ||
-                legend!.horizontalAlignment == LegendHorizontalAlignment.RIGHT) {
+                legend!.horizontalAlignment ==
+                    LegendHorizontalAlignment.RIGHT) {
               if (legend!.verticalAlignment == LegendVerticalAlignment.CENTER) {
                 // this is the space between the legend and the chart
                 final double spacing = Utils.convertDpToPixel(13)!;
@@ -256,8 +257,8 @@ abstract class PieRadarChartPainter<T extends ChartData<IDataSet<Entry?>>?>
     double offsetBottom =
         max(minOffset, max(getRequiredBaseOffset()!, legendBottom));
 
-    viewPortHandler!.restrainViewPort(
-        offsetLeft, offsetTop, offsetRight, offsetBottom);
+    viewPortHandler!
+        .restrainViewPort(offsetLeft, offsetTop, offsetRight, offsetBottom);
   }
 
   /// returns the angle relative to the chart center for the given point on the

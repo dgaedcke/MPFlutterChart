@@ -8,8 +8,8 @@ import 'package:mp_chart/mp/core/data_set/line_data_set.dart';
 import 'package:mp_chart/mp/core/description.dart';
 import 'package:mp_chart/mp/core/entry/entry.dart';
 import 'package:mp_chart/mp/core/utils/color_utils.dart';
-import 'package:example/demo/action_state.dart';
-import 'package:example/demo/util.dart';
+import '../action_state.dart';
+import '../util.dart';
 
 class LineChartColorful extends StatefulWidget {
   @override
@@ -19,7 +19,7 @@ class LineChartColorful extends StatefulWidget {
 }
 
 class LineChartColorfulState extends SimpleActionState<LineChartColorful> {
-  List<LineChartController> _controllers = List(4);
+  List<LineChartController> _controllers = List.filled(4, null);
   var random = Random(1);
   int _count = 36;
   double _range = 100.0;
@@ -92,7 +92,7 @@ class LineChartColorfulState extends SimpleActionState<LineChartColorful> {
   }
 
   LineData _getData(int count, double range) {
-    List<Entry> values = List();
+    List<Entry> values = [];
 
     for (int i = 0; i < count; i++) {
       double val = (random.nextDouble() * range) + 3;

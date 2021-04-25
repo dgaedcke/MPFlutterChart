@@ -274,11 +274,11 @@ abstract class Utils {
       try {
         var len = d.toString().split(".")[1].length;
         var value = "0.";
-        for(var i = 0; i < len; i++){
+        for (var i = 0; i < len; i++) {
           value += "0";
         }
         value += "1";
-        if(d >= 0){
+        if (d >= 0) {
           res = double.parse(value);
         } else {
           res = -double.parse(value);
@@ -305,7 +305,7 @@ abstract class Utils {
     return mDefaultValueFormatter;
   }
 
-  static double? convertDpToPixel(double? dp) {
+  static double convertDpToPixel(double dp) {
     return ScreenUtils.getInstance().getSp(dp);
   }
 

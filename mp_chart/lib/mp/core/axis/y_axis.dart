@@ -49,12 +49,12 @@ class YAxis extends AxisBase {
   /// the minimum width that the axis should take (in dp).
   /// <p/>
   /// default: 0.0
-  double? _minWidth = 0;
+  double _minWidth = 0;
 
   /// the maximum width that the axis can take (in dp).
   /// use Inifinity for disabling the maximum
   /// default: Float.POSITIVE_INFINITY (no maximum specified)
-  double? _maxWidth = double.infinity;
+  double _maxWidth = double.infinity;
 
   YAxis({AxisDependency position = AxisDependency.LEFT}) : super() {
     this._axisDependency = position;
@@ -64,18 +64,18 @@ class YAxis extends AxisBase {
   AxisDependency? get axisDependency => _axisDependency;
 
   // ignore: unnecessary_getters_setters
-  double? get minWidth => _minWidth;
+  double get minWidth => _minWidth;
 
   // ignore: unnecessary_getters_setters
-  set minWidth(double? value) {
+  set minWidth(double value) {
     _minWidth = value;
   }
 
   // ignore: unnecessary_getters_setters
-  double? get maxWidth => _maxWidth;
+  double get maxWidth => _maxWidth;
 
   // ignore: unnecessary_getters_setters
-  set maxWidth(double? value) {
+  set maxWidth(double value) {
     _maxWidth = value;
   }
 
@@ -178,10 +178,10 @@ class YAxis extends AxisBase {
     p = PainterUtils.create(p, null, null, textSize);
     String label = getLongestLabel();
     double width = Utils.calcTextWidth(p, label) + xOffset! * 2;
-    if (minWidth! > 0) minWidth = Utils.convertDpToPixel(minWidth);
-    if (maxWidth! > 0 && maxWidth != double.infinity)
+    if (minWidth > 0) minWidth = Utils.convertDpToPixel(minWidth);
+    if (maxWidth > 0 && maxWidth != double.infinity)
       maxWidth = Utils.convertDpToPixel(maxWidth);
-    width = max(minWidth!, min(width, maxWidth! > 0.0 ? maxWidth! : width));
+    width = max(minWidth, min(width, maxWidth > 0.0 ? maxWidth : width));
     return width;
   }
 

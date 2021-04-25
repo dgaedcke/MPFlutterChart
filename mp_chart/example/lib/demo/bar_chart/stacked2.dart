@@ -16,7 +16,7 @@ import 'package:mp_chart/mp/core/enums/x_axis_position.dart';
 import 'package:mp_chart/mp/core/highlight/highlight.dart';
 import 'package:mp_chart/mp/core/image_loader.dart';
 import 'package:mp_chart/mp/core/value_formatter/value_formatter.dart';
-import 'package:example/demo/action_state.dart';
+import '../action_state.dart';
 
 class BarChartStacked2 extends StatefulWidget {
   @override
@@ -55,7 +55,7 @@ class BarChartStacked2State extends HorizontalBarActionState<BarChartStacked2>
   void _initBarData() async {
     var img = await ImageLoader.loadImage('assets/img/star.png');
     // IMPORTANT: When using negative values in stacked bars, always make sure the negative values are in the array first
-    List<BarEntry> values = List();
+    List<BarEntry> values = [];
     values.add(BarEntry.fromListYVals(
         x: 5, vals: List<double>()..add(-10)..add(10), icon: img));
     values.add(BarEntry.fromListYVals(

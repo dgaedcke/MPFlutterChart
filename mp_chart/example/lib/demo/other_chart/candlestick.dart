@@ -11,7 +11,7 @@ import 'package:mp_chart/mp/core/enums/axis_dependency.dart';
 import 'package:mp_chart/mp/core/enums/x_axis_position.dart';
 import 'package:mp_chart/mp/core/image_loader.dart';
 import 'package:mp_chart/mp/core/utils/color_utils.dart';
-import 'package:example/demo/action_state.dart';
+import '../action_state.dart';
 
 class OtherChartCandlestick extends StatefulWidget {
   @override
@@ -161,7 +161,7 @@ class OtherChartCandlestickState
     var img = await ImageLoader.loadImage('assets/img/star.png');
 //    chart.resetTracking();
 
-    List<CandleEntry> values = List();
+    List<CandleEntry> values = [];
 
     for (int i = 0; i < count; i++) {
       double multi = (range + 1);

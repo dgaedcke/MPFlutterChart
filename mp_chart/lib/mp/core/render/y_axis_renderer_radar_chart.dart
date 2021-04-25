@@ -30,8 +30,8 @@ class YAxisRendererRadarChart extends YAxisRenderer {
     double range = (yMax - yMin).abs();
 
     if (labelCount == 0 || range <= 0 || range.isInfinite) {
-      axis!.entries = List();
-      axis!.centeredEntries = List();
+      axis!.entries = [];
+      axis!.centeredEntries = [];
       axis!.entryCount = 0;
       return;
     }
@@ -65,7 +65,7 @@ class YAxisRendererRadarChart extends YAxisRenderer {
 
       if (axis!.entries.length < labelCount) {
         // Ensure stops contains at least numStops elements.
-        axis!.entries = List(labelCount);
+        axis!.entries = List.filled(labelCount, null);
       }
 
       double v = min;
@@ -104,7 +104,7 @@ class YAxisRendererRadarChart extends YAxisRenderer {
 
       if (axis!.entries.length < n) {
         // Ensure stops contains at least numStops elements.
-        axis!.entries = List(n);
+        axis!.entries = List.filled(n, null);
       }
 
       f = first;
@@ -126,7 +126,7 @@ class YAxisRendererRadarChart extends YAxisRenderer {
 
     if (centeringEnabled) {
       if (axis!.centeredEntries.length < n) {
-        axis!.centeredEntries = List(n);
+        axis!.centeredEntries = List.filled(n, null);
       }
 
       double offset = (axis!.entries[1]! - axis!.entries[0]!) / 2;
@@ -197,7 +197,7 @@ class YAxisRendererRadarChart extends YAxisRenderer {
       if (!l.enabled) continue;
 
       limitLinePaint
-        ..style = PaintingStyle.stroke
+        ?..style = PaintingStyle.stroke
         ..color = (l.lineColor)
         ..strokeWidth = l.lineWidth!;
 

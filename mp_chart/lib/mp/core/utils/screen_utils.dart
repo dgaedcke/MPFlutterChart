@@ -193,8 +193,8 @@ class ScreenUtils {
   /// returns the font size after adaptation according to the screen density.
   /// 返回根据屏幕宽适配后字体尺寸
   /// fontSize 字体尺寸
-  double? getSp(double? fontSize) {
+  double getSp(double fontSize) {
     if (_screenDensity == 0.0) return fontSize;
-    return fontSize! * _screenWidth / _designW;
+    return fontSize * _screenWidth / _designW;
   }
 }

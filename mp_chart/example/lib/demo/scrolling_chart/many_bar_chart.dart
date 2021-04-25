@@ -10,8 +10,8 @@ import 'package:mp_chart/mp/core/description.dart';
 import 'package:mp_chart/mp/core/entry/bar_entry.dart';
 import 'package:mp_chart/mp/core/enums/x_axis_position.dart';
 import 'package:mp_chart/mp/core/utils/color_utils.dart';
-import 'package:example/demo/action_state.dart';
-import 'package:example/demo/util.dart';
+import '../action_state.dart';
+import '../util.dart';
 
 class ScrollingChartManyBar extends StatefulWidget {
   @override
@@ -22,7 +22,7 @@ class ScrollingChartManyBar extends StatefulWidget {
 
 class ScrollingChartManyBarState
     extends SimpleActionState<ScrollingChartManyBar> {
-  List<BarChartController> _controllers = List();
+  List<BarChartController> _controllers = [];
   var random = Random(1);
   bool _isParentMove = true;
   double _curX = 0.0;
@@ -132,7 +132,7 @@ class ScrollingChartManyBarState
   }
 
   BarData generateData(int cnt) {
-    List<BarEntry> entries = List();
+    List<BarEntry> entries = [];
 
     for (int i = 0; i < 12; i++) {
       entries
@@ -143,7 +143,7 @@ class ScrollingChartManyBarState
     d.setColors1(ColorUtils.VORDIPLOM_COLORS);
     d.setBarShadowColor(Color.fromARGB(255, 203, 203, 203));
 
-    List<IBarDataSet> sets = List();
+    List<IBarDataSet> sets = [];
     sets.add(d);
 
     BarData cd = BarData(sets);

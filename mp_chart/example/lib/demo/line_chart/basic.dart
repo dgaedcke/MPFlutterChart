@@ -14,8 +14,8 @@ import 'package:mp_chart/mp/core/enums/limit_label_postion.dart';
 import 'package:mp_chart/mp/core/image_loader.dart';
 import 'package:mp_chart/mp/core/limit_line.dart';
 import 'package:mp_chart/mp/core/utils/color_utils.dart';
-import 'package:example/demo/action_state.dart';
-import 'package:example/demo/util.dart';
+import '../action_state.dart';
+import '../util.dart';
 
 class LineChartBasic extends StatefulWidget {
   @override
@@ -198,7 +198,7 @@ class LineChartBasicState extends LineActionState<LineChartBasic> {
 
   void _initLineData(int count, double range) async {
     var img = await ImageLoader.loadImage('assets/img/star.png');
-    List<Entry> values = List();
+    List<Entry> values = [];
 
     for (int i = 0; i < count; i++) {
       double val = (random.nextDouble() * range) - 30;
@@ -245,7 +245,7 @@ class LineChartBasicState extends LineActionState<LineChartBasic> {
     // set color of filled area
     set1.setGradientColor(ColorUtils.BLUE, ColorUtils.RED);
 
-    List<ILineDataSet> dataSets = List();
+    List<ILineDataSet> dataSets = [];
     dataSets.add(set1); // add the data sets
 
     // create a data object with the data sets

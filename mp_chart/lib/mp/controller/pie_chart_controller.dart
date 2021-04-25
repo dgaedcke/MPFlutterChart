@@ -105,7 +105,7 @@ class PieChartController extends PieRadarController<PieChartPainter> {
   @override
   IMarker initMarker() => BarChartMarker();
 
-  PieData? get data => super.data as PieData?;
+  PieData get data => super.data as PieData;
 
   PieChartPainter? get painter => super.painter;
 

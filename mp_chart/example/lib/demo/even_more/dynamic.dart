@@ -13,8 +13,8 @@ import 'package:mp_chart/mp/core/entry/entry.dart';
 import 'package:mp_chart/mp/core/enums/axis_dependency.dart';
 import 'package:mp_chart/mp/core/highlight/highlight.dart';
 import 'package:mp_chart/mp/core/utils/color_utils.dart';
-import 'package:example/demo/action_state.dart';
-import 'package:example/demo/util.dart';
+import '../action_state.dart';
+import '../util.dart';
 
 class EvenMoreDynamic extends StatefulWidget {
   @override
@@ -192,7 +192,7 @@ class EvenMoreDynamicState extends ActionState<EvenMoreDynamic>
     } else {
       int count = (data.getDataSetCount() + 1);
       int amount = data.getDataSetByIndex(0).getEntryCount();
-      List<Entry> values = List();
+      List<Entry> values = [];
       for (int i = 0; i < amount; i++) {
         values.add(new Entry(
             x: i.toDouble(), y: (random.nextDouble() * 50) + 50 * count));

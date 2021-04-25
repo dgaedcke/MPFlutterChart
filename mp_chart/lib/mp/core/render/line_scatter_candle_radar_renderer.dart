@@ -23,7 +23,7 @@ abstract class LineScatterCandleRadarRenderer
       Canvas c, double? x, double? y, ILineScatterCandleRadarDataSet set) {
     // set color and stroke-width
     highlightPaint
-      ..color = set.getHighLightColor()
+      ?..color = set.getHighLightColor()
       ..strokeWidth = set.getHighlightLineWidth()!;
 
     // draw vertical highlight lines

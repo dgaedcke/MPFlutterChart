@@ -134,7 +134,7 @@ class LineChartController
   @override
   IMarker initMarker() => LineChartMarker();
 
-  LineData? get data => super.data as LineData?;
+  LineData get data => super.data as LineData;
 
   LineChartState? get state => super.state as LineChartState?;
 

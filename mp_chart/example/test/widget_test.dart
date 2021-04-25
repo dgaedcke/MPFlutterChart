@@ -130,7 +130,7 @@ void main() {
     print(double.parse("0"));
     print(double.parse("0.0"));
 //    Util.loadAsset("othersine.txt").then((value) {
-////      _data = List();
+////      _data = [];
 //      List<String> lines = value.split("\\n");
 //      for (int i = 0; i < lines.length; i++) {
 //        var datas = lines[i].split("#");
@@ -166,18 +166,16 @@ void main() {
     try {
       var len = d3.toString().split(".")[1].length;
       var value = "0.";
-      for(var i = 0; i < len; i++){
+      for (var i = 0; i < len; i++) {
         value += "0";
       }
       value += "1";
-      if(d3 >= 0){
+      if (d3 >= 0) {
         res = double.parse(value);
       } else {
         res = -double.parse(value);
       }
-    } catch (e) {
-
-    }
+    } catch (e) {}
     print(res);
   });
 }

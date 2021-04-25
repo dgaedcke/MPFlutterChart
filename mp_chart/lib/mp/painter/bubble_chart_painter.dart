@@ -18,10 +18,10 @@ import 'package:mp_chart/mp/core/transformer/transformer.dart';
 import 'package:mp_chart/mp/core/view_port.dart';
 import 'package:mp_chart/mp/painter/bar_line_chart_painter.dart';
 
-class BubbleChartPainter extends BarLineChartBasePainter<BubbleData?>
+class BubbleChartPainter extends BarLineChartBasePainter<BubbleData>
     implements BubbleDataProvider {
   BubbleChartPainter(
-      BubbleData? data,
+      BubbleData data,
       Animator? animator,
       ViewPortHandler? viewPortHandler,
       double? maxHighlightDistance,

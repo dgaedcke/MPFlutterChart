@@ -135,7 +135,7 @@ class RadarChartRenderer extends LineRadarRenderer {
     }
 
     renderPaint
-      ..strokeWidth = dataSet.getLineWidth()!
+      ?..strokeWidth = dataSet.getLineWidth()!
       ..style = PaintingStyle.stroke;
 
     // draw the line (only if filled is disabled or alpha is below 255)
@@ -164,7 +164,8 @@ class RadarChartRenderer extends LineRadarRenderer {
     double? yoffset = Utils.convertDpToPixel(5);
 
     for (int i = 0; i < _painter!.getData()!.getDataSetCount(); i++) {
-      IRadarDataSet dataSet = _painter!.getData()!.getDataSetByIndex(i) as IRadarDataSet;
+      IRadarDataSet dataSet =
+          _painter!.getData()!.getDataSetByIndex(i) as IRadarDataSet;
 
       if (!shouldDrawValues(dataSet)) continue;
 
@@ -202,7 +203,7 @@ class RadarChartRenderer extends LineRadarRenderer {
               sliceangle * j * phaseX + _painter!.getRotationAngle(), pIcon);
 
           //noinspection SuspiciousNameCombination
-          pIcon.y += iconsOffset.x!;
+          pIcon.y = (pIcon.y ?? 0.0) + iconsOffset.x!;
 
           CanvasUtils.drawImage(c, Offset(pIcon.x!, pIcon.y!), entry.mIcon!,
               Size(15, 15), drawPaint!);
@@ -223,8 +224,8 @@ class RadarChartRenderer extends LineRadarRenderer {
     valuePaint = PainterUtils.create(valuePaint, valueText, color, textSize,
         fontFamily: typeFace?.fontFamily, fontWeight: typeFace?.fontWeight);
     valuePaint!.layout();
-    valuePaint!.paint(
-        c, Offset(x - valuePaint!.width / 2, y - valuePaint!.height));
+    valuePaint!
+        .paint(c, Offset(x - valuePaint!.width / 2, y - valuePaint!.height));
   }
 
   @override
@@ -245,9 +246,9 @@ class RadarChartRenderer extends LineRadarRenderer {
     // draw the web lines that come from the center
     var color = _painter!.webColor!;
     _webPaint
-      ..strokeWidth = _painter!.webLineWidth
-      ..color =
-          Color.fromARGB(_painter!.webAlpha, color.red, color.green, color.blue);
+      ?..strokeWidth = _painter!.webLineWidth
+      ..color = Color.fromARGB(
+          _painter!.webAlpha, color.red, color.green, color.blue);
 
     final int xIncrements = 1 + _painter!.skipWebLineCount;
     int maxEntryCount =
@@ -265,9 +266,9 @@ class RadarChartRenderer extends LineRadarRenderer {
     // draw the inner-web
     color = _painter!.webColorInner!;
     _webPaint
-      ..strokeWidth = _painter!.innerWebLineWidth
-      ..color =
-          Color.fromARGB(_painter!.webAlpha, color.red, color.green, color.blue);
+      ?..strokeWidth = _painter!.innerWebLineWidth
+      ..color = Color.fromARGB(
+          _painter!.webAlpha, color.red, color.green, color.blue);
 
     int labelCount = _painter!.yAxis!.entryCount;
 
@@ -381,14 +382,14 @@ class RadarChartRenderer extends LineRadarRenderer {
 //        p.addCircle(point.x, point.y, innerRadius, Path.Direction.CCW);
       }
       _highlightCirclePaint
-        ..color = fillColor
+        ?..color = fillColor
         ..style = PaintingStyle.fill;
       c.drawPath(p, _highlightCirclePaint!);
     }
 
     if (strokeColor != ColorUtils.COLOR_NONE) {
       _highlightCirclePaint
-        ..color = strokeColor
+        ?..color = strokeColor
         ..style = PaintingStyle.stroke
         ..strokeWidth = Utils.convertDpToPixel(strokeWidth)!;
       c.drawCircle(

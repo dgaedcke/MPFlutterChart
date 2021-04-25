@@ -26,8 +26,7 @@ import 'package:mp_chart/mp/core/data_set/scatter_data_set.dart';
 import 'package:mp_chart/mp/core/enums/axis_dependency.dart';
 import 'package:mp_chart/mp/core/enums/mode.dart';
 import 'package:mp_chart/mp/core/utils/color_utils.dart';
-import 'package:example/demo/util.dart';
-import 'package:permission_handler/permission_handler.dart';
+import './util.dart';
 
 PopupMenuItem item(String text, String id) {
   return PopupMenuItem<String>(
@@ -75,18 +74,7 @@ abstract class ActionState<T extends StatefulWidget> extends State<T> {
 }
 
 abstract class SimpleActionState<T extends StatefulWidget>
-    extends ActionState<T> {
-  @override
-  void itemClick(String action) {
-    Util.openGithub();
-  }
-
-  @override
-  getBuilder() {
-    return (BuildContext context) =>
-        <PopupMenuItem<String>>[item('View on GitHub', 'A')];
-  }
-}
+    extends ActionState<T> {}
 
 abstract class LineActionState<T extends StatefulWidget>
     extends ActionState<T> {
@@ -95,7 +83,6 @@ abstract class LineActionState<T extends StatefulWidget>
   @override
   getBuilder() {
     return (BuildContext context) => <PopupMenuItem<String>>[
-          item('View on GitHub', 'A'),
           item('Toggle Values', 'B'),
           item('Toggle Icons', 'C'),
           item('Toggle Filled', 'D'),
@@ -120,9 +107,6 @@ abstract class LineActionState<T extends StatefulWidget>
     }
 
     switch (action) {
-      case 'A':
-        Util.openGithub();
-        break;
       case 'B':
         List<ILineDataSet> sets = controller.data.dataSets;
         for (ILineDataSet iSet in sets) {
@@ -256,9 +240,6 @@ abstract class BarActionState<T extends StatefulWidget> extends ActionState<T> {
     }
 
     switch (action) {
-      case 'A':
-        Util.openGithub();
-        break;
       case 'B':
         for (IBarDataSet set in controller.data.dataSets)
           (set as BarDataSet)
@@ -340,9 +321,6 @@ abstract class HorizontalBarActionState<T extends StatefulWidget>
     }
 
     switch (action) {
-      case 'A':
-        Util.openGithub();
-        break;
       case 'B':
         for (IBarDataSet set in controller.data.dataSets)
           (set as BarDataSet)
@@ -426,9 +404,6 @@ abstract class PieActionState<T extends StatefulWidget> extends ActionState<T> {
     }
 
     switch (action) {
-      case 'A':
-        Util.openGithub();
-        break;
       case 'B':
         for (IDataSet set in controller.data.dataSets)
           set.setDrawValues(!set.isDrawValuesEnabled());
@@ -521,9 +496,6 @@ abstract class CombinedActionState<T extends StatefulWidget>
     }
 
     switch (action) {
-      case 'A':
-        Util.openGithub();
-        break;
       case 'B':
         for (IDataSet set in controller.data.dataSets) {
           if (set is LineDataSet) set.setDrawValues(!set.isDrawValuesEnabled());
@@ -585,9 +557,6 @@ abstract class ScatterActionState<T extends StatefulWidget>
     }
 
     switch (action) {
-      case 'A':
-        Util.openGithub();
-        break;
       case 'B':
         List<IScatterDataSet> sets = controller.data.dataSets;
         for (IScatterDataSet iSet in sets) {
@@ -662,9 +631,6 @@ abstract class BubbleActionState<T extends StatefulWidget>
     }
 
     switch (action) {
-      case 'A':
-        Util.openGithub();
-        break;
       case 'B':
         for (IDataSet set in controller.data.dataSets)
           set.setDrawValues(!set.isDrawValuesEnabled());
@@ -737,9 +703,6 @@ abstract class CandlestickActionState<T extends StatefulWidget>
     }
 
     switch (action) {
-      case 'A':
-        Util.openGithub();
-        break;
       case 'B':
         for (IDataSet set in controller.data.dataSets)
           set.setDrawValues(!set.isDrawValuesEnabled());
@@ -822,9 +785,6 @@ abstract class RadarActionState<T extends StatefulWidget>
     }
 
     switch (action) {
-      case 'A':
-        Util.openGithub();
-        break;
       case 'B':
         for (IDataSet set in controller.data.dataSets)
           set.setDrawValues(!set.isDrawValuesEnabled());

@@ -59,14 +59,14 @@ class LegendRenderer extends Renderer {
     _legendLabelPaint = value;
   }
 
-  List<LegendEntry?> _computedEntries = List(16);
+  List<LegendEntry?> _computedEntries = List.filled(16, null);
 
   /// Prepares the legend and calculates all needed forms, labels and colors.
   ///
   /// @param data
   void computeLegend(ChartData<IDataSet>? data) {
     if (!_legend!.isLegendCustom) {
-      _computedEntries = List();
+      _computedEntries = [];
 
       // loop for building up the colors and labels used in the legend
       for (int i = 0; i < data!.getDataSetCount(); i++) {
@@ -183,7 +183,8 @@ class LegendRenderer extends Renderer {
   TextPainter getLabelPainter() {
     var fontFamily = _legend!.typeface?.fontFamily;
     var fontWeight = _legend!.typeface?.fontWeight;
-    return PainterUtils.create(_legendLabelPaint, null, _legend!.textColor, _legend!.textSize,
+    return PainterUtils.create(
+        _legendLabelPaint, null, _legend!.textColor, _legend!.textSize,
         fontFamily: fontFamily, fontWeight: fontWeight);
   }
 
@@ -203,7 +204,8 @@ class LegendRenderer extends Renderer {
     double? formToTextSpace = Utils.convertDpToPixel(_legend!.formToTextSpace);
     double? xEntrySpace = Utils.convertDpToPixel(_legend!.xEntrySpace);
     LegendOrientation orientation = _legend!.orientation;
-    LegendHorizontalAlignment horizontalAlignment = _legend!.horizontalAlignment;
+    LegendHorizontalAlignment horizontalAlignment =
+        _legend!.horizontalAlignment;
     LegendVerticalAlignment verticalAlignment = _legend!.verticalAlignment;
     LegendDirection direction = _legend!.direction;
     double? defaultFormSize = Utils.convertDpToPixel(_legend!.formSize);
@@ -211,16 +213,16 @@ class LegendRenderer extends Renderer {
     // space between the entries
     double? stackSpace = Utils.convertDpToPixel(_legend!.stackSpace);
 
-    double? yoffset = _legend!.yOffset;
-    double? xoffset = _legend!.xOffset;
-    double? originPosX = 0;
+    double yoffset = _legend?.yOffset ?? 0;
+    double xoffset = _legend?.xOffset ?? 0;
+    double originPosX = 0;
 
     switch (horizontalAlignment) {
       case LegendHorizontalAlignment.LEFT:
         if (orientation == LegendOrientation.VERTICAL)
           originPosX = xoffset;
         else
-          originPosX = viewPortHandler!.contentLeft() + xoffset!;
+          originPosX = viewPortHandler!.contentLeft() + xoffset;
 
         if (direction == LegendDirection.RIGHT_TO_LEFT)
           originPosX += _legend!.neededWidth;
@@ -229,9 +231,9 @@ class LegendRenderer extends Renderer {
 
       case LegendHorizontalAlignment.RIGHT:
         if (orientation == LegendOrientation.VERTICAL)
-          originPosX = viewPortHandler!.getChartWidth() - xoffset!;
+          originPosX = viewPortHandler!.getChartWidth() - xoffset;
         else
-          originPosX = viewPortHandler!.contentRight() - xoffset!;
+          originPosX = viewPortHandler!.contentRight() - xoffset;
 
         if (direction == LegendDirection.LEFT_TO_RIGHT)
           originPosX -= _legend!.neededWidth;
@@ -246,7 +248,7 @@ class LegendRenderer extends Renderer {
               viewPortHandler!.contentWidth() / 2;
 
         originPosX +=
-            (direction == LegendDirection.LEFT_TO_RIGHT ? xoffset! : -xoffset!);
+            (direction == LegendDirection.LEFT_TO_RIGHT ? xoffset : -xoffset);
 
         // Horizontally layed out legends do the center offset on a line basis,
         // So here we offset the vertical ones only.
@@ -267,8 +269,8 @@ class LegendRenderer extends Renderer {
           List<bool?> calculatedLabelBreakPoints =
               _legend!.calculatedLabelBreakPoints;
 
-          double? posX = originPosX;
-          double? posY = 0;
+          double posX = originPosX;
+          double posY = 0;
 
           switch (verticalAlignment) {
             case LegendVerticalAlignment.TOP:
@@ -277,14 +279,15 @@ class LegendRenderer extends Renderer {
 
             case LegendVerticalAlignment.BOTTOM:
               posY = viewPortHandler!.getChartHeight() -
-                  yoffset! -
+                  yoffset -
                   _legend!.neededHeight;
               break;
 
             case LegendVerticalAlignment.CENTER:
-              posY = (viewPortHandler!.getChartHeight() - _legend!.neededHeight) /
-                      2 +
-                  yoffset!;
+              posY =
+                  (viewPortHandler!.getChartHeight() - _legend!.neededHeight) /
+                          2 +
+                      yoffset;
               break;
           }
 
@@ -318,7 +321,7 @@ class LegendRenderer extends Renderer {
             if (drawingForm) {
               if (direction == LegendDirection.RIGHT_TO_LEFT) posX -= formSize!;
 
-              drawForm(c, posX, posY! + formYOffset, e, _legend);
+              drawForm(c, posX, posY + formYOffset, e, _legend);
 
               if (direction == LegendDirection.LEFT_TO_RIGHT) posX += formSize!;
             }
@@ -332,7 +335,7 @@ class LegendRenderer extends Renderer {
               if (direction == LegendDirection.RIGHT_TO_LEFT)
                 posX -= calculatedLabelSizes[i]!.width;
 
-              drawLabel(c, posX!, posY! + labelLineHeight, e.label);
+              drawLabel(c, posX, posY + labelLineHeight, e.label);
 
               if (direction == LegendDirection.LEFT_TO_RIGHT)
                 posX += calculatedLabelSizes[i]!.width;
@@ -361,14 +364,14 @@ class LegendRenderer extends Renderer {
               posY = (horizontalAlignment == LegendHorizontalAlignment.CENTER
                   ? 0
                   : viewPortHandler!.contentTop());
-              posY += yoffset!;
+              posY += yoffset;
               break;
 
             case LegendVerticalAlignment.BOTTOM:
               posY = (horizontalAlignment == LegendHorizontalAlignment.CENTER
                   ? viewPortHandler!.getChartHeight()
                   : viewPortHandler!.contentBottom());
-              posY -= _legend!.neededHeight + yoffset!;
+              posY -= _legend!.neededHeight + yoffset;
               break;
 
             case LegendVerticalAlignment.CENTER:
@@ -409,10 +412,10 @@ class LegendRenderer extends Renderer {
                 posX -= Utils.calcTextWidth(_legendLabelPaint!, e.label);
 
               if (!wasStacked) {
-                drawLabel(c, posX!, posY + labelLineHeight, e.label);
+                drawLabel(c, posX, posY + labelLineHeight, e.label);
               } else {
                 posY += labelLineHeight + labelLineSpacing;
-                drawLabel(c, posX!, posY + labelLineHeight, e.label);
+                drawLabel(c, posX, posY + labelLineHeight, e.label);
               }
 
               // make a step down

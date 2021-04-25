@@ -108,7 +108,7 @@ class BarEntry extends Entry {
 
     if (values == null || values.length == 0) return;
 
-    _ranges = List(values.length);
+    _ranges = List.filled(values.length, null);
 
     double negRemain = -negativeSum!;
     double posRemain = 0.0;

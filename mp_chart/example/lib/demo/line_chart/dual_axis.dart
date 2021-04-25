@@ -17,8 +17,8 @@ import 'package:mp_chart/mp/core/enums/legend_vertical_alignment.dart';
 import 'package:mp_chart/mp/core/highlight/highlight.dart';
 import 'package:mp_chart/mp/core/image_loader.dart';
 import 'package:mp_chart/mp/core/utils/color_utils.dart';
-import 'package:example/demo/action_state.dart';
-import 'package:example/demo/util.dart';
+import '../action_state.dart';
+import '../util.dart';
 
 class LineChartDualAxis extends StatefulWidget {
   @override
@@ -197,25 +197,25 @@ class LineChartDualAxisState extends LineActionState<LineChartDualAxis>
   }
 
   void _initLineData(int count, double range) async {
-    List<ui.Image> imgs = List(3);
+    List<ui.Image> imgs = List.filled(3, null);
     imgs[0] = await ImageLoader.loadImage('assets/img/star.png');
     imgs[1] = await ImageLoader.loadImage('assets/img/add.png');
     imgs[2] = await ImageLoader.loadImage('assets/img/close.png');
-    List<Entry> values1 = List();
+    List<Entry> values1 = [];
 
     for (int i = 0; i < count; i++) {
       double val = (random.nextDouble() * (range / 2.0)) + 50;
       values1.add(Entry(x: i.toDouble(), y: val, icon: imgs[0]));
     }
 
-    List<Entry> values2 = List();
+    List<Entry> values2 = [];
 
     for (int i = 0; i < count; i++) {
       double val = (random.nextDouble() * range) + 450;
       values2.add(new Entry(x: i.toDouble(), y: val, icon: imgs[1]));
     }
 
-    List<Entry> values3 = List();
+    List<Entry> values3 = [];
 
     for (int i = 0; i < count; i++) {
       double val = (random.nextDouble() * range) + 500;

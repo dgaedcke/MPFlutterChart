@@ -18,10 +18,10 @@ import 'package:mp_chart/mp/core/transformer/transformer.dart';
 import 'package:mp_chart/mp/core/view_port.dart';
 import 'package:mp_chart/mp/painter/bar_line_chart_painter.dart';
 
-class ScatterChartPainter extends BarLineChartBasePainter<ScatterData?>
+class ScatterChartPainter extends BarLineChartBasePainter<ScatterData>
     implements ScatterDataProvider {
   ScatterChartPainter(
-      ScatterData? data,
+      ScatterData data,
       Animator? animator,
       ViewPortHandler? viewPortHandler,
       double? maxHighlightDistance,

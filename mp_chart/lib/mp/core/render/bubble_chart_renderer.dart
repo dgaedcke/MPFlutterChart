@@ -25,10 +25,10 @@ class BubbleChartRenderer extends BarLineScatterCandleBubbleRenderer {
       : super(animator, viewPortHandler) {
     _provider = chart;
 
-    renderPaint..style = PaintingStyle.fill;
+    renderPaint?..style = PaintingStyle.fill;
 
     highlightPaint
-      ..style = PaintingStyle.stroke
+      ?..style = PaintingStyle.stroke
       ..strokeWidth = Utils.convertDpToPixel(1.5)!;
   }
 
@@ -46,8 +46,8 @@ class BubbleChartRenderer extends BarLineScatterCandleBubbleRenderer {
     }
   }
 
-  List<double?> sizeBuffer = List(4);
-  List<double?> pointBuffer = List(2);
+  List<double?> sizeBuffer = List.filled(4, null);
+  List<double?> pointBuffer = List.filled(2, null);
 
   double getShapeSize(
       double? entrySize, double maxSize, double reference, bool normalizeSize) {
@@ -77,7 +77,8 @@ class BubbleChartRenderer extends BarLineScatterCandleBubbleRenderer {
     // calcualte the full width of 1 step on the x-axis
     final double maxBubbleWidth = (sizeBuffer[2]! - sizeBuffer[0]!).abs();
     final double maxBubbleHeight =
-        (viewPortHandler!.contentBottom() - viewPortHandler!.contentTop()).abs();
+        (viewPortHandler!.contentBottom() - viewPortHandler!.contentTop())
+            .abs();
     final double referenceSize = min(maxBubbleHeight, maxBubbleWidth);
 
     for (int j = xBounds!.min!; j <= xBounds!.range! + xBounds!.min!; j++) {
@@ -95,7 +96,8 @@ class BubbleChartRenderer extends BarLineScatterCandleBubbleRenderer {
           !viewPortHandler!.isInBoundsBottom(pointBuffer[1]! - shapeHalf))
         continue;
 
-      if (!viewPortHandler!.isInBoundsLeft(pointBuffer[0]! + shapeHalf)) continue;
+      if (!viewPortHandler!.isInBoundsLeft(pointBuffer[0]! + shapeHalf))
+        continue;
 
       if (!viewPortHandler!.isInBoundsRight(pointBuffer[0]! - shapeHalf)) break;
 
@@ -193,8 +195,8 @@ class BubbleChartRenderer extends BarLineScatterCandleBubbleRenderer {
     valuePaint = PainterUtils.create(valuePaint, valueText, color, textSize,
         fontFamily: typeFace?.fontFamily, fontWeight: typeFace?.fontWeight);
     valuePaint!.layout();
-    valuePaint!.paint(
-        c, Offset(x - valuePaint!.width / 2, y - valuePaint!.height));
+    valuePaint!
+        .paint(c, Offset(x - valuePaint!.width / 2, y - valuePaint!.height));
   }
 
   @override
@@ -247,7 +249,8 @@ class BubbleChartRenderer extends BarLineScatterCandleBubbleRenderer {
           !viewPortHandler!.isInBoundsBottom(pointBuffer[1]! - shapeHalf))
         continue;
 
-      if (!viewPortHandler!.isInBoundsLeft(pointBuffer[0]! + shapeHalf)) continue;
+      if (!viewPortHandler!.isInBoundsLeft(pointBuffer[0]! + shapeHalf))
+        continue;
 
       if (!viewPortHandler!.isInBoundsRight(pointBuffer[0]! - shapeHalf)) break;
 
@@ -257,7 +260,7 @@ class BubbleChartRenderer extends BarLineScatterCandleBubbleRenderer {
       var color = hsv.toColor();
 
       highlightPaint
-        ..color = color
+        ?..color = color
         ..strokeWidth = set.getHighlightCircleWidth()!;
       c.drawCircle(
           Offset(pointBuffer[0]!, pointBuffer[1]!), shapeHalf, highlightPaint!);

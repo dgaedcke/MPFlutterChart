@@ -19,10 +19,10 @@ class DataSetImageCache {
     bool changeRequired = false;
 
     if (_circleBitmaps == null) {
-      _circleBitmaps = List(size);
+      _circleBitmaps = List.filled(size, null);
       changeRequired = true;
     } else if (_circleBitmaps!.length != size) {
-      _circleBitmaps = List(size);
+      _circleBitmaps = List.filled(size, null);
       changeRequired = true;
     }
 

@@ -24,7 +24,7 @@ import 'package:mp_chart/mp/core/transformer/transformer.dart';
 import 'package:mp_chart/mp/core/view_port.dart';
 import 'package:mp_chart/mp/painter/bar_line_chart_painter.dart';
 
-class BarChartPainter extends BarLineChartBasePainter<BarData?>
+class BarChartPainter extends BarLineChartBasePainter<BarData>
     implements BarDataProvider {
   /// flag that indicates whether the highlight should be full-bar oriented, or single-value?
   final bool _highlightFullBarEnabled;
@@ -38,7 +38,7 @@ class BarChartPainter extends BarLineChartBasePainter<BarData?>
   final bool _fitBars;
 
   BarChartPainter(
-      BarData? data,
+      BarData data,
       Animator? animator,
       ViewPortHandler? viewPortHandler,
       double? maxHighlightDistance,

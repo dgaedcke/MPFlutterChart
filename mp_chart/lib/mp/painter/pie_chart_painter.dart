@@ -22,7 +22,7 @@ import 'package:mp_chart/mp/core/utils/utils.dart';
 import 'package:mp_chart/mp/core/view_port.dart';
 import 'package:mp_chart/mp/painter/pie_redar_chart_painter.dart';
 
-class PieChartPainter extends PieRadarChartPainter<PieData?> {
+class PieChartPainter extends PieRadarChartPainter<PieData> {
   /// flag indicating if entry labels should be drawn or not
   final bool _drawEntryLabels; // = true
 
@@ -66,10 +66,10 @@ class PieChartPainter extends PieRadarChartPainter<PieData?> {
   Rect _circleBox = Rect.zero;
 
   /// array that holds the width of each pie-slice in degrees
-  List<double?> _drawAngles = List(1);
+  List<double?> _drawAngles = List.filled(1, null);
 
   /// array that holds the absolute angle in degrees of each slice
-  List<double?> _absoluteAngles = List(1);
+  List<double?> _absoluteAngles = List.filled(1, null);
 
   /// Hole color
   Color _holeColor;
@@ -80,7 +80,7 @@ class PieChartPainter extends PieRadarChartPainter<PieData?> {
   TypeFace? _entryLabelTypeface;
 
   PieChartPainter(
-      PieData? data,
+      PieData data,
       Animator? animator,
       ViewPortHandler? viewPortHandler,
       double? maxHighlightDistance,
@@ -256,22 +256,22 @@ class PieChartPainter extends PieRadarChartPainter<PieData?> {
         center.y!);
 
     MPPointF.recycleInstance(center);
-    return List()..add(x)..add(y);
+    return [x, y];
   }
 
   /// calculates the needed angles for the chart slices
   void calcAngles() {
-    int entryCount = getData()!.getEntryCount();
+    int entryCount = getData().getEntryCount();
 
     if (_drawAngles.length != entryCount) {
-      _drawAngles = List(entryCount);
+      _drawAngles = List.filled(entryCount, null);
     } else {
       for (int i = 0; i < entryCount; i++) {
         _drawAngles[i] = 0;
       }
     }
     if (_absoluteAngles.length != entryCount) {
-      _absoluteAngles = List(entryCount);
+      _absoluteAngles = List.filled(entryCount, null);
     } else {
       for (int i = 0; i < entryCount; i++) {
         _absoluteAngles[i] = 0;
@@ -280,17 +280,17 @@ class PieChartPainter extends PieRadarChartPainter<PieData?> {
 
     double yValueSum = (getData() as PieData).getYValueSum();
 
-    List<IPieDataSet>? dataSets = getData()!.dataSets as List<IPieDataSet>?;
+    List<IPieDataSet>? dataSets = getData().dataSets as List<IPieDataSet>?;
 
     bool hasMinAngle =
         _minAngleForSlices != 0 && entryCount * _minAngleForSlices <= _maxAngle;
-    List<double?> minAngles = List(entryCount);
+    List<double?> minAngles = List.filled(entryCount, null);
 
     int cnt = 0;
     double offset = 0;
     double diff = 0;
 
-    for (int i = 0; i < getData()!.getDataSetCount(); i++) {
+    for (int i = 0; i < getData().getDataSetCount(); i++) {
       IPieDataSet set = dataSets![i];
 
       for (int j = 0; j < set.getEntryCount(); j++) {
@@ -324,7 +324,8 @@ class PieChartPainter extends PieRadarChartPainter<PieData?> {
       // Correct bigger slices by relatively reducing their angles based on the total angle needed to subtract
       // This requires that `entryCount * _minAngleForSlices <= _maxAngle` be true to properly work!
       for (int i = 0; i < entryCount; i++) {
-        minAngles[i] -= (minAngles[i]! - _minAngleForSlices) / diff * offset;
+        minAngles[i] = minAngles[i]! -
+            ((minAngles[i]! - _minAngleForSlices) / diff * offset);
         if (i == 0) {
           _absoluteAngles[0] = minAngles[0];
         } else {
@@ -385,7 +386,7 @@ class PieChartPainter extends PieRadarChartPainter<PieData?> {
   /// @param xIndex
   /// @return
   int getDataSetIndexForIndex(int xIndex) {
-    List<IPieDataSet> dataSets = getData()!.dataSets as List<IPieDataSet>;
+    List<IPieDataSet> dataSets = getData().dataSets as List<IPieDataSet>;
 
     for (int i = 0; i < dataSets.length; i++) {
       if (dataSets[i].getEntryForXValue2(xIndex.toDouble(), double.nan) != null)
@@ -444,9 +445,8 @@ class PieChartPainter extends PieRadarChartPainter<PieData?> {
 
   @override
   double getRequiredLegendOffset() {
-    // ignore: null_aware_before_operator
-    var offset = legendRenderer!.legendLabelPaint!.text?.style?.fontSize! * 2.0;
-    return offset == null ? Utils.convertDpToPixel(9)! : offset;
+    final fontSize = legendRenderer!.legendLabelPaint!.text?.style?.fontSize;
+    return fontSize == null ? Utils.convertDpToPixel(9)! : (fontSize * 2.0);
   }
 
   @override

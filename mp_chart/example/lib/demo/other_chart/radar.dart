@@ -16,8 +16,8 @@ import 'package:mp_chart/mp/core/image_loader.dart';
 import 'package:mp_chart/mp/core/utils/color_utils.dart';
 import 'package:mp_chart/mp/core/utils/utils.dart';
 import 'package:mp_chart/mp/core/value_formatter/value_formatter.dart';
-import 'package:example/demo/action_state.dart';
-import 'package:example/demo/util.dart';
+import '../action_state.dart';
+import '../util.dart';
 
 class OtherChartRadar extends StatefulWidget {
   @override
@@ -103,8 +103,8 @@ class OtherChartRadarState extends RadarActionState<OtherChartRadar> {
     double min = 20;
     int cnt = 5;
 
-    List<RadarEntry> entries1 = List();
-    List<RadarEntry> entries2 = List();
+    List<RadarEntry> entries1 = [];
+    List<RadarEntry> entries2 = [];
 
     // NOTE: The order of the entries when being added to the entries array determines their position around the center of
     // the chart.
@@ -134,7 +134,7 @@ class OtherChartRadarState extends RadarActionState<OtherChartRadar> {
     set2.setDrawHighlightCircleEnabled(true);
     set2.setDrawHighlightIndicators(false);
 
-    List<IRadarDataSet> sets = List();
+    List<IRadarDataSet> sets = [];
     sets.add(set1);
     sets.add(set2);
 

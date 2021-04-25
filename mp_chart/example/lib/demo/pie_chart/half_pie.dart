@@ -15,8 +15,8 @@ import 'package:mp_chart/mp/core/image_loader.dart';
 import 'package:mp_chart/mp/core/render/pie_chart_renderer.dart';
 import 'package:mp_chart/mp/core/utils/color_utils.dart';
 import 'package:mp_chart/mp/core/value_formatter/percent_formatter.dart';
-import 'package:example/demo/action_state.dart';
-import 'package:example/demo/util.dart';
+import '../action_state.dart';
+import '../util.dart';
 
 class PieChartHalfPie extends StatefulWidget {
   @override
@@ -124,7 +124,7 @@ class PieChartHalfPieState extends SimpleActionState<PieChartHalfPie> {
     var count = 4;
     var range = 100;
 
-    List<PieEntry> values = List();
+    List<PieEntry> values = [];
 
     for (int i = 0; i < count; i++) {
       values.add(new PieEntry(

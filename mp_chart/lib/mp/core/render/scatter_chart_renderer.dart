@@ -41,7 +41,7 @@ class ScatterChartRenderer extends LineScatterCandleRadarRenderer {
     }
   }
 
-  List<double?> mPixelBuffer = List(2);
+  List<double?> mPixelBuffer = List.filled(2, null);
 
   void drawDataSet(Canvas c, IScatterDataSet dataSet) {
     if (dataSet.getEntryCount() < 1) return;
@@ -72,8 +72,8 @@ class ScatterChartRenderer extends LineScatterCandleRadarRenderer {
           !viewPortHandler!.isInBoundsY(mPixelBuffer[1])) continue;
 
       renderPaint!.color = dataSet.getColor2(i ~/ 2);
-      renderer.renderShape(c, dataSet, viewPortHandler, mPixelBuffer[0],
-          mPixelBuffer[1], renderPaint);
+      renderer.renderShape(c, dataSet, viewPortHandler!, mPixelBuffer[0]!,
+          mPixelBuffer[1]!, renderPaint!);
     }
   }
 
@@ -149,8 +149,8 @@ class ScatterChartRenderer extends LineScatterCandleRadarRenderer {
     valuePaint = PainterUtils.create(valuePaint, valueText, color, textSize,
         fontFamily: typeFace?.fontFamily, fontWeight: typeFace?.fontWeight);
     valuePaint!.layout();
-    valuePaint!.paint(
-        c, Offset(x - valuePaint!.width / 2, y - valuePaint!.height));
+    valuePaint!
+        .paint(c, Offset(x - valuePaint!.width / 2, y - valuePaint!.height));
   }
 
   @override

@@ -27,7 +27,7 @@ class SquareShapeRenderer implements IShapeRenderer {
 
     if (shapeSize > 0.0) {
       renderPaint
-        ..style = PaintingStyle.stroke
+        ?..style = PaintingStyle.stroke
         ..strokeWidth = shapeStrokeSize;
 
       c.drawRect(

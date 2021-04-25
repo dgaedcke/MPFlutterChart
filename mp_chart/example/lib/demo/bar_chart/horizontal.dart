@@ -19,8 +19,8 @@ import 'package:mp_chart/mp/core/highlight/highlight.dart';
 import 'package:mp_chart/mp/core/image_loader.dart';
 import 'package:mp_chart/mp/core/limit_line.dart';
 import 'package:mp_chart/mp/core/utils/color_utils.dart';
-import 'package:example/demo/action_state.dart';
-import 'package:example/demo/util.dart';
+import '../action_state.dart';
+import '../util.dart';
 
 class BarChartHorizontal extends StatefulWidget {
   @override
@@ -136,7 +136,7 @@ class BarChartHorizontalState
     var img = await ImageLoader.loadImage('assets/img/star.png');
     double barWidth = 9;
     double spaceForBar = 10;
-    List<BarEntry> values = List();
+    List<BarEntry> values = [];
 
     for (int i = 0; i < count; i++) {
       double val = random.nextDouble() * range;
@@ -149,7 +149,7 @@ class BarChartHorizontalState
 
     set1.setDrawIcons(false);
 
-    List<IBarDataSet> dataSets = List();
+    List<IBarDataSet> dataSets = [];
     dataSets.add(set1);
 
     controller.data = BarData(dataSets);

@@ -10,8 +10,8 @@ import 'package:mp_chart/mp/core/description.dart';
 import 'package:mp_chart/mp/core/entry/bar_entry.dart';
 import 'package:mp_chart/mp/core/enums/x_axis_position.dart';
 import 'package:mp_chart/mp/core/utils/color_utils.dart';
-import 'package:example/demo/action_state.dart';
-import 'package:example/demo/util.dart';
+import '../action_state.dart';
+import '../util.dart';
 
 class ScrollingChartTallBar extends StatefulWidget {
   @override
@@ -158,7 +158,7 @@ class ScrollingChartTallBarState
   }
 
   BarData generateData() {
-    List<BarEntry> entries = List();
+    List<BarEntry> entries = [];
 
     for (int i = 0; i < 10; i++) {
       entries
@@ -169,7 +169,7 @@ class ScrollingChartTallBarState
     d.setColors1(ColorUtils.VORDIPLOM_COLORS);
     d.setDrawValues(false);
 
-    List<IBarDataSet> sets = List();
+    List<IBarDataSet> sets = [];
     sets.add(d);
 
     return BarData(sets);

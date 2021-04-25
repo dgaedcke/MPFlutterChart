@@ -50,8 +50,8 @@ class CandleDataSet extends LineScatterCandleRadarDataSet<CandleEntry>
   CandleDataSet(List<CandleEntry> yVals, String label) : super(yVals, label);
 
   @override
-  DataSet<CandleEntry?> copy1() {
-    List<CandleEntry> entries = List<CandleEntry>();
+  DataSet<CandleEntry> copy1() {
+    List<CandleEntry> entries = [];
     for (int i = 0; i < values!.length; i++) {
       entries.add(values![i]!.copy());
     }

@@ -2,7 +2,7 @@ import 'package:mp_chart/mp/core/data_set/base_data_set.dart';
 import 'package:mp_chart/mp/core/entry/entry.dart';
 import 'package:mp_chart/mp/core/enums/rounding.dart';
 
-abstract class DataSet<T extends Entry?> extends BaseDataSet<T?> {
+abstract class DataSet<T extends Entry> extends BaseDataSet<T> {
   /// the entries that this DataSet represents / holds together
   List<T?>? _values;
 
@@ -27,7 +27,7 @@ abstract class DataSet<T extends Entry?> extends BaseDataSet<T?> {
   DataSet(List<T> values, String label) : super.withLabel(label) {
     this._values = values;
 
-    if (_values == null) _values = List<T>();
+    if (_values == null) _values = [];
 
     calcMinMax();
   }
@@ -169,7 +169,7 @@ abstract class DataSet<T extends Entry?> extends BaseDataSet<T?> {
     if (e == null) return;
 
     if (_values == null) {
-      _values = List<T>();
+      _values = [];
     }
 
     calcMinMax1(e);
@@ -194,7 +194,7 @@ abstract class DataSet<T extends Entry?> extends BaseDataSet<T?> {
 
     List<T?>? valueDatas = values;
     if (valueDatas == null) {
-      valueDatas = List<T>();
+      valueDatas = [];
     }
 
     calcMinMax1(e);
@@ -351,8 +351,8 @@ abstract class DataSet<T extends Entry?> extends BaseDataSet<T?> {
   }
 
   @override
-  List<T?> getEntriesForXValue(double? xValue) {
-    List<T?> entries = List<T?>();
+  List<T> getEntriesForXValue(double? xValue) {
+    List<T> entries = [];
 
     int low = 0;
     int high = _values!.length - 1;

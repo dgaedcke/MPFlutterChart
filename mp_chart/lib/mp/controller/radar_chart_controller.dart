@@ -92,7 +92,7 @@ class RadarChartController extends PieRadarController<RadarChartPainter> {
 
   YAxis initYAxis() => YAxis(position: AxisDependency.LEFT);
 
-  RadarData? get data => super.data as RadarData?;
+  RadarData get data => super.data as RadarData;
 
   RadarChartPainter? get painter => super.painter;
 
@@ -143,7 +143,7 @@ class RadarChartController extends PieRadarController<RadarChartPainter> {
     webColorInner ??= Color.fromARGB(255, 122, 122, 122);
     yAxis = initYAxis();
     if (yAxisSettingFunction != null) {
-      yAxisSettingFunction!(yAxis, this);
+      yAxisSettingFunction!(yAxis!, this);
     }
   }
 
