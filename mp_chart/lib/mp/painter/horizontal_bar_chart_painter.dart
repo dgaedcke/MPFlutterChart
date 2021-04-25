@@ -177,11 +177,12 @@ class HorizontalBarChartPainter extends BarChartPainter {
 
     if (xAxis!.enabled) {
       // offsets for x-labels
-      if (xAxis!.position == XAxisPosition.BOTTOM) {
+      final labelPosition = xAxis!.labelPosition;
+      if (labelPosition == XAxisPosition.BOTTOM) {
         offsetLeft += xlabelwidth;
-      } else if (xAxis!.position == XAxisPosition.TOP) {
+      } else if (labelPosition == XAxisPosition.TOP) {
         offsetRight += xlabelwidth;
-      } else if (xAxis!.position == XAxisPosition.BOTH_SIDED) {
+      } else if (labelPosition == XAxisPosition.BOTH_SIDED) {
         offsetLeft += xlabelwidth;
         offsetRight += xlabelwidth;
       }

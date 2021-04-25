@@ -103,37 +103,48 @@ class XAxisRenderer extends AxisRenderer {
             fontFamily: _xAxis!.typeface?.fontFamily,
             fontWeight: _xAxis!.typeface?.fontWeight));
 
+    final labelPosition = _xAxis!.labelPosition;
+    final margin = _xAxis!.yOffset;
+
     MPPointF pointF = MPPointF.getInstance1(0, 0);
-    if (_xAxis!.position == XAxisPosition.TOP) {
+    if (labelPosition == XAxisPosition.TOP) {
       pointF.x = 0.5;
       pointF.y = 1.0;
-      drawLabels(c, viewPortHandler!.contentTop(), pointF, _xAxis!.position);
-    } else if (_xAxis!.position == XAxisPosition.TOP_INSIDE) {
+      drawLabels(
+          c, viewPortHandler!.contentTop() - margin, pointF, labelPosition);
+    } else if (labelPosition == XAxisPosition.TOP_INSIDE) {
       pointF.x = 0.5;
       pointF.y = 1.0;
-      drawLabels(c, viewPortHandler!.contentTop() + _xAxis!.labelRotatedHeight,
-          pointF, _xAxis!.position);
-    } else if (_xAxis!.position == XAxisPosition.BOTTOM) {
+      drawLabels(
+          c,
+          viewPortHandler!.contentTop() + _xAxis!.labelRotatedHeight + margin,
+          pointF,
+          labelPosition);
+    } else if (labelPosition == XAxisPosition.BOTTOM) {
       pointF.x = 0.5;
       pointF.y = 0.0;
-      drawLabels(c, viewPortHandler!.contentBottom(), pointF, _xAxis!.position);
-    } else if (_xAxis!.position == XAxisPosition.BOTTOM_INSIDE) {
+      drawLabels(
+          c, viewPortHandler!.contentBottom() + margin, pointF, labelPosition);
+    } else if (labelPosition == XAxisPosition.BOTTOM_INSIDE) {
       pointF.x = 0.5;
       pointF.y = 0.0;
       drawLabels(
           c,
-          viewPortHandler!.contentBottom() - _xAxis!.labelRotatedHeight,
+          viewPortHandler!.contentBottom() -
+              _xAxis!.labelRotatedHeight -
+              margin,
           pointF,
-          _xAxis!.position);
+          labelPosition);
     } else {
       // BOTH SIDED
       pointF.x = 0.5;
       pointF.y = 1.0;
-      drawLabels(c, viewPortHandler!.contentTop(), pointF, XAxisPosition.TOP);
+      drawLabels(
+          c, viewPortHandler!.contentTop() - margin, pointF, XAxisPosition.TOP);
       pointF.x = 0.5;
       pointF.y = 0.0;
-      drawLabels(
-          c, viewPortHandler!.contentBottom(), pointF, XAxisPosition.BOTTOM);
+      drawLabels(c, viewPortHandler!.contentBottom() + margin, pointF,
+          XAxisPosition.BOTTOM);
     }
     MPPointF.recycleInstance(pointF);
   }

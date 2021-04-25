@@ -4,6 +4,8 @@ import 'package:mp_chart/mp/core/enums/x_axis_position.dart';
 import 'package:mp_chart/mp/core/utils/painter_utils.dart';
 import 'package:mp_chart/mp/core/utils/utils.dart';
 
+import '../enums/x_axis_position.dart';
+
 class XAxis extends AxisBase {
   /// width of the x-axis labels in pixels - this is automatically
   /// calculated by the computeSize() methods in the renderers
@@ -30,6 +32,7 @@ class XAxis extends AxisBase {
 
   /// the position of the x-labels relative to the chart
   XAxisPosition _position = XAxisPosition.TOP;
+  XAxisPosition? _labelPosition;
 
   XAxis() : super() {
     yOffset = Utils.convertDpToPixel(4);
@@ -38,9 +41,15 @@ class XAxis extends AxisBase {
   // ignore: unnecessary_getters_setters
   XAxisPosition get position => _position;
 
+  XAxisPosition get labelPosition => _labelPosition ?? _position;
+
   // ignore: unnecessary_getters_setters
   set position(XAxisPosition value) {
     _position = value;
+  }
+
+  set labelPosition(XAxisPosition value) {
+    _labelPosition = value;
   }
 
   // ignore: unnecessary_getters_setters

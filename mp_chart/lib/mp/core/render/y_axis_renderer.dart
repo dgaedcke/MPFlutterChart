@@ -68,12 +68,14 @@ class YAxisRenderer extends AxisRenderer {
       } else {
         xPos = viewPortHandler!.offsetLeft();
       }
+      xPos -= _yAxis!.xOffset;
     } else {
       if (labelPosition == YAxisLabelPosition.OUTSIDE_CHART) {
         xPos = viewPortHandler!.contentRight();
       } else {
         xPos = viewPortHandler!.contentRight();
       }
+      xPos += _yAxis!.xOffset;
     }
 
     drawYLabels(c, xPos, positions, dependency, labelPosition);

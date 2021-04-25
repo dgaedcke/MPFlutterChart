@@ -532,13 +532,13 @@ abstract class BarLineChartBasePainter<
         double xLabelHeight = xAxis!.labelRotatedHeight +
             xAxis!.yOffset +
             xAxis!.getRequiredHeightSpace(_xAxisRenderer!.axisLabelPaint);
-
+        final labelPosition = xAxis!.labelPosition;
         // offsets for x-labels
-        if (xAxis!.position == XAxisPosition.BOTTOM) {
+        if (labelPosition == XAxisPosition.BOTTOM) {
           offsetBottom += xLabelHeight;
-        } else if (xAxis!.position == XAxisPosition.TOP) {
+        } else if (labelPosition == XAxisPosition.TOP) {
           offsetTop += xLabelHeight;
-        } else if (xAxis!.position == XAxisPosition.BOTH_SIDED) {
+        } else if (labelPosition == XAxisPosition.BOTH_SIDED) {
           offsetBottom += xLabelHeight;
           offsetTop += xLabelHeight;
         }

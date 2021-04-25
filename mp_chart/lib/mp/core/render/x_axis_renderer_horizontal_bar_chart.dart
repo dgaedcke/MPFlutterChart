@@ -86,31 +86,31 @@ class XAxisRendererHorizontalBarChart extends XAxisRenderer {
         fontWeight: xAxis!.typeface?.fontWeight);
 
     MPPointF pointF = MPPointF.getInstance1(0, 0);
-
-    if (xAxis!.position == XAxisPosition.TOP) {
+    final labelPosition = xAxis!.labelPosition;
+    if (labelPosition == XAxisPosition.TOP) {
       pointF.x = 0.0;
       pointF.y = 0.5;
-      drawLabels(c, viewPortHandler!.contentRight(), pointF, xAxis!.position);
-    } else if (xAxis!.position == XAxisPosition.TOP_INSIDE) {
+      drawLabels(c, viewPortHandler!.contentRight(), pointF, labelPosition);
+    } else if (labelPosition == XAxisPosition.TOP_INSIDE) {
       pointF.x = 1.0;
       pointF.y = 0.5;
-      drawLabels(c, viewPortHandler!.contentRight(), pointF, xAxis!.position);
-    } else if (xAxis!.position == XAxisPosition.BOTTOM) {
+      drawLabels(c, viewPortHandler!.contentRight(), pointF, labelPosition);
+    } else if (labelPosition == XAxisPosition.BOTTOM) {
       pointF.x = 1.0;
       pointF.y = 0.5;
-      drawLabels(c, viewPortHandler!.contentLeft(), pointF, xAxis!.position);
-    } else if (xAxis!.position == XAxisPosition.BOTTOM_INSIDE) {
+      drawLabels(c, viewPortHandler!.contentLeft(), pointF, labelPosition);
+    } else if (labelPosition == XAxisPosition.BOTTOM_INSIDE) {
       pointF.x = 1.0;
       pointF.y = 0.5;
-      drawLabels(c, viewPortHandler!.contentLeft(), pointF, xAxis!.position);
+      drawLabels(c, viewPortHandler!.contentLeft(), pointF, labelPosition);
     } else {
       // BOTH SIDED
       pointF.x = 0.0;
       pointF.y = 0.5;
-      drawLabels(c, viewPortHandler!.contentRight(), pointF, xAxis!.position);
+      drawLabels(c, viewPortHandler!.contentRight(), pointF, labelPosition);
       pointF.x = 1.0;
       pointF.y = 0.5;
-      drawLabels(c, viewPortHandler!.contentLeft(), pointF, xAxis!.position);
+      drawLabels(c, viewPortHandler!.contentLeft(), pointF, labelPosition);
     }
 
     MPPointF.recycleInstance(pointF);
