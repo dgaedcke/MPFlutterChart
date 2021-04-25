@@ -678,7 +678,8 @@ abstract class BarLineChartBasePainter<
 
     getTransformer(axis)!.pointValuesToPixel(mGetPositionBuffer);
 
-    return MPPointF.getInstance1(mGetPositionBuffer[0], mGetPositionBuffer[1]);
+    return MPPointF.getInstance1(
+        mGetPositionBuffer[0]!, mGetPositionBuffer[1]!);
   }
 
   /// Sets the color for the background of the chart-drawing area (everything

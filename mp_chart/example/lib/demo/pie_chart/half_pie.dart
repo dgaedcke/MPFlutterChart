@@ -26,7 +26,7 @@ class PieChartHalfPie extends StatefulWidget {
 }
 
 class PieChartHalfPieState extends SimpleActionState<PieChartHalfPie> {
-  PieChartController _controller;
+  late PieChartController _controller;
   var random = Random(1);
 
   @override
@@ -49,7 +49,7 @@ class PieChartHalfPieState extends SimpleActionState<PieChartHalfPie> {
   }
 
   // ignore: non_constant_identifier_names
-  final List<String> PARTIES = List()
+  final List<String> PARTIES = []
     ..add("Party A")
     ..add("Party B")
     ..add("Party C")
@@ -81,7 +81,7 @@ class PieChartHalfPieState extends SimpleActionState<PieChartHalfPie> {
     var desc = Description()..enabled = false;
     _controller = PieChartController(
         legendSettingFunction: (legend, controller) {
-          _formatter.setPieChartPainter(controller);
+          _formatter.setPieChartPainter(controller as PieChartController);
           legend
             ..verticalAlignment = (LegendVerticalAlignment.TOP)
             ..horizontalAlignment = (LegendHorizontalAlignment.CENTER)
@@ -150,7 +150,7 @@ class PieChartHalfPieState extends SimpleActionState<PieChartHalfPie> {
 
   Widget _initPieChart() {
     var pieChart = PieChart(_controller);
-    _controller.animator.animateY2(1400, Easing.EaseInOutQuad);
+    _controller.animator!.animateY2(1400, Easing.EaseInOutQuad);
     return pieChart;
   }
 }

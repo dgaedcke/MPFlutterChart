@@ -198,7 +198,7 @@ class OtherChartCandlestickState
     set1.setNeutralColor(ColorUtils.BLUE);
     //set1.setHighlightLineWidth(1f);
 
-    controller.data = CandleData.fromList(List()..add(set1));
+    controller.data = CandleData.fromList([set1]);
 
     setState(() {});
   }

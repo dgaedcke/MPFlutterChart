@@ -340,8 +340,8 @@ class Transformer {
 
     pixelsToValue(_ptsBuffer);
 
-    outputPoint.x = _ptsBuffer[0];
-    outputPoint.y = _ptsBuffer[1];
+    outputPoint.x = _ptsBuffer[0]!;
+    outputPoint.y = _ptsBuffer[1]!;
   }
 
   /// Returns a recyclable MPPointD instance.
@@ -359,7 +359,7 @@ class Transformer {
     double? xPx = _ptsBuffer[0];
     double? yPx = _ptsBuffer[1];
 
-    return MPPointD.getInstance1(xPx, yPx);
+    return MPPointD.getInstance1(xPx!, yPx!);
   }
 
   Matrix4 getValueMatrix() {

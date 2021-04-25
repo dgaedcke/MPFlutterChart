@@ -258,7 +258,7 @@ class HorizontalBarChartPainter extends BarChartPainter {
 
     getTransformer(axis)!.pointValuesToPixel(vals);
 
-    return MPPointF.getInstance1(vals[0], vals[1]);
+    return MPPointF.getInstance1(vals[0]!, vals[1]!);
   }
 
   /// Returns the Highlight object (contains x-index and DataSet index) of the selected value at the given touch point

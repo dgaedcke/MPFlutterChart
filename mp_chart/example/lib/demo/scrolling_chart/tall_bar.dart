@@ -22,7 +22,7 @@ class ScrollingChartTallBar extends StatefulWidget {
 
 class ScrollingChartTallBarState
     extends SimpleActionState<ScrollingChartTallBar> {
-  BarChartController _controller;
+  late BarChartController _controller;
   var random = Random(1);
   bool _isParentMove = true;
   double _curX = 0.0;
@@ -90,7 +90,7 @@ class ScrollingChartTallBarState
   Widget _renderItem() {
     var barChart = BarChart(_controller);
     _controller.animator
-      ..reset()
+      ?..reset()
       ..animateY1(800);
     return Column(
         mainAxisSize: MainAxisSize.max,

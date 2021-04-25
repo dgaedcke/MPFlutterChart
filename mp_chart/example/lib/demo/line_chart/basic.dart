@@ -249,15 +249,15 @@ class LineChartBasicState extends LineActionState<LineChartBasic> {
     dataSets.add(set1); // add the data sets
 
     // create a data object with the data sets
-    controller.data = LineData.fromList(dataSets);
+    controller!.data = LineData.fromList(dataSets);
 
     setState(() {});
   }
 
   Widget _initLineChart() {
-    var lineChart = LineChart(controller);
-    controller.animator
-      ..reset()
+    var lineChart = LineChart(controller!);
+    controller!.animator
+      ?..reset()
       ..animateX1(1500);
     return lineChart;
   }

@@ -132,7 +132,7 @@ class PieChartValueLinesState extends PieActionState<PieChartValueLines>
   }
 
   // ignore: non_constant_identifier_names
-  final List<String> PARTIES = List()
+  final List<String> PARTIES = []
     ..add("Party A")
     ..add("Party B")
     ..add("Party C")
@@ -164,7 +164,7 @@ class PieChartValueLinesState extends PieActionState<PieChartValueLines>
     var desc = Description()..enabled = false;
     controller = PieChartController(
         legendSettingFunction: (legend, controller) {
-          _formatter.setPieChartPainter(controller);
+          _formatter.setPieChartPainter(controller as PieChartController);
           legend
             ..verticalAlignment = (LegendVerticalAlignment.TOP)
             ..horizontalAlignment = (LegendHorizontalAlignment.RIGHT)
@@ -245,7 +245,7 @@ class PieChartValueLinesState extends PieActionState<PieChartValueLines>
   Widget _initPieChart() {
     var pieChart = PieChart(controller);
     controller.animator
-      ..reset()
+      ?..reset()
       ..animateY2(1400, Easing.EaseInOutQuad);
     return pieChart;
   }

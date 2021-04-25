@@ -131,7 +131,7 @@ class PieChartBasicState extends PieActionState<PieChartBasic>
   }
 
   // ignore: non_constant_identifier_names
-  final List<String> PARTIES = List()
+  final List<String> PARTIES = []
     ..add("Party A")
     ..add("Party B")
     ..add("Party C")
@@ -165,7 +165,7 @@ class PieChartBasicState extends PieActionState<PieChartBasic>
       ..enabled = true;
     controller = PieChartController(
         legendSettingFunction: (legend, controller) {
-          _formatter.setPieChartPainter(controller);
+          _formatter.setPieChartPainter(controller as PieChartController);
           legend
             ..verticalAlignment = (LegendVerticalAlignment.TOP)
             ..horizontalAlignment = (LegendHorizontalAlignment.RIGHT)

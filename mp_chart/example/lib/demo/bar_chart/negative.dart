@@ -22,7 +22,7 @@ class BarChartNegative extends StatefulWidget {
 }
 
 class BarChartNegativeState extends SimpleActionState<BarChartNegative> {
-  BarChartController _controller;
+  late BarChartController _controller;
   List<Data> _data = [];
 
   @override
@@ -82,7 +82,7 @@ class BarChartNegativeState extends SimpleActionState<BarChartNegative> {
     set.setColors1(colors);
     set.setValueTextColors(colors);
 
-    _controller.data = BarData(List()..add(set));
+    _controller.data = BarData([set]);
     _controller.data
       ..setValueTextSize(13)
       ..setValueTypeface(Util.REGULAR)
@@ -145,8 +145,8 @@ class A extends ValueFormatter {
   A(this._data) : super();
 
   @override
-  String getFormattedValue1(double value) {
-    return _data[min(max(value.toInt(), 0), _data.length - 1)].xAxisValue;
+  String getFormattedValue1(double? value) {
+    return _data[min(max(value!.toInt(), 0), _data.length - 1)].xAxisValue;
   }
 }
 
@@ -159,14 +159,14 @@ class Data {
 }
 
 class Formatter extends ValueFormatter {
-  NumberFormat _format;
+  late NumberFormat _format;
 
   Formatter() : super() {
     _format = NumberFormat("######.0");
   }
 
   @override
-  String getFormattedValue1(double value) {
+  String getFormattedValue1(double? value) {
     return _format.format(value);
   }
 }

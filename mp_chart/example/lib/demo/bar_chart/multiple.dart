@@ -188,13 +188,13 @@ class BarChartMultipleState extends BarActionState<BarChartMultiple>
         description: desc);
   }
 
-  int groupCount;
-  int startYear;
-  int endYear;
+  late int groupCount;
+  late int startYear;
+  late int endYear;
   bool isDataInitial = false;
 
   void _initBarData(int count, double range) async {
-    List<ui.Image> imgs = List.filled(3, null);
+    List<ui.Image?> imgs = List.filled(3, null);
     imgs[0] = await ImageLoader.loadImage('assets/img/star.png');
     imgs[1] = await ImageLoader.loadImage('assets/img/add.png');
     imgs[2] = await ImageLoader.loadImage('assets/img/close.png');
@@ -238,8 +238,7 @@ class BarChartMultipleState extends BarActionState<BarChartMultiple>
     set4 = BarDataSet(values4, "Company D");
     set4.setColor1(Color.fromARGB(255, 255, 102, 0));
 
-    controller.data =
-        BarData(List()..add(set1)..add(set2)..add(set3)..add(set4));
+    controller.data = BarData([]..add(set1)..add(set2)..add(set3)..add(set4));
     controller.data
       ..setValueFormatter(LargeValueFormatter())
       ..setValueTypeface(Util.LIGHT)
@@ -260,7 +259,7 @@ class BarChartMultipleState extends BarActionState<BarChartMultiple>
 
 class A extends ValueFormatter {
   @override
-  String getFormattedValue1(double value) {
-    return value.toInt().toString();
+  String getFormattedValue1(double? value) {
+    return value!.toInt().toString();
   }
 }

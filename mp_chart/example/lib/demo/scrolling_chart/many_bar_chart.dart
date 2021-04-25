@@ -120,7 +120,7 @@ class ScrollingChartManyBarState
   Widget _renderItem(int index) {
     var barChart = BarChart(_controllers[index]);
     _controllers[index].animator
-      ..reset()
+      ?..reset()
       ..animateY1(700);
     return Container(height: 200, child: barChart);
   }

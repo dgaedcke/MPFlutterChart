@@ -242,7 +242,7 @@ class BarChartHorizontalState
   Widget _initBarChart() {
     var barChart = HorizontalBarChart(controller);
     controller.animator
-      ..reset()
+      ?..reset()
       ..animateY1(2500);
     return barChart;
   }

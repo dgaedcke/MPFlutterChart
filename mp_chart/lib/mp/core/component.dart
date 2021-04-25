@@ -8,10 +8,10 @@ abstract class ComponentBase {
   bool _enabled = true;
 
   /// the offset in pixels this component has on the x-axis
-  double? _xOffset = 5;
+  double _xOffset = 5;
 
   /// the offset in pixels this component has on the Y-axis
-  double? _yOffset = 5;
+  double _yOffset = 5;
 
   /// the typeface used for the labels
   TypeFace? _typeface;
@@ -30,15 +30,15 @@ abstract class ComponentBase {
     _enabled = value;
   }
 
-  double? get xOffset => _xOffset;
+  double get xOffset => _xOffset;
 
-  set xOffset(double? value) {
+  set xOffset(double value) {
     _xOffset = Utils.convertDpToPixel(value);
   }
 
-  double? get yOffset => _yOffset;
+  double get yOffset => _yOffset;
 
-  set yOffset(double? value) {
+  set yOffset(double value) {
     _yOffset = Utils.convertDpToPixel(value);
   }
 

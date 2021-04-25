@@ -86,7 +86,7 @@ class LineChartMultipleState extends LineActionState<LineChartMultiple>
             left: 0,
             top: 0,
             bottom: 100,
-            child: LineChart(controller)),
+            child: LineChart(controller!)),
         Positioned(
           left: 0,
           right: 0,
@@ -198,7 +198,7 @@ class LineChartMultipleState extends LineActionState<LineChartMultiple>
   }
 
   void _initLineData(int count, double range) async {
-    List<ui.Image> imgs = List.filled(3, null);
+    List<ui.Image?> imgs = List.filled(3, null);
     imgs[0] = await ImageLoader.loadImage('assets/img/star.png');
     imgs[1] = await ImageLoader.loadImage('assets/img/add.png');
     imgs[2] = await ImageLoader.loadImage('assets/img/close.png');
@@ -228,7 +228,7 @@ class LineChartMultipleState extends LineActionState<LineChartMultiple>
     (dataSets[0] as LineDataSet).setColors1(ColorUtils.VORDIPLOM_COLORS);
     (dataSets[0] as LineDataSet).setCircleColors(ColorUtils.VORDIPLOM_COLORS);
 
-    controller.data = LineData.fromList(dataSets);
+    controller!.data = LineData.fromList(dataSets);
 
     setState(() {});
   }

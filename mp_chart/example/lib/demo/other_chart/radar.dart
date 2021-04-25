@@ -151,14 +151,14 @@ class OtherChartRadarState extends RadarActionState<OtherChartRadar> {
   Widget _initCandleChart() {
     var radarChart = RadarChart(controller);
     controller.animator
-      ..reset()
+      ?..reset()
       ..animateXY2(1400, 1400, Easing.EaseInOutQuad);
     return radarChart;
   }
 }
 
 class A extends ValueFormatter {
-  final List<String> mActivities = List()
+  final List<String> mActivities = []
     ..add("Burger")
     ..add("Steak")
     ..add("Salad")
@@ -166,7 +166,7 @@ class A extends ValueFormatter {
     ..add("Pizza");
 
   @override
-  String getFormattedValue1(double value) {
-    return mActivities[value.toInt() % mActivities.length];
+  String getFormattedValue1(double? value) {
+    return mActivities[value!.toInt() % mActivities.length];
   }
 }

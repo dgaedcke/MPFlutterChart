@@ -177,7 +177,7 @@ class BarChartBasic2State extends BarActionState<BarChartBasic2> {
   Widget _initBarChart() {
     var barChart = BarChart(controller);
     controller.animator
-      ..reset()
+      ?..reset()
       ..animateY1(1500);
     return barChart;
   }

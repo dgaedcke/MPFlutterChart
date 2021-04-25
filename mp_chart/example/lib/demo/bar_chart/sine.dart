@@ -23,7 +23,7 @@ class BarChartSine extends StatefulWidget {
 }
 
 class BarChartSineState extends BarActionState<BarChartSine> {
-  List<BarEntry> _data;
+  List<BarEntry>? _data;
   var random = Random(1);
   int _count = 150;
 
@@ -37,7 +37,7 @@ class BarChartSineState extends BarActionState<BarChartSine> {
         var datas = lines[i].split("#");
         var x = double.parse(datas[1]);
         var y = double.parse(datas[0]);
-        _data.add(BarEntry(x: x, y: y));
+        _data!.add(BarEntry(x: x, y: y));
       }
       _initBarData(_count);
     });
@@ -156,13 +156,13 @@ class BarChartSineState extends BarActionState<BarChartSine> {
 
     List<BarEntry> entries = [];
     for (int i = 0; i < count; i++) {
-      entries.add(_data[i]);
+      entries.add(_data![i]);
     }
 
     BarDataSet set = BarDataSet(entries, "Sinus Function");
     set.setColor1(Color.fromARGB(255, 240, 120, 124));
 
-    controller.data = BarData(List()..add(set));
+    controller.data = BarData([set]);
     controller.data
       ..setValueTextSize(10)
       ..setValueTypeface(Util.LIGHT)
@@ -175,7 +175,7 @@ class BarChartSineState extends BarActionState<BarChartSine> {
   Widget _initBarChart() {
     var barChart = BarChart(controller);
     controller.animator
-      ..reset()
+      ?..reset()
       ..animateXY1(1500, 1500);
     return barChart;
   }

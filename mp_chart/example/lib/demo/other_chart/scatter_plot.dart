@@ -169,10 +169,10 @@ class OtherChartScatterPlotState
   }
 
   void _initScatterData(int count, double range) async {
-    List<ui.Image?> imgs = List.filled(3, null);
-    imgs[0] = await ImageLoader.loadImage('assets/img/star.png');
-    imgs[1] = await ImageLoader.loadImage('assets/img/add.png');
-    imgs[2] = await ImageLoader.loadImage('assets/img/close.png');
+    List<ui.Image> imgs = [];
+    imgs.add(await ImageLoader.loadImage('assets/img/star.png'));
+    imgs.add(await ImageLoader.loadImage('assets/img/add.png'));
+    imgs.add(await ImageLoader.loadImage('assets/img/close.png'));
 
     List<Entry> values1 = [];
     List<Entry> values2 = [];
@@ -226,7 +226,7 @@ class OtherChartScatterPlotState
   void onNothingSelected() {}
 
   @override
-  void onValueSelected(Entry? e, Highlight? h) {}
+  void onValueSelected(Entry e, Highlight h) {}
 }
 
 class CustomScatterShapeRenderer implements IShapeRenderer {

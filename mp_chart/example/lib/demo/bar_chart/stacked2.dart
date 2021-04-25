@@ -56,44 +56,44 @@ class BarChartStacked2State extends HorizontalBarActionState<BarChartStacked2>
     var img = await ImageLoader.loadImage('assets/img/star.png');
     // IMPORTANT: When using negative values in stacked bars, always make sure the negative values are in the array first
     List<BarEntry> values = [];
-    values.add(BarEntry.fromListYVals(
-        x: 5, vals: List<double>()..add(-10)..add(10), icon: img));
-    values.add(BarEntry.fromListYVals(
-        x: 15, vals: List<double>()..add(-12)..add(13), icon: img));
-    values.add(BarEntry.fromListYVals(
-        x: 25, vals: List<double>()..add(-15)..add(15), icon: img));
-    values.add(BarEntry.fromListYVals(
-        x: 35, vals: List<double>()..add(-17)..add(17), icon: img));
-    values.add(BarEntry.fromListYVals(
-        x: 45, vals: List<double>()..add(-19)..add(20), icon: img));
-    values.add(BarEntry.fromListYVals(
-        x: 45, vals: List<double>()..add(-19)..add(20), icon: img
+    values.add(
+        BarEntry.fromListYVals(x: 5, vals: []..add(-10)..add(10), icon: img));
+    values.add(
+        BarEntry.fromListYVals(x: 15, vals: []..add(-12)..add(13), icon: img));
+    values.add(
+        BarEntry.fromListYVals(x: 25, vals: []..add(-15)..add(15), icon: img));
+    values.add(
+        BarEntry.fromListYVals(x: 35, vals: []..add(-17)..add(17), icon: img));
+    values.add(
+        BarEntry.fromListYVals(x: 45, vals: []..add(-19)..add(20), icon: img));
+    values.add(
+        BarEntry.fromListYVals(x: 45, vals: []..add(-19)..add(20), icon: img
 //        getResources().getDrawable(R.drawable.star)
-        ));
-    values.add(BarEntry.fromListYVals(
-        x: 55, vals: List<double>()..add(-19)..add(19), icon: img));
-    values.add(BarEntry.fromListYVals(
-        x: 65, vals: List<double>()..add(-16)..add(16), icon: img));
-    values.add(BarEntry.fromListYVals(
-        x: 75, vals: List<double>()..add(-13)..add(14), icon: img));
-    values.add(BarEntry.fromListYVals(
-        x: 85, vals: List<double>()..add(-10)..add(11), icon: img));
-    values.add(BarEntry.fromListYVals(
-        x: 95, vals: List<double>()..add(-5)..add(6), icon: img));
-    values.add(BarEntry.fromListYVals(
-        x: 105, vals: List<double>()..add(-1)..add(2), icon: img));
+            ));
+    values.add(
+        BarEntry.fromListYVals(x: 55, vals: []..add(-19)..add(19), icon: img));
+    values.add(
+        BarEntry.fromListYVals(x: 65, vals: []..add(-16)..add(16), icon: img));
+    values.add(
+        BarEntry.fromListYVals(x: 75, vals: []..add(-13)..add(14), icon: img));
+    values.add(
+        BarEntry.fromListYVals(x: 85, vals: []..add(-10)..add(11), icon: img));
+    values.add(
+        BarEntry.fromListYVals(x: 95, vals: []..add(-5)..add(6), icon: img));
+    values.add(
+        BarEntry.fromListYVals(x: 105, vals: []..add(-1)..add(2), icon: img));
 
     BarDataSet set = BarDataSet(values, "Age Distribution");
     set.setDrawIcons(false);
     set.setValueFormatter(B());
     set.setValueTextSize(7);
     set.setAxisDependency(AxisDependency.RIGHT);
-    set.setColors1(List()
+    set.setColors1([]
       ..add(Color.fromARGB(255, 67, 67, 72))
       ..add(Color.fromARGB(255, 124, 181, 236)));
-    set.setStackLabels(List()..add("Men")..add("Women"));
+    set.setStackLabels([]..add("Men")..add("Women"));
 
-    controller.data = BarData(List()..add(set));
+    controller.data = BarData([]..add(set));
     controller.data.barWidth = (8.5);
 
     setState(() {});
@@ -159,27 +159,27 @@ class BarChartStacked2State extends HorizontalBarActionState<BarChartStacked2>
 }
 
 class A extends ValueFormatter {
-  NumberFormat mFormat;
+  late NumberFormat mFormat;
 
   A() {
     mFormat = NumberFormat("###");
   }
 
   @override
-  String getFormattedValue1(double value) {
-    return mFormat.format(value.abs()) + "m";
+  String getFormattedValue1(double? value) {
+    return mFormat.format(value!.abs()) + "m";
   }
 }
 
 class B extends ValueFormatter {
-  NumberFormat mFormat;
+  late NumberFormat mFormat;
 
   B() {
     mFormat = NumberFormat("###");
   }
 
   @override
-  String getFormattedValue1(double value) {
-    return mFormat.format(value) + "-" + mFormat.format(value + 10);
+  String getFormattedValue1(double? value) {
+    return mFormat.format(value) + "-" + mFormat.format(value! + 10);
   }
 }

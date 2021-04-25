@@ -42,11 +42,11 @@ class ScrollingChartViewPager extends StatefulWidget {
 
 class ScrollingChartViewPagerState
     extends SimpleActionState<ScrollingChartViewPager> {
-  LineChartController _lineChartController1;
-  LineChartController _lineChartController2;
-  BarChartController _barChartController;
-  ScatterChartController _scatterChartController;
-  PieChartController _pieChartController;
+  late LineChartController _lineChartController1;
+  late LineChartController _lineChartController2;
+  late BarChartController _barChartController;
+  late ScatterChartController _scatterChartController;
+  late PieChartController _pieChartController;
   var random = Random(1);
 
   @override
@@ -376,7 +376,7 @@ class ScrollingChartViewPagerState
     });
   }
 
-  List<String> _labels = List()
+  List<String> _labels = []
     ..add("Company A")
     ..add("Company B")
     ..add("Company C")
@@ -456,7 +456,7 @@ class ScrollingChartViewPagerState
   Widget _initLineChart1() {
     var lineChart = LineChart(_lineChartController1);
     _lineChartController1.animator
-      ..reset()
+      ?..reset()
       ..animateX1(3000);
     return lineChart;
   }
@@ -464,7 +464,7 @@ class ScrollingChartViewPagerState
   Widget _initLineChart2() {
     var lineChart = LineChart(_lineChartController2);
     _lineChartController2.animator
-      ..reset()
+      ?..reset()
       ..animateX1(3000);
     return lineChart;
   }
