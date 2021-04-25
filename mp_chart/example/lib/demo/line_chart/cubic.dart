@@ -14,6 +14,13 @@ import 'package:mp_chart/mp/core/enums/y_axis_label_position.dart';
 import 'package:mp_chart/mp/core/fill_formatter/i_fill_formatter.dart';
 import 'package:mp_chart/mp/core/image_loader.dart';
 import 'package:mp_chart/mp/core/utils/color_utils.dart';
+import 'package:mp_chart/mp/core/enums/x_axis_position.dart';
+import 'package:mp_chart/mp/core/enums/x_axis_position.dart';
+import 'package:mp_chart/mp/core/enums/y_axis_label_position.dart';
+import 'package:mp_chart/mp/core/enums/legend_form.dart';
+import 'package:mp_chart/mp/core/enums/legend_horizontal_alignment.dart';
+import 'package:mp_chart/mp/core/enums/legend_orientation.dart';
+import 'package:mp_chart/mp/core/enums/legend_vertical_alignment.dart';
 import '../action_state.dart';
 import '../util.dart';
 
@@ -130,20 +137,26 @@ class LineChartCubicState extends LineActionState<LineChartCubic> {
     controller = LineChartController(
         axisLeftSettingFunction: (axisLeft, controller) {
           axisLeft
-            ..typeface = Util.LIGHT
-            ..setLabelCount2(6, false)
-            ..textColor = (ColorUtils.WHITE)
-            ..position = (YAxisLabelPosition.INSIDE_CHART)
-            ..drawGridLines = (false)
-            ..axisLineColor = (ColorUtils.WHITE);
+            ..position = YAxisLabelPosition.OUTSIDE_CHART
+            ..drawGridLines = true
+            ..drawAxisLine = true
+            ..drawGridLinesBehindData = true;
         },
         axisRightSettingFunction: (axisRight, controller) {
-          axisRight.enabled = (false);
+          axisRight
+            ..position = YAxisLabelPosition.OUTSIDE_CHART
+            ..drawGridLines = true
+            ..drawAxisLine = true
+            ..drawGridLinesBehindData = true;
         },
         legendSettingFunction: (legend, controller) {
-          (controller as LineChartController).setViewPortOffsets(0, 0, 0, 0);
-          legend.enabled = (false);
-          var data = controller.data;
+          legend
+            ..shape = LegendForm.LINE
+            ..verticalAlignment = LegendVerticalAlignment.BOTTOM
+            ..horizontalAlignment = LegendHorizontalAlignment.LEFT
+            ..orientation = LegendOrientation.HORIZONTAL
+            ..drawInside = false;
+          var data = (controller as LineChartController).data;
           if (data != null) {
             var formatter = data.getDataSetByIndex(0)!.getFillFormatter();
             if (formatter is A) {
@@ -152,7 +165,12 @@ class LineChartCubicState extends LineActionState<LineChartCubic> {
           }
         },
         xAxisSettingFunction: (xAxis, controller) {
-          xAxis.enabled = (false);
+          xAxis
+            ..enabled = (true)
+            ..drawGridLines = true
+            ..drawAxisLine = true
+            ..drawGridLinesBehindData = true
+            ..position = XAxisPosition.BOTH_SIDED;
         },
         drawGridBackground: true,
         dragXEnabled: true,
@@ -205,7 +223,7 @@ class LineChartCubicState extends LineActionState<LineChartCubic> {
     var lineChart = LineChart(controller!);
     controller!.animator
       ?..reset()
-      ..animateXY1(2000, 2000);
+      ..animateY1(800);
     return lineChart;
   }
 }
