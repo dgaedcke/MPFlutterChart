@@ -37,8 +37,7 @@ abstract class PieRadarHighlighter<T extends PieRadarChartPainter>
 
       // check if the index could be found
       if (index < 0 ||
-          index >=
-              _painter!.getData()!.getMaxEntryCountSet()!.getEntryCount()) {
+          index >= _painter!.getData().getMaxEntryCountSet()!.getEntryCount()) {
         return null;
       } else {
         return getClosestHighlight(index, x, y);

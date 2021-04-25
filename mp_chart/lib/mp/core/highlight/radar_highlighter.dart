@@ -48,8 +48,8 @@ class RadarHighlighter extends PieRadarHighlighter<RadarChartPainter> {
     double factor = painter!.getFactor();
 
     MPPointF pOut = MPPointF.getInstance1(0, 0);
-    for (int i = 0; i < painter!.getData()!.getDataSetCount(); i++) {
-      IDataSet dataSet = painter!.getData()!.getDataSetByIndex(i)!;
+    for (int i = 0; i < painter!.getData().getDataSetCount(); i++) {
+      IDataSet dataSet = painter!.getData().getDataSetByIndex(i)!;
 
       final Entry entry = dataSet.getEntryForIndex(index)!;
 

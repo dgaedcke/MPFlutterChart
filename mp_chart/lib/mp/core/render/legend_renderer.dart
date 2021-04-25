@@ -195,7 +195,7 @@ class LegendRenderer extends Renderer {
 
     double labelLineHeight = Utils.getLineHeight1(_legendLabelPaint!);
     double labelLineSpacing = Utils.getLineSpacing1(_legendLabelPaint!) +
-        Utils.convertDpToPixel(_legend!.yEntrySpace)!;
+        Utils.convertDpToPixel(_legend!.yEntrySpace);
     double formYOffset =
         labelLineHeight - Utils.calcTextHeight(_legendLabelPaint!, "ABC") / 2;
 
@@ -319,18 +319,18 @@ class LegendRenderer extends Renderer {
             bool isStacked = e.label == null; // grouped forms have null labels
 
             if (drawingForm) {
-              if (direction == LegendDirection.RIGHT_TO_LEFT) posX -= formSize!;
+              if (direction == LegendDirection.RIGHT_TO_LEFT) posX -= formSize;
 
               drawForm(c, posX, posY + formYOffset, e, _legend);
 
-              if (direction == LegendDirection.LEFT_TO_RIGHT) posX += formSize!;
+              if (direction == LegendDirection.LEFT_TO_RIGHT) posX += formSize;
             }
 
             if (!isStacked) {
               if (drawingForm)
                 posX += direction == LegendDirection.RIGHT_TO_LEFT
-                    ? -formToTextSpace!
-                    : formToTextSpace!;
+                    ? -formToTextSpace
+                    : formToTextSpace;
 
               if (direction == LegendDirection.RIGHT_TO_LEFT)
                 posX -= calculatedLabelSizes[i]!.width;
@@ -341,12 +341,12 @@ class LegendRenderer extends Renderer {
                 posX += calculatedLabelSizes[i]!.width;
 
               posX += direction == LegendDirection.RIGHT_TO_LEFT
-                  ? -xEntrySpace!
-                  : xEntrySpace!;
+                  ? -xEntrySpace
+                  : xEntrySpace;
             } else
               posX += direction == LegendDirection.RIGHT_TO_LEFT
-                  ? -stackSpace!
-                  : stackSpace!;
+                  ? -stackSpace
+                  : stackSpace;
           }
 
           break;
@@ -377,7 +377,7 @@ class LegendRenderer extends Renderer {
             case LegendVerticalAlignment.CENTER:
               posY = viewPortHandler!.getChartHeight() / 2 -
                   _legend!.neededHeight / 2 +
-                  _legend!.yOffset!;
+                  _legend!.yOffset;
               break;
           }
 
@@ -394,18 +394,18 @@ class LegendRenderer extends Renderer {
               if (direction == LegendDirection.LEFT_TO_RIGHT)
                 posX += stack;
               else
-                posX -= formSize! - stack;
+                posX -= formSize - stack;
 
               drawForm(c, posX, posY + formYOffset, e, _legend);
 
-              if (direction == LegendDirection.LEFT_TO_RIGHT) posX += formSize!;
+              if (direction == LegendDirection.LEFT_TO_RIGHT) posX += formSize;
             }
 
             if (e.label != null) {
               if (drawingForm && !wasStacked)
                 posX += direction == LegendDirection.LEFT_TO_RIGHT
-                    ? formToTextSpace!
-                    : -formToTextSpace!;
+                    ? formToTextSpace
+                    : -formToTextSpace;
               else if (wasStacked) posX = originPosX;
 
               if (direction == LegendDirection.RIGHT_TO_LEFT)
@@ -422,7 +422,7 @@ class LegendRenderer extends Renderer {
               posY += labelLineHeight + labelLineSpacing;
               stack = 0;
             } else {
-              stack += formSize! + stackSpace!;
+              stack += formSize + stackSpace;
               wasStacked = true;
             }
           }
@@ -452,7 +452,7 @@ class LegendRenderer extends Renderer {
     if (form == LegendForm.DEFAULT) form = legend!.shape;
 
     final double formSize = Utils.convertDpToPixel(
-        entry.formSize.isNaN ? legend!.formSize : entry.formSize)!;
+        entry.formSize.isNaN ? legend!.formSize : entry.formSize);
     final double half = formSize / 2;
 
     switch (form) {
@@ -487,7 +487,7 @@ class LegendRenderer extends Renderer {
           final double formLineWidth = Utils.convertDpToPixel(
               entry.formLineWidth.isNaN
                   ? legend!.formLineWidth
-                  : entry.formLineWidth)!;
+                  : entry.formLineWidth);
           final DashPathEffect? formLineDashEffect =
               entry.formLineDashEffect == null
                   ? legend!.getFormLineDashEffect()

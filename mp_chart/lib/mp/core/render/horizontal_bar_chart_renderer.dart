@@ -47,7 +47,7 @@ class HorizontalBarChartRenderer extends BarChartRenderer {
 
     barBorderPaint
       ?..color = dataSet.getBarBorderColor()
-      ..strokeWidth = Utils.convertDpToPixel(dataSet.getBarBorderWidth())!;
+      ..strokeWidth = Utils.convertDpToPixel(dataSet.getBarBorderWidth());
 
     final bool drawBorder = dataSet.getBarBorderWidth() > 0.0;
 
@@ -216,8 +216,8 @@ class HorizontalBarChartRenderer extends BarChartRenderer {
                 buffer.buffer![j + 2]! + (val! >= 0 ? posOffset! : negOffset!);
             double py = y;
 
-            px += iconsOffset.x!;
-            py += iconsOffset.y!;
+            px += iconsOffset.x;
+            py += iconsOffset.y;
 
             CanvasUtils.drawImage(
                 c, Offset(px, py), entry.mIcon!, Size(15, 15), drawPaint!);
@@ -284,8 +284,8 @@ class HorizontalBarChartRenderer extends BarChartRenderer {
                   (entry.y! >= 0 ? posOffset! : negOffset!);
               double py = buffer.buffer![bufferIndex + 1]!;
 
-              px += iconsOffset.x!;
-              py += iconsOffset.y!;
+              px += iconsOffset.x;
+              py += iconsOffset.y;
 
               CanvasUtils.drawImage(
                   c, Offset(px, py), entry.mIcon!, Size(15, 15), drawPaint!);
@@ -358,7 +358,7 @@ class HorizontalBarChartRenderer extends BarChartRenderer {
               if (entry.mIcon != null && dataSet.isDrawIconsEnabled()) {
                 CanvasUtils.drawImage(
                     c,
-                    Offset(x + iconsOffset.x!, y + iconsOffset.y!),
+                    Offset(x + iconsOffset.x, y + iconsOffset.y),
                     entry.mIcon!,
                     Size(15, 15),
                     drawPaint!);

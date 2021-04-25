@@ -394,7 +394,7 @@ abstract class BarLineChartBasePainter<
                           legend!.neededWidth,
                           viewPortHandler!.getChartWidth() *
                               legend!.maxSizePercent) +
-                      legend!.xOffset!,
+                      legend!.xOffset,
                   0.0,
                   0.0,
                   0.0);
@@ -408,7 +408,7 @@ abstract class BarLineChartBasePainter<
                           legend!.neededWidth,
                           viewPortHandler!.getChartWidth() *
                               legend!.maxSizePercent) +
-                      legend!.xOffset!,
+                      legend!.xOffset,
                   0.0);
               break;
 
@@ -421,7 +421,7 @@ abstract class BarLineChartBasePainter<
                               legend!.neededHeight,
                               viewPortHandler!.getChartHeight() *
                                   legend!.maxSizePercent) +
-                          legend!.yOffset!,
+                          legend!.yOffset,
                       0.0,
                       0.0);
                   break;
@@ -435,7 +435,7 @@ abstract class BarLineChartBasePainter<
                               legend!.neededHeight,
                               viewPortHandler!.getChartHeight() *
                                   legend!.maxSizePercent) +
-                          legend!.yOffset!);
+                          legend!.yOffset);
                   break;
 
                 default:
@@ -454,7 +454,7 @@ abstract class BarLineChartBasePainter<
                           legend!.neededHeight,
                           viewPortHandler!.getChartHeight() *
                               legend!.maxSizePercent) +
-                      legend!.yOffset!,
+                      legend!.yOffset,
                   0.0,
                   0.0);
               break;
@@ -468,7 +468,7 @@ abstract class BarLineChartBasePainter<
                           legend!.neededHeight,
                           viewPortHandler!.getChartHeight() *
                               legend!.maxSizePercent) +
-                      legend!.yOffset!);
+                      legend!.yOffset);
               break;
 
             default:
@@ -530,7 +530,7 @@ abstract class BarLineChartBasePainter<
 
       if (xAxis!.enabled && xAxis!.drawLabels) {
         double xLabelHeight = xAxis!.labelRotatedHeight +
-            xAxis!.yOffset! +
+            xAxis!.yOffset +
             xAxis!.getRequiredHeightSpace(_xAxisRenderer!.axisLabelPaint);
 
         // offsets for x-labels
@@ -549,7 +549,7 @@ abstract class BarLineChartBasePainter<
       offsetBottom += extraBottomOffset;
       offsetLeft += extraLeftOffset;
 
-      double minOffset = Utils.convertDpToPixel(_minOffset)!;
+      double minOffset = Utils.convertDpToPixel(_minOffset);
 
       viewPortHandler!.restrainViewPort(
           max(minOffset, offsetLeft),
@@ -694,7 +694,7 @@ abstract class BarLineChartBasePainter<
   ///
   /// @param width
   void setBorderWidth(double width) {
-    _borderPaint!..strokeWidth = Utils.convertDpToPixel(width)!;
+    _borderPaint!..strokeWidth = Utils.convertDpToPixel(width);
   }
 
   /// Sets the color of the chart border lines.
@@ -775,7 +775,7 @@ abstract class BarLineChartBasePainter<
         viewPortHandler!.contentLeft(),
         viewPortHandler!.contentBottom(),
         posForGetLowestVisibleX);
-    double result = max(xAxis!.axisMinimum!, posForGetLowestVisibleX.x!);
+    double result = max(xAxis!.axisMinimum!, posForGetLowestVisibleX.x);
     return result;
   }
 
@@ -792,7 +792,7 @@ abstract class BarLineChartBasePainter<
         viewPortHandler!.contentRight(),
         viewPortHandler!.contentBottom(),
         posForGetHighestVisibleX);
-    double result = min(xAxis!.axisMaximum!, posForGetHighestVisibleX.x!);
+    double result = min(xAxis!.axisMaximum!, posForGetHighestVisibleX.x);
     return result;
   }
 

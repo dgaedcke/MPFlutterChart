@@ -211,7 +211,7 @@ class BarChartController
       throw Exception(
           "You need to set data for the chart before grouping bars.");
     } else {
-      data!.groupBars(fromX, groupSpace, barSpace);
+      data.groupBars(fromX, groupSpace, barSpace);
     }
   }
 

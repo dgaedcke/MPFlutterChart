@@ -630,7 +630,7 @@ class LineChartRenderer extends LineRadarRenderer {
           if (entry.mIcon != null && dataSet.isDrawIconsEnabled()) {
             CanvasUtils.drawImage(
                 c,
-                Offset(x! + iconsOffset.x!, y! + iconsOffset.y!),
+                Offset(x! + iconsOffset.x, y! + iconsOffset.y),
                 entry.mIcon!,
                 Size(15, 15),
                 drawPaint!);

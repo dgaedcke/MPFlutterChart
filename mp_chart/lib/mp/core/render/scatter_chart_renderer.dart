@@ -121,7 +121,7 @@ class ScatterChartRenderer extends LineScatterCandleRadarRenderer {
                 c,
                 formatter!.getPointLabel(entry),
                 positions[j]!,
-                positions[j + 1]! - shapeSize!,
+                positions[j + 1]! - shapeSize,
                 dataSet.getValueTextColor2(j ~/ 2 + xBounds!.min!),
                 dataSet.getValueTextSize(),
                 dataSet.getValueTypeface());
@@ -130,8 +130,8 @@ class ScatterChartRenderer extends LineScatterCandleRadarRenderer {
           if (entry.mIcon != null && dataSet.isDrawIconsEnabled()) {
             CanvasUtils.drawImage(
                 c,
-                Offset(positions[j]! + iconsOffset.x!,
-                    positions[j + 1]! + iconsOffset.y!),
+                Offset(positions[j]! + iconsOffset.x,
+                    positions[j + 1]! + iconsOffset.y),
                 entry.mIcon!,
                 Size(15, 15),
                 drawPaint!);

@@ -84,7 +84,7 @@ class BarLineScatterCandleBubbleState<T extends BarLineScatterCandleBubbleChart>
       )!;
 
       widget.controller.painter!.selectedValue(high);
-      
+
       lastHighlighted = null;
     }
     if (widget.controller.touchEventListener != null) {
@@ -102,7 +102,7 @@ class BarLineScatterCandleBubbleState<T extends BarLineScatterCandleBubbleChart>
   void onDoubleTapUp(TapUpDetails details) {
     widget.controller.stopDeceleration();
     if (widget.controller.painter!.doubleTapToZoomEnabled &&
-        widget.controller.painter!.getData()!.getEntryCount() > 0) {
+        widget.controller.painter!.getData().getEntryCount() > 0) {
       MPPointF trans =
           _getTrans(details.localPosition.dx, details.localPosition.dy);
       widget.controller.painter!.zoom(
@@ -251,7 +251,7 @@ class BarLineScatterCandleBubbleState<T extends BarLineScatterCandleBubbleChart>
     var needStateIfNotDispose = false;
     var pinchZoomEnabled = widget.controller.pinchZoomEnabled;
 
-    if(!_isScaleDirectionConfirm){
+    if (!_isScaleDirectionConfirm) {
       _isScaleDirectionConfirm = true;
       _isYDirection = details.mainDirection == Direction.Y;
     }
@@ -259,7 +259,8 @@ class BarLineScatterCandleBubbleState<T extends BarLineScatterCandleBubbleChart>
       if (pinchZoomEnabled) {
         _scale = details.scale;
       } else {
-        _scale = _isYDirection ? details.verticalScale : details.horizontalScale;
+        _scale =
+            _isYDirection ? details.verticalScale : details.horizontalScale;
       }
       return;
     }
@@ -277,7 +278,8 @@ class BarLineScatterCandleBubbleState<T extends BarLineScatterCandleBubbleChart>
     var h = widget.controller.painter!.viewPortHandler;
     scale = Utils.optimizeScale(scale);
     if (pinchZoomEnabled) {
-      bool canZoomMoreX = scale < 1 ? h!.canZoomOutMoreX() : h!.canZoomInMoreX();
+      bool canZoomMoreX =
+          scale < 1 ? h!.canZoomOutMoreX() : h!.canZoomInMoreX();
       bool canZoomMoreY = scale < 1 ? h.canZoomOutMoreY() : h.canZoomInMoreY();
       widget.controller.painter!.zoom(
           canZoomMoreX ? scale : 1, canZoomMoreY ? scale : 1, trans.x, trans.y);
@@ -309,11 +311,10 @@ class BarLineScatterCandleBubbleState<T extends BarLineScatterCandleBubbleChart>
           details.globalFocalPoint.dy,
           details.localFocalPoint.dx,
           details.localFocalPoint.dy);
-      widget.controller.touchEventListener!
-          .onScaleUpdate(point.x, point.y);
+      widget.controller.touchEventListener!.onScaleUpdate(point.x, point.y);
     }
 
-    if(needStateIfNotDispose){
+    if (needStateIfNotDispose) {
       setStateIfNotDispose();
     }
 
@@ -378,9 +379,8 @@ class BarLineScatterCandleBubbleState<T extends BarLineScatterCandleBubbleChart>
 
   @override
   void updatePainter() {
-    if (widget.controller.painter!.getData() != null &&
-        widget.controller.painter!.getData()!.dataSets != null &&
-        widget.controller.painter!.getData()!.dataSets!.length > 0)
+    if (widget.controller.painter!.getData().dataSets != null &&
+        widget.controller.painter!.getData().dataSets!.length > 0)
       widget.controller.painter!.highlightValue6(lastHighlighted, false);
   }
 }

@@ -234,7 +234,7 @@ abstract class ChartPainter<T extends ChartData<IDataSet<Entry>>>
       MPPointF c = getCenter(size);
       _infoPaint!.layout();
       _infoPaint!.paint(canvas,
-          Offset(c.x! - _infoPaint!.width / 2, c.y! - _infoPaint!.height / 2));
+          Offset(c.x - _infoPaint!.width / 2, c.y - _infoPaint!.height / 2));
       return;
     }
 
@@ -260,16 +260,16 @@ abstract class ChartPainter<T extends ChartData<IDataSet<Entry>>>
       if (position == null) {
         x = size.width -
             _viewPortHandler!.offsetRight() -
-            _description!.xOffset!;
+            _description!.xOffset;
         y = size.height -
             _viewPortHandler!.offsetBottom() -
-            _description!.yOffset!;
+            _description!.yOffset;
       } else {
         x = position.x;
         y = position.y;
       }
       _descPaint!.layout();
-      _descPaint!.paint(c, Offset(x!, y!));
+      _descPaint!.paint(c, Offset(x, y));
     }
   }
 

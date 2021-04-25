@@ -18,14 +18,14 @@ abstract class PieRadarChartState<T extends PieRadarChart>
   double _startAngle = 0.0;
 
   void _setGestureStartAngle(double x, double y) {
-    if(widget.controller.rotateEnabled) {
+    if (widget.controller.rotateEnabled) {
       _startAngle = widget.controller.painter!.getAngleForPoint(x, y) -
           widget.controller.painter!.getRawRotationAngle()!;
     }
   }
 
   void _updateGestureRotation(double x, double y) {
-    if(widget.controller.rotateEnabled) {
+    if (widget.controller.rotateEnabled) {
       double angle =
           widget.controller.painter!.getAngleForPoint(x, y) - _startAngle;
       widget.controller.rawRotationAngle = angle;
@@ -96,9 +96,8 @@ abstract class PieRadarChartState<T extends PieRadarChart>
 
   @override
   void updatePainter() {
-    if (widget.controller.painter!.getData() != null &&
-        widget.controller.painter!.getData()!.dataSets != null &&
-        widget.controller.painter!.getData()!.dataSets!.length > 0)
+    if (widget.controller.painter!.getData().dataSets != null &&
+        widget.controller.painter!.getData().dataSets!.length > 0)
       widget.controller.painter!.highlightValue6(lastHighlighted, false);
   }
 }

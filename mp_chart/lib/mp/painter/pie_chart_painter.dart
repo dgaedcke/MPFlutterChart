@@ -210,8 +210,8 @@ class PieChartPainter extends PieRadarChartPainter<PieData> {
 
     // create the circle box that will contain the pie-chart (the bounds of
     // the pie-chart)
-    _circleBox = Rect.fromLTRB(c.x! - radius + shift, c.y! - radius + shift,
-        c.x! + radius - shift, c.y! + radius - shift);
+    _circleBox = Rect.fromLTRB(c.x - radius + shift, c.y - radius + shift,
+        c.x + radius - shift, c.y + radius - shift);
 
     MPPointF.recycleInstance(c);
   }
@@ -247,13 +247,13 @@ class PieChartPainter extends PieRadarChartPainter<PieData> {
                     animator!.getPhaseY()) /
                 180 *
                 pi) +
-        center.x!);
+        center.x);
     double y = (r *
             sin((rotationAngle + _absoluteAngles[entryIndex]! - offset) *
                 animator!.getPhaseY() /
                 180 *
                 pi) +
-        center.y!);
+        center.y);
 
     MPPointF.recycleInstance(center);
     return [x, y];
@@ -446,7 +446,7 @@ class PieChartPainter extends PieRadarChartPainter<PieData> {
   @override
   double getRequiredLegendOffset() {
     final fontSize = legendRenderer!.legendLabelPaint!.text?.style?.fontSize;
-    return fontSize == null ? Utils.convertDpToPixel(9)! : (fontSize * 2.0);
+    return fontSize == null ? Utils.convertDpToPixel(9) : (fontSize * 2.0);
   }
 
   @override

@@ -212,7 +212,7 @@ class EvenMoreRealtimeState extends ActionState<EvenMoreRealtime>
   }
 
   void _clearChart() {
-    controller!.data?.clearValues();
+    controller!.data.clearValues();
     controller!.state?.setStateIfNotDispose();
   }
 

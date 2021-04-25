@@ -38,7 +38,7 @@ class XAxisRendererRadarChart extends XAxisRenderer {
     MPPointF center = _painter.getCenterOffsets();
     MPPointF pOut = MPPointF.getInstance1(0, 0);
     for (int i = 0;
-        i < _painter.getData()!.getMaxEntryCountSet()!.getEntryCount();
+        i < _painter.getData().getMaxEntryCountSet()!.getEntryCount();
         i++) {
       String label =
           xAxis!.getValueFormatter()!.getAxisLabel(i.toDouble(), xAxis);
@@ -51,7 +51,7 @@ class XAxisRendererRadarChart extends XAxisRenderer {
           angle,
           pOut);
 
-      drawLabel(c, label, pOut.x, pOut.y! - xAxis!.labelRotatedHeight / 2.0,
+      drawLabel(c, label, pOut.x, pOut.y - xAxis!.labelRotatedHeight / 2.0,
           drawLabelAnchor, labelRotationAngleDegrees, xAxis!.position);
     }
 

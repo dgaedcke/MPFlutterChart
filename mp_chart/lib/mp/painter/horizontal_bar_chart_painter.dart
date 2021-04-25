@@ -192,7 +192,7 @@ class HorizontalBarChartPainter extends BarChartPainter {
     offsetBottom += extraBottomOffset;
     offsetLeft += extraLeftOffset;
 
-    double offset = Utils.convertDpToPixel(minOffset)!;
+    double offset = Utils.convertDpToPixel(minOffset);
 
     viewPortHandler!.restrainViewPort(
         max(offset, offsetLeft),
@@ -281,7 +281,7 @@ class HorizontalBarChartPainter extends BarChartPainter {
         viewPortHandler!.contentLeft(),
         viewPortHandler!.contentBottom(),
         posForGetLowestVisibleX);
-    double result = max(xAxis!.axisMinimum!, posForGetLowestVisibleX.y!);
+    double result = max(xAxis!.axisMinimum!, posForGetLowestVisibleX.y);
     return result;
   }
 
@@ -291,7 +291,7 @@ class HorizontalBarChartPainter extends BarChartPainter {
         viewPortHandler!.contentLeft(),
         viewPortHandler!.contentTop(),
         posForGetHighestVisibleX);
-    double result = min(xAxis!.axisMaximum!, posForGetHighestVisibleX.y!);
+    double result = min(xAxis!.axisMaximum!, posForGetHighestVisibleX.y);
     return result;
   }
 
