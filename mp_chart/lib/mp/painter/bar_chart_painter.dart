@@ -38,7 +38,7 @@ class BarChartPainter extends BarLineChartBasePainter<BarData>
   final bool _fitBars;
 
   BarChartPainter(
-      BarData data,
+      BarData? data,
       Animator? animator,
       ViewPortHandler? viewPortHandler,
       double? maxHighlightDistance,

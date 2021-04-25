@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -114,7 +113,7 @@ abstract class LineActionState<T extends StatefulWidget>
 
     switch (action) {
       case 'B':
-        List<ILineDataSet> sets = controller!.data.dataSets!;
+        List<ILineDataSet> sets = controller!.data!.dataSets!;
         for (ILineDataSet iSet in sets) {
           LineDataSet set = iSet as LineDataSet;
           set.setDrawValues(!set.isDrawValuesEnabled());
@@ -122,7 +121,7 @@ abstract class LineActionState<T extends StatefulWidget>
         controller!.state!.setStateIfNotDispose();
         break;
       case 'C':
-        List<ILineDataSet> sets = controller!.data.dataSets!;
+        List<ILineDataSet> sets = controller!.data!.dataSets!;
         for (ILineDataSet iSet in sets) {
           LineDataSet set = iSet as LineDataSet;
           set.setDrawIcons(!set.isDrawIconsEnabled());
@@ -130,7 +129,7 @@ abstract class LineActionState<T extends StatefulWidget>
         controller!.state!.setStateIfNotDispose();
         break;
       case 'D':
-        List<ILineDataSet> sets = controller!.data.dataSets!;
+        List<ILineDataSet> sets = controller!.data!.dataSets!;
 
         for (ILineDataSet iSet in sets) {
           LineDataSet set = iSet as LineDataSet;
@@ -142,7 +141,7 @@ abstract class LineActionState<T extends StatefulWidget>
         controller!.state!.setStateIfNotDispose();
         break;
       case 'E':
-        List<ILineDataSet> sets = controller!.data.dataSets!;
+        List<ILineDataSet> sets = controller!.data!.dataSets!;
 
         for (ILineDataSet iSet in sets) {
           LineDataSet set = iSet as LineDataSet;
@@ -154,7 +153,7 @@ abstract class LineActionState<T extends StatefulWidget>
         controller!.state!.setStateIfNotDispose();
         break;
       case 'F':
-        List<ILineDataSet> sets = controller!.data.dataSets!;
+        List<ILineDataSet> sets = controller!.data!.dataSets!;
 
         for (ILineDataSet iSet in sets) {
           LineDataSet set = iSet as LineDataSet;
@@ -165,7 +164,7 @@ abstract class LineActionState<T extends StatefulWidget>
         controller!.state!.setStateIfNotDispose();
         break;
       case 'G':
-        List<ILineDataSet> sets = controller!.data.dataSets!;
+        List<ILineDataSet> sets = controller!.data!.dataSets!;
 
         for (ILineDataSet iSet in sets) {
           LineDataSet set = iSet as LineDataSet;
@@ -175,7 +174,7 @@ abstract class LineActionState<T extends StatefulWidget>
         controller!.state!.setStateIfNotDispose();
         break;
       case 'H':
-        List<ILineDataSet> sets = controller!.data.dataSets!;
+        List<ILineDataSet> sets = controller!.data!.dataSets!;
 
         for (ILineDataSet iSet in sets) {
           LineDataSet set = iSet as LineDataSet;
@@ -196,8 +195,8 @@ abstract class LineActionState<T extends StatefulWidget>
         break;
       case 'K':
         if (controller!.data != null) {
-          controller!.data
-              .setHighlightEnabled(!controller!.data.isHighlightEnabled());
+          controller!.data!
+              .setHighlightEnabled(!controller!.data!.isHighlightEnabled());
           controller!.state!.setStateIfNotDispose();
         }
         break;
@@ -248,18 +247,18 @@ abstract class BarActionState<T extends StatefulWidget> extends ActionState<T> {
 
     switch (action) {
       case 'B':
-        for (IBarDataSet set in controller.data.dataSets!)
+        for (IBarDataSet set in controller.data!.dataSets!)
           (set as BarDataSet)
               .setBarBorderWidth(set.getBarBorderWidth() == 1.0 ? 0.0 : 1.0);
         controller.state!.setStateIfNotDispose();
         break;
       case 'C':
-        for (IDataSet set in controller.data.dataSets!)
+        for (IDataSet set in controller.data!.dataSets!)
           set.setDrawValues(!set.isDrawValuesEnabled());
         controller.state!.setStateIfNotDispose();
         break;
       case 'D':
-        List<IBarDataSet> sets = controller.data.dataSets!;
+        List<IBarDataSet> sets = controller.data!.dataSets!;
         for (IBarDataSet iSet in sets) {
           BarDataSet set = iSet as BarDataSet;
           set.setDrawIcons(!set.isDrawIconsEnabled());
@@ -268,8 +267,8 @@ abstract class BarActionState<T extends StatefulWidget> extends ActionState<T> {
         break;
       case 'E':
         if (controller.data != null) {
-          controller.data
-              .setHighlightEnabled(!controller.data.isHighlightEnabled());
+          controller.data!
+              .setHighlightEnabled(!controller.data!.isHighlightEnabled());
           controller.state!.setStateIfNotDispose();
         }
         break;
@@ -329,18 +328,18 @@ abstract class HorizontalBarActionState<T extends StatefulWidget>
 
     switch (action) {
       case 'B':
-        for (IBarDataSet set in controller.data.dataSets!)
+        for (IBarDataSet set in controller.data!.dataSets!)
           (set as BarDataSet)
               .setBarBorderWidth(set.getBarBorderWidth() == 1.0 ? 0.0 : 1.0);
         controller.state!.setStateIfNotDispose();
         break;
       case 'C':
-        for (IDataSet set in controller.data.dataSets!)
+        for (IDataSet set in controller.data!.dataSets!)
           set.setDrawValues(!set.isDrawValuesEnabled());
         controller.state!.setStateIfNotDispose();
         break;
       case 'D':
-        List<IBarDataSet> sets = controller.data.dataSets!;
+        List<IBarDataSet> sets = controller.data!.dataSets!;
         for (IBarDataSet iSet in sets) {
           BarDataSet set = iSet as BarDataSet;
           set.setDrawIcons(!set.isDrawIconsEnabled());
@@ -349,8 +348,8 @@ abstract class HorizontalBarActionState<T extends StatefulWidget>
         break;
       case 'E':
         if (controller.data != null) {
-          controller.data
-              .setHighlightEnabled(!controller.data.isHighlightEnabled());
+          controller.data!
+              .setHighlightEnabled(!controller.data!.isHighlightEnabled());
           controller.state!.setStateIfNotDispose();
         }
         break;
@@ -412,7 +411,7 @@ abstract class PieActionState<T extends StatefulWidget> extends ActionState<T> {
 
     switch (action) {
       case 'B':
-        for (IDataSet set in controller.data.dataSets!)
+        for (IDataSet set in controller.data!.dataSets!)
           set.setDrawValues(!set.isDrawValuesEnabled());
         controller.state!.setStateIfNotDispose();
         break;
@@ -421,7 +420,7 @@ abstract class PieActionState<T extends StatefulWidget> extends ActionState<T> {
         controller.state!.setStateIfNotDispose();
         break;
       case 'D':
-        for (IDataSet set in controller.data.dataSets!)
+        for (IDataSet set in controller.data!.dataSets!)
           set.setDrawIcons(!set.isDrawIconsEnabled());
         controller.state!.setStateIfNotDispose();
         break;
@@ -504,24 +503,24 @@ abstract class CombinedActionState<T extends StatefulWidget>
 
     switch (action) {
       case 'B':
-        for (IDataSet set in controller.data.dataSets!) {
+        for (IDataSet set in controller.data!.dataSets!) {
           if (set is LineDataSet) set.setDrawValues(!set.isDrawValuesEnabled());
         }
         controller.state!.setStateIfNotDispose();
         break;
       case 'C':
-        for (IDataSet set in controller.data.dataSets!) {
+        for (IDataSet set in controller.data!.dataSets!) {
           if (set is BarDataSet) set.setDrawValues(!set.isDrawValuesEnabled());
         }
         controller.state!.setStateIfNotDispose();
         break;
       case 'D':
-        if (controller.data.getDataSetCount() > 1) {
-          int rnd = _getRandom(controller.data.getDataSetCount().toDouble(), 0)
+        if (controller.data!.getDataSetCount() > 1) {
+          int rnd = _getRandom(controller.data!.getDataSetCount().toDouble(), 0)
               .toInt();
-          controller.data
-              .removeDataSet1(controller.data.getDataSetByIndex(rnd)!);
-          controller.data.notifyDataChanged();
+          controller.data!
+              .removeDataSet1(controller.data!.getDataSetByIndex(rnd)!);
+          controller.data!.notifyDataChanged();
           controller.state!.setStateIfNotDispose();
         }
         break;
@@ -565,7 +564,7 @@ abstract class ScatterActionState<T extends StatefulWidget>
 
     switch (action) {
       case 'B':
-        List<IScatterDataSet> sets = controller.data.dataSets!;
+        List<IScatterDataSet> sets = controller.data!.dataSets!;
         for (IScatterDataSet iSet in sets) {
           ScatterDataSet set = iSet as ScatterDataSet;
           set.setDrawValues(!set.isDrawValuesEnabled());
@@ -573,14 +572,14 @@ abstract class ScatterActionState<T extends StatefulWidget>
         controller.state!.setStateIfNotDispose();
         break;
       case 'C':
-        for (IDataSet set in controller.data.dataSets!)
+        for (IDataSet set in controller.data!.dataSets!)
           set.setDrawIcons(!set.isDrawIconsEnabled());
         controller.state!.setStateIfNotDispose();
         break;
       case 'D':
         if (controller.data != null) {
-          controller.data
-              .setHighlightEnabled(!controller.data.isHighlightEnabled());
+          controller.data!
+              .setHighlightEnabled(!controller.data!.isHighlightEnabled());
           controller.state!.setStateIfNotDispose();
         }
         break;
@@ -639,19 +638,19 @@ abstract class BubbleActionState<T extends StatefulWidget>
 
     switch (action) {
       case 'B':
-        for (IDataSet set in controller.data.dataSets!)
+        for (IDataSet set in controller.data!.dataSets!)
           set.setDrawValues(!set.isDrawValuesEnabled());
         controller.state!.setStateIfNotDispose();
         break;
       case 'C':
-        for (IDataSet set in controller.data.dataSets!)
+        for (IDataSet set in controller.data!.dataSets!)
           set.setDrawIcons(!set.isDrawIconsEnabled());
         controller.state!.setStateIfNotDispose();
         break;
       case 'D':
         if (controller.data != null) {
-          controller.data
-              .setHighlightEnabled(!controller.data.isHighlightEnabled());
+          controller.data!
+              .setHighlightEnabled(!controller.data!.isHighlightEnabled());
           controller.state!.setStateIfNotDispose();
         }
         break;
@@ -711,19 +710,19 @@ abstract class CandlestickActionState<T extends StatefulWidget>
 
     switch (action) {
       case 'B':
-        for (IDataSet set in controller.data.dataSets!)
+        for (IDataSet set in controller.data!.dataSets!)
           set.setDrawValues(!set.isDrawValuesEnabled());
         controller.state!.setStateIfNotDispose();
         break;
       case 'C':
-        for (IDataSet set in controller.data.dataSets!)
+        for (IDataSet set in controller.data!.dataSets!)
           set.setDrawIcons(!set.isDrawIconsEnabled());
         controller.state!.setStateIfNotDispose();
         break;
       case 'D':
         if (controller.data != null) {
-          controller.data
-              .setHighlightEnabled(!controller.data.isHighlightEnabled());
+          controller.data!
+              .setHighlightEnabled(!controller.data!.isHighlightEnabled());
           controller.state!.setStateIfNotDispose();
         }
         break;
@@ -751,7 +750,7 @@ abstract class CandlestickActionState<T extends StatefulWidget>
         controller.state!.setStateIfNotDispose();
         break;
       case 'K':
-        for (ICandleDataSet set in controller.data.dataSets!) {
+        for (ICandleDataSet set in controller.data!.dataSets!) {
           (set as CandleDataSet)
               .setShadowColorSameAsCandle(!set.getShadowColorSameAsCandle());
         }
@@ -793,17 +792,17 @@ abstract class RadarActionState<T extends StatefulWidget>
 
     switch (action) {
       case 'B':
-        for (IDataSet set in controller.data.dataSets!)
+        for (IDataSet set in controller.data!.dataSets!)
           set.setDrawValues(!set.isDrawValuesEnabled());
         controller.state!.setStateIfNotDispose();
         break;
       case 'C':
-        for (IDataSet set in controller.data.dataSets!)
+        for (IDataSet set in controller.data!.dataSets!)
           set.setDrawIcons(!set.isDrawIconsEnabled());
         controller.state!.setStateIfNotDispose();
         break;
       case 'D':
-        List<IRadarDataSet> sets = controller.data.dataSets!;
+        List<IRadarDataSet> sets = controller.data!.dataSets!;
         for (IRadarDataSet set in sets) {
           if (set.isDrawFilledEnabled())
             set.setDrawFilled(false);
@@ -814,13 +813,13 @@ abstract class RadarActionState<T extends StatefulWidget>
         break;
       case 'E':
         if (controller.data != null) {
-          controller.data
-              .setHighlightEnabled(!controller.data.isHighlightEnabled());
+          controller.data!
+              .setHighlightEnabled(!controller.data!.isHighlightEnabled());
           controller.state!.setStateIfNotDispose();
         }
         break;
       case 'F':
-        List<IRadarDataSet> sets = controller.data.dataSets!;
+        List<IRadarDataSet> sets = controller.data!.dataSets!;
         for (IRadarDataSet set in sets) {
           set.setDrawHighlightCircleEnabled(
               !set.isDrawHighlightCircleEnabled());

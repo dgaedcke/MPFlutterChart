@@ -207,7 +207,9 @@ class YAxisRendererRadarChart extends YAxisRenderer {
       limitPath.reset();
 
       for (int j = 0;
-          j < _painter!.getData().getMaxEntryCountSet()!.getEntryCount();
+          j <
+              (_painter!.getData()?.getMaxEntryCountSet()!.getEntryCount() ??
+                  0);
           j++) {
         Utils.getPosition(
             center, r, sliceangle * j + _painter!.getRotationAngle(), pOut);

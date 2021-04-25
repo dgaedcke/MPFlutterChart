@@ -140,14 +140,14 @@ class LineChartFilledState extends SimpleActionState<LineChartFilled> {
         legendSettingFunction: (legend, controller) {
           legend.enabled = (false);
           var formatter1 = (controller as LineChartController)
-              .data
+              .data!
               .getDataSetByIndex(0)!
               .getFillFormatter();
           if (formatter1 is A) {
             formatter1.setPainter(controller);
           }
           var formatter2 =
-              controller.data.getDataSetByIndex(1)!.getFillFormatter();
+              controller.data!.getDataSetByIndex(1)!.getFillFormatter();
           if (formatter2 is B) {
             formatter2.setPainter(controller);
           }
@@ -215,7 +215,7 @@ class LineChartFilledState extends SimpleActionState<LineChartFilled> {
 
     // create a data object with the data sets
     _controller.data = LineData.fromList([]..add(set1)..add(set2));
-    _controller.data.setDrawValues(false);
+    _controller.data!.setDrawValues(false);
 
     setState(() {});
   }

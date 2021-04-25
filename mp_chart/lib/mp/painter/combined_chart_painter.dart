@@ -46,7 +46,7 @@ class CombinedChartPainter extends BarLineChartBasePainter<CombinedData>
   List<DrawOrder>? _drawOrder;
 
   CombinedChartPainter(
-      CombinedData data,
+      CombinedData? data,
       Animator? animator,
       ViewPortHandler? viewPortHandler,
       double? maxHighlightDistance,

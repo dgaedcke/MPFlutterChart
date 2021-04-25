@@ -80,7 +80,7 @@ class PieChartPainter extends PieRadarChartPainter<PieData> {
   TypeFace? _entryLabelTypeface;
 
   PieChartPainter(
-      PieData data,
+      PieData? data,
       Animator? animator,
       ViewPortHandler? viewPortHandler,
       double? maxHighlightDistance,
@@ -261,7 +261,7 @@ class PieChartPainter extends PieRadarChartPainter<PieData> {
 
   /// calculates the needed angles for the chart slices
   void calcAngles() {
-    int entryCount = getData().getEntryCount();
+    int entryCount = getData()?.getEntryCount() ?? 0;
 
     if (_drawAngles.length != entryCount) {
       _drawAngles = List.filled(entryCount, null);
@@ -280,7 +280,7 @@ class PieChartPainter extends PieRadarChartPainter<PieData> {
 
     double yValueSum = (getData() as PieData).getYValueSum();
 
-    List<IPieDataSet>? dataSets = getData().dataSets as List<IPieDataSet>?;
+    List<IPieDataSet>? dataSets = getData()?.dataSets as List<IPieDataSet>?;
 
     bool hasMinAngle =
         _minAngleForSlices != 0 && entryCount * _minAngleForSlices <= _maxAngle;
@@ -290,7 +290,7 @@ class PieChartPainter extends PieRadarChartPainter<PieData> {
     double offset = 0;
     double diff = 0;
 
-    for (int i = 0; i < getData().getDataSetCount(); i++) {
+    for (int i = 0; i < (getData()?.getDataSetCount() ?? 0); i++) {
       IPieDataSet set = dataSets![i];
 
       for (int j = 0; j < set.getEntryCount(); j++) {
@@ -386,7 +386,7 @@ class PieChartPainter extends PieRadarChartPainter<PieData> {
   /// @param xIndex
   /// @return
   int getDataSetIndexForIndex(int xIndex) {
-    List<IPieDataSet> dataSets = getData().dataSets as List<IPieDataSet>;
+    List<IPieDataSet> dataSets = getData()?.dataSets as List<IPieDataSet>;
 
     for (int i = 0; i < dataSets.length; i++) {
       if (dataSets[i].getEntryForXValue2(xIndex.toDouble(), double.nan) != null)

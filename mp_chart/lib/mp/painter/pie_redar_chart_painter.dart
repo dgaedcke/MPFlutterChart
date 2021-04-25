@@ -39,7 +39,7 @@ abstract class PieRadarChartPainter<T extends ChartData<IDataSet<Entry>>>
   Color? _backgroundColor;
 
   PieRadarChartPainter(
-      T data,
+      T? data,
       Animator? animator,
       ViewPortHandler? viewPortHandler,
       double? maxHighlightDistance,
@@ -98,7 +98,7 @@ abstract class PieRadarChartPainter<T extends ChartData<IDataSet<Entry>>>
 
   @override
   int getMaxVisibleCount() {
-    return getData().getEntryCount();
+    return getData()?.getEntryCount() ?? 0;
   }
 
   @override

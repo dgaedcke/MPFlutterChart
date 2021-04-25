@@ -85,8 +85,8 @@ class LineChartColorfulState extends SimpleActionState<LineChartColorful> {
   void _initLineData(int count, double range) {
     for (int i = 0; i < _controllers.length; i++) {
       _controllers[i].data = _getData(36, 100);
-      _controllers[i].data.setValueTypeface(Util.BOLD);
-      (_controllers[i].data.getDataSetByIndex(0) as LineDataSet)
+      _controllers[i].data!.setValueTypeface(Util.BOLD);
+      (_controllers[i].data!.getDataSetByIndex(0) as LineDataSet)
           .setCircleHoleColor(_colors[i % _colors.length]);
     }
   }

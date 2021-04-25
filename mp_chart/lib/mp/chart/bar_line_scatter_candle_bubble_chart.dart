@@ -102,7 +102,7 @@ class BarLineScatterCandleBubbleState<T extends BarLineScatterCandleBubbleChart>
   void onDoubleTapUp(TapUpDetails details) {
     widget.controller.stopDeceleration();
     if (widget.controller.painter!.doubleTapToZoomEnabled &&
-        widget.controller.painter!.getData().getEntryCount() > 0) {
+        (widget.controller.painter!.getData()?.getEntryCount() ?? 0) > 0) {
       MPPointF trans =
           _getTrans(details.localPosition.dx, details.localPosition.dy);
       widget.controller.painter!.zoom(
@@ -379,8 +379,9 @@ class BarLineScatterCandleBubbleState<T extends BarLineScatterCandleBubbleChart>
 
   @override
   void updatePainter() {
-    if (widget.controller.painter!.getData().dataSets != null &&
-        widget.controller.painter!.getData().dataSets!.length > 0)
+    if (widget.controller.painter!.getData() != null &&
+        widget.controller.painter!.getData()!.dataSets != null &&
+        widget.controller.painter!.getData()!.dataSets!.length > 0)
       widget.controller.painter!.highlightValue6(lastHighlighted, false);
   }
 }

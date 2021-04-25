@@ -26,7 +26,7 @@ abstract class ChartPainter<T extends ChartData<IDataSet<Entry>>>
     extends CustomPainter implements ChartInterface {
   /// object that holds all data that was originally set for the chart, before
   /// it was modified or any filtering algorithms had been applied
-  final T _data;
+  final T? _data;
 
   /// object responsible for animations
   final Animator? _animator;
@@ -123,7 +123,7 @@ abstract class ChartPainter<T extends ChartData<IDataSet<Entry>>>
   bool get highLightPerTapEnabled => _highLightPerTapEnabled;
 
   ChartPainter(
-      T data,
+      T? data,
       Animator? animator,
       ViewPortHandler? viewPortHandler,
       double? maxHighlightDistance,
@@ -178,9 +178,9 @@ abstract class ChartPainter<T extends ChartData<IDataSet<Entry>>>
 
   void initDefaultWithData() {
     // calculate how many digits are needed
-    _setupDefaultFormatter(_data.getYMin1(), _data.getYMax1());
+    _setupDefaultFormatter(_data!.getYMin1(), _data!.getYMax1());
 
-    for (IDataSet set in _data.dataSets!) {
+    for (IDataSet set in _data!.dataSets!) {
       if (set.needsFormatter() ||
           set.getValueFormatter() == _defaultValueFormatter)
         set.setValueFormatter(_defaultValueFormatter);
@@ -204,7 +204,7 @@ abstract class ChartPainter<T extends ChartData<IDataSet<Entry>>>
   void _setupDefaultFormatter(double? min1, double? max1) {
     double reference = 0;
 
-    if (_data == null || _data.getEntryCount() < 2) {
+    if (_data == null || _data!.getEntryCount() < 2) {
       reference = max(min1!.abs(), max1!.abs());
     } else {
       reference = (max1! - min1!).abs();
@@ -334,7 +334,7 @@ abstract class ChartPainter<T extends ChartData<IDataSet<Entry>>>
   /// @param callListener Should the listener be called for this change
   void highlightValue4(
       double x, double y, int dataSetIndex, bool callListener) {
-    if (dataSetIndex < 0 || dataSetIndex >= _data.getDataSetCount()) {
+    if (dataSetIndex < 0 || dataSetIndex >= _data!.getDataSetCount()) {
       highlightValue6(null, callListener);
     } else {
       highlightValue6(
@@ -362,7 +362,7 @@ abstract class ChartPainter<T extends ChartData<IDataSet<Entry>>>
     if (high == null) {
       _indicesToHighlight = null;
     } else {
-      e = _data.getEntryForHighlight(high);
+      e = _data!.getEntryForHighlight(high);
       if (e == null) {
         _indicesToHighlight = null;
         high = null;
@@ -383,7 +383,7 @@ abstract class ChartPainter<T extends ChartData<IDataSet<Entry>>>
   }
 
   void selectedValue(Highlight high) {
-    Entry? e = _data.getEntryForHighlight(high);
+    Entry? e = _data!.getEntryForHighlight(high);
     if (e == null) {
       _selectionListener?.onNothingSelected();
     } else {
@@ -413,9 +413,9 @@ abstract class ChartPainter<T extends ChartData<IDataSet<Entry>>>
     for (int i = 0; i < _indicesToHighlight!.length; i++) {
       Highlight highlight = _indicesToHighlight![i];
 
-      IDataSet set = _data.getDataSetByIndex(highlight.dataSetIndex)!;
+      IDataSet set = _data!.getDataSetByIndex(highlight.dataSetIndex)!;
 
-      Entry? e = _data.getEntryForHighlight(_indicesToHighlight![i]);
+      Entry? e = _data!.getEntryForHighlight(_indicesToHighlight![i]);
       // make sure entry not null
       if (e == null ||
           set.getEntryIndex2(e) > set.getEntryCount() * _animator!.getPhaseX())
@@ -444,7 +444,7 @@ abstract class ChartPainter<T extends ChartData<IDataSet<Entry>>>
   }
 
   @override
-  ChartData<IDataSet<Entry>> getData() {
+  ChartData<IDataSet<Entry>>? getData() {
     return _data;
   }
 

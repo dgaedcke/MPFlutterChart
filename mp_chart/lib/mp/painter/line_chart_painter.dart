@@ -22,7 +22,7 @@ import 'package:mp_chart/mp/painter/bar_line_chart_painter.dart';
 class LineChartPainter extends BarLineChartBasePainter<LineData>
     implements LineDataProvider {
   LineChartPainter(
-      LineData data,
+      LineData? data,
       Animator? animator,
       ViewPortHandler? viewPortHandler,
       double? maxHighlightDistance,

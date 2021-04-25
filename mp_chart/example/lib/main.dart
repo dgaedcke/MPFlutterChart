@@ -1,13 +1,3 @@
-import './demo/bar_chart/basic.dart';
-import './demo/bar_chart/basic2.dart';
-import './demo/bar_chart/horizontal.dart';
-import './demo/bar_chart/multiple.dart';
-import './demo/bar_chart/negative.dart';
-import './demo/bar_chart/sine.dart';
-import './demo/bar_chart/stacked.dart';
-import './demo/bar_chart/stacked2.dart';
-import './demo/even_more/dynamic.dart';
-import './demo/even_more/hourly.dart';
 import './demo/line_chart/basic.dart';
 import './demo/line_chart/colorful.dart';
 import './demo/line_chart/cubic.dart';
@@ -16,14 +6,6 @@ import './demo/line_chart/filled.dart';
 import './demo/line_chart/invert_axis.dart';
 import './demo/line_chart/multiple.dart';
 import './demo/line_chart/performance.dart';
-import './demo/other_chart/bubble.dart';
-import './demo/other_chart/candlestick.dart';
-import './demo/other_chart/combined.dart';
-import './demo/other_chart/radar.dart';
-import './demo/other_chart/scatter_plot.dart';
-import './demo/pie_chart/basic.dart';
-import './demo/pie_chart/half_pie.dart';
-import './demo/pie_chart/value_lines.dart';
 import './demo/res/styles.dart';
 import './demo/scrolling_chart/multiple.dart';
 import './demo/scrolling_chart/tall_bar.dart';
@@ -31,7 +13,6 @@ import './demo/scrolling_chart/view_pager.dart';
 import 'package:flutter/material.dart';
 import 'package:mp_chart/mp/core/utils/color_utils.dart';
 
-import 'demo/even_more/realtime.dart';
 import 'demo/scrolling_chart/many_bar_chart.dart';
 
 void main() {
@@ -67,29 +48,10 @@ class MyApp extends StatelessWidget {
         '/line_chart/colorful': (_) => LineChartColorful(),
         '/line_chart/performance': (_) => LineChartPerformance(),
         '/line_chart/filled': (_) => LineChartFilled(),
-        '/bar_chart/basic': (_) => BarChartBasic(),
-        '/bar_chart/basic2': (_) => BarChartBasic2(),
-        '/bar_chart/multiple': (_) => BarChartMultiple(),
-        '/bar_chart/horizontal': (_) => BarChartHorizontal(),
-        '/bar_chart/stacked': (_) => BarChartStacked(),
-        '/bar_chart/negative': (_) => BarChartNegative(),
-        '/bar_chart/stacked2': (_) => BarChartStacked2(),
-        '/bar_chart/sine': (_) => BarChartSine(),
-        '/pie_chart/basic': (_) => PieChartBasic(),
-        '/pie_chart/value_lines': (_) => PieChartValueLines(),
-        '/pie_chart/half_pie': (_) => PieChartHalfPie(),
-        '/other_chart/combined_chart': (_) => OtherChartCombined(),
-        '/other_chart/scatter_plot': (_) => OtherChartScatterPlot(),
-        '/other_chart/bubble_chart': (_) => OtherChartBubble(),
-        '/other_chart/candlestick': (_) => OtherChartCandlestick(),
-        '/other_chart/redar_chart': (_) => OtherChartRadar(),
         '/scrolling_chart/multiple': (_) => ScrollingChartMultiple(),
         '/scrolling_chart/view_pager': (_) => ScrollingChartViewPager(),
         '/scrolling_chart/tall_bar_chart': (_) => ScrollingChartTallBar(),
         '/scrolling_chart/many_bar_charts': (_) => ScrollingChartManyBar(),
-        '/even_more_line_chart/dynamic': (_) => EvenMoreDynamic(),
-        '/even_more_line_chart/realtime': (_) => EvenMoreRealtime(),
-        '/even_more_line_chart/hourly': (_) => EvenMoreHourly(),
       },
     );
   }

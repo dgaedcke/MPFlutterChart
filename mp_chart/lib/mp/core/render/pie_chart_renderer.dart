@@ -883,9 +883,9 @@ class PieChartRenderer extends DataRenderer {
 
       if (index >= drawAngles.length) continue;
 
-      IPieDataSet? set = _painter!
-          .getData()
-          .getDataSetByIndex(indices[i].dataSetIndex) as IPieDataSet?;
+      IPieDataSet? set = _painter
+          ?.getData()
+          ?.getDataSetByIndex(indices[i].dataSetIndex) as IPieDataSet?;
 
       if (set == null || !set.isHighlightEnabled()) continue;
 

@@ -163,9 +163,9 @@ class RadarChartRenderer extends LineRadarRenderer {
 
     double? yoffset = Utils.convertDpToPixel(5);
 
-    for (int i = 0; i < _painter!.getData().getDataSetCount(); i++) {
-      IRadarDataSet dataSet =
-          _painter!.getData().getDataSetByIndex(i) as IRadarDataSet;
+    for (int i = 0; i < (_painter!.getData()?.getDataSetCount() ?? 0); i++) {
+      IRadarDataSet? dataSet =
+          _painter!.getData()?.getDataSetByIndex(i) as IRadarDataSet;
 
       if (!shouldDrawValues(dataSet)) continue;
 
@@ -252,7 +252,7 @@ class RadarChartRenderer extends LineRadarRenderer {
 
     final int xIncrements = 1 + _painter!.skipWebLineCount;
     int maxEntryCount =
-        _painter!.getData().getMaxEntryCountSet()!.getEntryCount();
+        _painter!.getData()?.getMaxEntryCountSet()!.getEntryCount() ?? 0;
 
     MPPointF p = MPPointF.getInstance1(0, 0);
     for (int i = 0; i < maxEntryCount; i += xIncrements) {
@@ -275,7 +275,7 @@ class RadarChartRenderer extends LineRadarRenderer {
     MPPointF p1out = MPPointF.getInstance1(0, 0);
     MPPointF p2out = MPPointF.getInstance1(0, 0);
     for (int j = 0; j < labelCount; j++) {
-      for (int i = 0; i < _painter!.getData().getEntryCount(); i++) {
+      for (int i = 0; i < (_painter!.getData()?.getEntryCount() ?? 0); i++) {
         double r =
             (_painter!.yAxis!.entries[j]! - _painter!.getYChartMin()!) * factor;
 

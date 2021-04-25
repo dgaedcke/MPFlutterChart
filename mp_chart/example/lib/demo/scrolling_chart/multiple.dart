@@ -292,7 +292,7 @@ class ScrollingChartMultipleState
   }
 
   PieChart _getPieChart(PieChartController controller) {
-    controller.data
+    controller.data!
       ..setValueFormatter(PercentFormatter())
       ..setValueTextSize(11)
       ..setValueTextColor(ColorUtils.WHITE);

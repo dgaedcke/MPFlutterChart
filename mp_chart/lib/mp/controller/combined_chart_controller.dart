@@ -140,7 +140,7 @@ class CombinedChartController
             touchEventListener: touchEventListener,
             chartTransListener: chartTransListener);
 
-  CombinedData get data => super.data as CombinedData;
+  CombinedData? get data => super.data as CombinedData?;
 
   CombinedChartPainter? get painter => super.painter;
 

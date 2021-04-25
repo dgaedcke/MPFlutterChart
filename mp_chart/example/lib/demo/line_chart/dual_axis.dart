@@ -137,7 +137,9 @@ class LineChartDualAxisState extends LineActionState<LineChartDualAxis>
     controller?.centerViewToAnimated(
         e.x!,
         e.y!,
-        controller!.data.getDataSetByIndex(h.dataSetIndex)!.getAxisDependency(),
+        controller!.data!
+            .getDataSetByIndex(h.dataSetIndex)!
+            .getAxisDependency(),
         500);
   }
 
@@ -268,7 +270,7 @@ class LineChartDualAxisState extends LineActionState<LineChartDualAxis>
 
     // create a data object with the data sets
     controller!.data = LineData.fromList([]..add(set1)..add(set2)..add(set3));
-    controller!.data
+    controller!.data!
       ..setValueTextColor(ColorUtils.WHITE)
       ..setValueTextSize(9);
 

@@ -21,7 +21,7 @@ import 'package:mp_chart/mp/painter/bar_line_chart_painter.dart';
 class BubbleChartPainter extends BarLineChartBasePainter<BubbleData>
     implements BubbleDataProvider {
   BubbleChartPainter(
-      BubbleData data,
+      BubbleData? data,
       Animator? animator,
       ViewPortHandler? viewPortHandler,
       double? maxHighlightDistance,

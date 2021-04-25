@@ -99,7 +99,7 @@ class CombinedChartState extends ChartState<CombinedChart> {
   void onDoubleTapUp(TapUpDetails details) {
     widget.controller.stopDeceleration();
     if (widget.controller.painter!.doubleTapToZoomEnabled &&
-        widget.controller.painter!.getData().getEntryCount() > 0) {
+        widget.controller.painter!.getData()!.getEntryCount() > 0) {
       MPPointF trans =
           _getTrans(details.localPosition.dx, details.localPosition.dy);
       widget.controller.painter!.zoom(

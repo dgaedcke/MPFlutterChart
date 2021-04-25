@@ -21,7 +21,7 @@ import 'package:mp_chart/mp/painter/bar_line_chart_painter.dart';
 class CandlestickChartPainter extends BarLineChartBasePainter<CandleData>
     implements CandleDataProvider {
   CandlestickChartPainter(
-      CandleData data,
+      CandleData? data,
       Animator? animator,
       ViewPortHandler? viewPortHandler,
       double? maxHighlightDistance,

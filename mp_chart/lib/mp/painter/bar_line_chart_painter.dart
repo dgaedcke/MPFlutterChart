@@ -142,7 +142,7 @@ abstract class BarLineChartBasePainter<
   bool get doubleTapToZoomEnabled => _doubleTapToZoomEnabled;
 
   BarLineChartBasePainter(
-      T data,
+      T? data,
       Animator? animator,
       ViewPortHandler? viewPortHandler,
       double? maxHighlightDistance,
@@ -352,20 +352,20 @@ abstract class BarLineChartBasePainter<
     final double fromX = getLowestVisibleX();
     final double toX = getHighestVisibleX();
 
-    getData().calcMinMaxY(fromX, toX);
+    getData()!.calcMinMaxY(fromX, toX);
 
-    xAxis!.calculate(getData().xMin, getData().xMax);
+    xAxis!.calculate(getData()!.xMin, getData()!.xMax);
 
     // calculate axis range (min / max) according to provided data
 
     if (axisLeft!.enabled) {
-      axisLeft!.calculate(getData().getYMin2(AxisDependency.LEFT),
-          getData().getYMax2(AxisDependency.LEFT));
+      axisLeft!.calculate(getData()!.getYMin2(AxisDependency.LEFT),
+          getData()!.getYMax2(AxisDependency.LEFT));
     }
 
     if (axisRight!.enabled) {
-      axisRight!.calculate(getData().getYMin2(AxisDependency.RIGHT),
-          getData().getYMax2(AxisDependency.RIGHT));
+      axisRight!.calculate(getData()!.getYMin2(AxisDependency.RIGHT),
+          getData()!.getYMax2(AxisDependency.RIGHT));
     }
 
     calculateOffsets();
@@ -373,12 +373,12 @@ abstract class BarLineChartBasePainter<
 
   @override
   void calcMinMax() {
-    xAxis!.calculate(getData().xMin, getData().xMax);
+    xAxis!.calculate(getData()!.xMin, getData()!.xMax);
     // calculate axis range (min / max) according to provided data
-    _axisLeft!.calculate(getData().getYMin2(AxisDependency.LEFT),
-        getData().getYMax2(AxisDependency.LEFT));
-    _axisRight!.calculate(getData().getYMin2(AxisDependency.RIGHT),
-        getData().getYMax2(AxisDependency.RIGHT));
+    _axisLeft!.calculate(getData()!.getYMin2(AxisDependency.LEFT),
+        getData()!.getYMax2(AxisDependency.LEFT));
+    _axisRight!.calculate(getData()!.getYMin2(AxisDependency.RIGHT),
+        getData()!.getYMax2(AxisDependency.RIGHT));
   }
 
   Rect calculateLegendOffsets(Rect offsets) {
@@ -743,7 +743,7 @@ abstract class BarLineChartBasePainter<
   Entry? getEntryByTouchPoint(double x, double y) {
     Highlight? h = getHighlightByTouchPoint(x, y);
     if (h != null) {
-      return getData().getEntryForHighlight(h);
+      return getData()!.getEntryForHighlight(h);
     }
     return null;
   }
@@ -757,7 +757,7 @@ abstract class BarLineChartBasePainter<
       double x, double y) {
     Highlight? h = getHighlightByTouchPoint(x, y);
     if (h != null) {
-      return getData().getDataSetByIndex(h.dataSetIndex);
+      return getData()!.getDataSetByIndex(h.dataSetIndex);
     }
     return null;
   }
@@ -882,9 +882,9 @@ abstract class BarLineChartBasePainter<
   }
 
   @override
-  BarLineScatterCandleBubbleData getData() {
+  BarLineScatterCandleBubbleData? getData() {
     return super.getData() as BarLineScatterCandleBubbleData<
-        IBarLineScatterCandleBubbleDataSet<Entry>>;
+        IBarLineScatterCandleBubbleDataSet<Entry>>?;
   }
 
   /// Returns true if either the left or the right or both axes are inverted.
@@ -897,7 +897,7 @@ abstract class BarLineChartBasePainter<
   }
 
   bool updateEntry(int index, Entry entry, int dataSetIndex) {
-    var dataSet = getData().getDataSetByIndex(dataSetIndex);
+    var dataSet = getData()!.getDataSetByIndex(dataSetIndex);
     if (dataSet == null) {
       return false;
     }
@@ -906,14 +906,14 @@ abstract class BarLineChartBasePainter<
   }
 
   void addEntryByIndex(int index, Entry entry, int dataSetIndex) {
-    var dataSet = getData().getDataSetByIndex(dataSetIndex);
+    var dataSet = getData()!.getDataSetByIndex(dataSetIndex);
     if (dataSet != null) {
       dataSet.addEntryByIndex(index, entry);
     }
   }
 
   void addEntry(Entry entry, int dataSetIndex) {
-    var dataSet = getData().getDataSetByIndex(dataSetIndex);
+    var dataSet = getData()!.getDataSetByIndex(dataSetIndex);
     if (dataSet != null) {
       addEntryByIndex(dataSet.getEntryCount(), entry, dataSetIndex);
     }

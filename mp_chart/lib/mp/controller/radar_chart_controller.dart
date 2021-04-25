@@ -92,7 +92,7 @@ class RadarChartController extends PieRadarController<RadarChartPainter> {
 
   YAxis initYAxis() => YAxis(position: AxisDependency.LEFT);
 
-  RadarData get data => super.data as RadarData;
+  RadarData? get data => super.data as RadarData?;
 
   RadarChartPainter? get painter => super.painter;
 
