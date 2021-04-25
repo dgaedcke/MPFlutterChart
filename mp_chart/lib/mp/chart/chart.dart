@@ -8,7 +8,7 @@ abstract class Chart<C extends Controller> extends StatefulWidget {
 
   @override
   State createState() {
-    return controller.createChartState();
+    return controller.createChartState()!;
   }
 
   const Chart(this.controller);
