@@ -96,11 +96,6 @@ class EvenMoreDynamicState extends ActionState<EvenMoreDynamic>
         controller.data = null;
         controller.state.setStateIfNotDispose();
         break;
-      case 'G':
-        captureImg(() {
-          controller.state.capture();
-        });
-        break;
     }
   }
 
@@ -150,7 +145,6 @@ class EvenMoreDynamicState extends ActionState<EvenMoreDynamic>
         (random.nextDouble() * data.getDataSetCount()).toInt();
     ILineDataSet randomSet = data.getDataSetByIndex(randomDataSetIndex);
     double value = (random.nextDouble() * 50) + 50 * (randomDataSetIndex + 1);
-
 
     //for test ChartData's addEntryByIndex
 //    var x =  10.0 - 0.5 * randomSet.getEntryCount().toDouble();

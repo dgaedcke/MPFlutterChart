@@ -54,15 +54,14 @@ class EvenMoreRealtimeState extends ActionState<EvenMoreRealtime>
 
   @override
   getBuilder() {
-    return (BuildContext context) =>
-    <PopupMenuItem<String>>[
-      item('View on GitHub', 'A'),
-      item('Add Entry', 'B'),
-      item('Clear Chart', 'C'),
-      item('Add Multiple', 'D'),
-      item('Save to Gallery', 'E'),
-      item('Update Random Single Entry', 'F'),
-    ];
+    return (BuildContext context) => <PopupMenuItem<String>>[
+          item('View on GitHub', 'A'),
+          item('Add Entry', 'B'),
+          item('Clear Chart', 'C'),
+          item('Add Multiple', 'D'),
+          item('Save to Gallery', 'E'),
+          item('Update Random Single Entry', 'F'),
+        ];
   }
 
   @override
@@ -92,11 +91,6 @@ class EvenMoreRealtimeState extends ActionState<EvenMoreRealtime>
         _addMultiple();
         controller.state.setStateIfNotDispose();
         break;
-      case 'E':
-        captureImg(() {
-          controller.state.capture();
-        });
-        break;
       case 'F':
         _updateEntry();
         break;
@@ -104,8 +98,7 @@ class EvenMoreRealtimeState extends ActionState<EvenMoreRealtime>
   }
 
   void _initController() {
-    var desc = Description()
-      ..enabled = false;
+    var desc = Description()..enabled = false;
     controller = LineChartController(
         legendSettingFunction: (legend, controller) {
           legend
@@ -186,7 +179,7 @@ class EvenMoreRealtimeState extends ActionState<EvenMoreRealtime>
     }
   }
 
-  void _updateEntry(){
+  void _updateEntry() {
     LineData data = controller.data;
 
     if (data != null) {
@@ -198,15 +191,15 @@ class EvenMoreRealtimeState extends ActionState<EvenMoreRealtime>
         data.addDataSet(set);
       }
 
-      if(set.getEntryCount() == 0){
+      if (set.getEntryCount() == 0) {
         return;
       }
 
       //for test ChartData's updateEntryByIndex
       var index = (random.nextDouble() * set.getEntryCount()).toInt();
-      var x =  set.getEntryForIndex(index).x;
-      data.updateEntryByIndex(index, Entry(x: x,
-          y: (random.nextDouble() * 40) + 30.0), 0);
+      var x = set.getEntryForIndex(index).x;
+      data.updateEntryByIndex(
+          index, Entry(x: x, y: (random.nextDouble() * 40) + 30.0), 0);
 
       data.notifyDataChanged();
 
