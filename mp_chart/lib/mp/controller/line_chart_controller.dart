@@ -7,6 +7,7 @@ import 'package:mp_chart/mp/core/common_interfaces.dart';
 import 'package:mp_chart/mp/core/data/line_data.dart';
 import 'package:mp_chart/mp/core/description.dart';
 import 'package:mp_chart/mp/core/functions.dart';
+import 'package:mp_chart/mp/core/highlight/highlight.dart';
 import 'package:mp_chart/mp/core/marker/i_marker.dart';
 import 'package:mp_chart/mp/core/marker/line_chart_marker.dart';
 import 'package:mp_chart/mp/core/render/x_axis_renderer.dart';
@@ -196,5 +197,14 @@ class LineChartController
   @override
   LineChartState createRealState() {
     return LineChartState();
+  }
+
+  /**
+   * Highlights the given values and triggers a state change (redraw).
+   */
+  void highlight(List<Highlight> highlights) {
+    painter?.highlightValues(highlights);
+    state?.lastHighlighted = highlights.length == 0 ? null : highlights[0];
+    state?.setStateIfNotDispose();
   }
 }
