@@ -1,6 +1,5 @@
 import 'package:flutter/widgets.dart';
 import 'package:mp_chart/mp/chart/chart.dart';
-import 'package:mp_chart/mp/chart/horizontal_bar_chart.dart';
 import 'package:mp_chart/mp/controller/bar_line_scatter_candle_bubble_controller.dart';
 import 'package:mp_chart/mp/core/data_interfaces/i_data_set.dart';
 import 'package:mp_chart/mp/core/highlight/highlight.dart';
@@ -159,35 +158,20 @@ class BarLineScatterCandleBubbleState<T extends BarLineScatterCandleBubbleChart>
     if (widget.controller.painter!.dragYEnabled &&
         widget.controller.painter!.dragXEnabled) {
       if (_inverted()) {
-        /// if there is an inverted horizontalbarchart
-        if (widget is HorizontalBarChart) {
-          dx = -dx;
-        } else {
-          dy = -dy;
-        }
+        dy = -dy;
       }
       widget.controller.painter!.translate(dx, dy);
       needStateIfNotDispose = true;
     } else {
       if (widget.controller.painter!.dragXEnabled) {
         if (_inverted()) {
-          /// if there is an inverted horizontalbarchart
-          if (widget is HorizontalBarChart) {
-            dx = -dx;
-          } else {
-            dy = -dy;
-          }
+          dy = -dy;
         }
         widget.controller.painter!.translate(dx, 0.0);
         needStateIfNotDispose = true;
       } else if (widget.controller.painter!.dragYEnabled) {
         if (_inverted()) {
-          /// if there is an inverted horizontalbarchart
-          if (widget is HorizontalBarChart) {
-            dx = -dx;
-          } else {
-            dy = -dy;
-          }
+          dy = -dy;
         }
         widget.controller.painter!.translate(0.0, dy);
         needStateIfNotDispose = true;

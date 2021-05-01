@@ -1,8 +1,6 @@
 import 'package:flutter/painting.dart';
 import 'package:mp_chart/mp/core/adapter_android_mp.dart';
 import 'package:mp_chart/mp/core/data/chart_data.dart';
-import 'package:mp_chart/mp/core/data_interfaces/i_bar_data_set.dart';
-import 'package:mp_chart/mp/core/data_interfaces/i_candle_data_set.dart';
 import 'package:mp_chart/mp/core/data_interfaces/i_data_set.dart';
 import 'package:mp_chart/mp/core/enums/legend_direction.dart';
 import 'package:mp_chart/mp/core/enums/legend_form.dart';
@@ -74,72 +72,24 @@ class LegendRenderer extends Renderer {
         List<Color>? clrs = dataSet.getColors();
         int entryCount = dataSet.getEntryCount();
 
-        if (dataSet is IBarDataSet && dataSet.isStacked()) {
-          IBarDataSet bds = dataSet;
-          List<String> sLabels = bds.getStackLabels();
+        for (int j = 0; j < clrs!.length && j < entryCount; j++) {
+          String? label;
 
-          for (int j = 0; j < clrs!.length && j < bds.getStackSize(); j++) {
-            _computedEntries.add(LegendEntry(
-                sLabels[j % sLabels.length],
-                dataSet.getForm(),
-                dataSet.getFormSize(),
-                dataSet.getFormLineWidth(),
-                dataSet.getFormLineDashEffect(),
-                clrs[j]));
+          // if multiple colors are set for a DataSet, group them
+          if (j < clrs.length - 1 && j < entryCount - 1) {
+            label = null;
+          } else {
+            // add label to the last entry
+            label = data.getDataSetByIndex(i)!.getLabel();
           }
-
-          if (bds.getLabel() != null) {
-            // add the legend description label
-            _computedEntries.add(LegendEntry(
-                dataSet.getLabel(),
-                LegendForm.NONE,
-                double.nan,
-                double.nan,
-                null,
-                ColorUtils.COLOR_NONE));
-          }
-        } else if (dataSet is ICandleDataSet &&
-            dataSet.getDecreasingColor() != ColorUtils.COLOR_NONE) {
-          Color decreasingColor = dataSet.getDecreasingColor();
-          Color increasingColor = dataSet.getIncreasingColor();
 
           _computedEntries.add(LegendEntry(
-              null,
+              label,
               dataSet.getForm(),
               dataSet.getFormSize(),
               dataSet.getFormLineWidth(),
               dataSet.getFormLineDashEffect(),
-              decreasingColor));
-
-          _computedEntries.add(LegendEntry(
-              dataSet.getLabel(),
-              dataSet.getForm(),
-              dataSet.getFormSize(),
-              dataSet.getFormLineWidth(),
-              dataSet.getFormLineDashEffect(),
-              increasingColor));
-        } else {
-          // all others
-
-          for (int j = 0; j < clrs!.length && j < entryCount; j++) {
-            String? label;
-
-            // if multiple colors are set for a DataSet, group them
-            if (j < clrs.length - 1 && j < entryCount - 1) {
-              label = null;
-            } else {
-              // add label to the last entry
-              label = data.getDataSetByIndex(i)!.getLabel();
-            }
-
-            _computedEntries.add(LegendEntry(
-                label,
-                dataSet.getForm(),
-                dataSet.getFormSize(),
-                dataSet.getFormLineWidth(),
-                dataSet.getFormLineDashEffect(),
-                clrs[j]));
-          }
+              clrs[j]));
         }
       }
 
