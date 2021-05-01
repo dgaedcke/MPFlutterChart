@@ -2,7 +2,6 @@ import 'package:flutter/rendering.dart';
 import 'package:mp_chart/mp/core/data_interfaces/i_bubble_data_set.dart';
 import 'package:mp_chart/mp/core/data_interfaces/i_candle_data_set.dart';
 import 'package:mp_chart/mp/core/data_interfaces/i_line_data_set.dart';
-import 'package:mp_chart/mp/core/data_interfaces/i_scatter_data_set.dart';
 import 'package:mp_chart/mp/core/entry/candle_entry.dart';
 import 'package:mp_chart/mp/core/entry/entry.dart';
 import 'package:mp_chart/mp/core/poolable/point.dart';
@@ -76,42 +75,6 @@ class Transformer {
           -_viewPortHandler!.offsetTop());
       Matrix4Utils.postScale(_matrixOffset, 1.0, -1.0);
     }
-  }
-
-  List<double?> _valuePointsForGenerateTransformedValuesScatter =
-      List.filled(1, null);
-
-  /// Transforms an List of Entry into a double array containing the x and
-  /// y values Matrix4Utils.transformed with all matrices for the SCATTERCHART.
-  ///
-  /// @param data
-  /// @return
-  List<double?> generateTransformedValuesScatter(
-      IScatterDataSet data, double phaseX, double phaseY, int from, int to) {
-    int count = (((to - from) * phaseX + 1) * 2).toInt();
-    count = count % 2 == 0 ? count : count - 1;
-
-    if (_valuePointsForGenerateTransformedValuesScatter.length != count) {
-      _valuePointsForGenerateTransformedValuesScatter =
-          List.filled(count, null);
-    }
-    List<double?> valuePoints = _valuePointsForGenerateTransformedValuesScatter;
-
-    for (int j = 0; j < count; j += 2) {
-      Entry? e = data.getEntryForIndex(j ~/ 2 + from);
-
-      if (e != null) {
-        valuePoints[j] = e.x;
-        valuePoints[j + 1] = e.y! * phaseY;
-      } else {
-        valuePoints[j] = 0;
-        valuePoints[j + 1] = 0;
-      }
-    }
-
-    Matrix4Utils.mapPoints(getValueToPixelMatrix(), valuePoints);
-
-    return valuePoints;
   }
 
   List<double?> _valuePointsForGenerateTransformedValuesBubble =

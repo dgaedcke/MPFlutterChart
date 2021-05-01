@@ -4,7 +4,6 @@ import 'package:mp_chart/mp/core/data/chart_data.dart';
 import 'package:mp_chart/mp/core/data_interfaces/i_bar_data_set.dart';
 import 'package:mp_chart/mp/core/data_interfaces/i_candle_data_set.dart';
 import 'package:mp_chart/mp/core/data_interfaces/i_data_set.dart';
-import 'package:mp_chart/mp/core/data_interfaces/i_pie_data_set.dart';
 import 'package:mp_chart/mp/core/enums/legend_direction.dart';
 import 'package:mp_chart/mp/core/enums/legend_form.dart';
 import 'package:mp_chart/mp/core/enums/legend_horizontal_alignment.dart';
@@ -90,29 +89,6 @@ class LegendRenderer extends Renderer {
           }
 
           if (bds.getLabel() != null) {
-            // add the legend description label
-            _computedEntries.add(LegendEntry(
-                dataSet.getLabel(),
-                LegendForm.NONE,
-                double.nan,
-                double.nan,
-                null,
-                ColorUtils.COLOR_NONE));
-          }
-        } else if (dataSet is IPieDataSet) {
-          IPieDataSet pds = dataSet;
-
-          for (int j = 0; j < clrs!.length && j < entryCount; j++) {
-            _computedEntries.add(LegendEntry(
-                pds.getEntryForIndex(j)!.label,
-                dataSet.getForm(),
-                dataSet.getFormSize(),
-                dataSet.getFormLineWidth(),
-                dataSet.getFormLineDashEffect(),
-                clrs[j]));
-          }
-
-          if (pds.getLabel() != null) {
             // add the legend description label
             _computedEntries.add(LegendEntry(
                 dataSet.getLabel(),
