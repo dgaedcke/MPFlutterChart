@@ -525,7 +525,8 @@ abstract class BarLineChartBasePainter<
 
       if (_axisRight!.needsOffset()) {
         offsetRight += _axisRight!
-            .getRequiredWidthSpace(_axisRendererRight!.axisLabelPaint);
+                .getRequiredWidthSpace(_axisRendererRight!.axisLabelPaint) +
+            _axisRight!.xOffset;
       }
 
       if (xAxis!.enabled && xAxis!.drawLabels) {
