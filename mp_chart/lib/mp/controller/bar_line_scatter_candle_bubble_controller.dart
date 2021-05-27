@@ -130,27 +130,28 @@ abstract class BarLineScatterCandleBubbleController<
       Color? infoTextColor,
       Color? infoBgColor})
       : super(
-            marker: marker,
-            description: description,
-            noDataText: noDataText,
-            xAxisSettingFunction: xAxisSettingFunction,
-            legendSettingFunction: legendSettingFunction,
-            rendererSettingFunction: rendererSettingFunction,
-            selectionListener: selectionListener,
-            maxHighlightDistance: maxHighlightDistance,
-            highLightPerTapEnabled: highLightPerTapEnabled,
-            extraTopOffset: extraTopOffset,
-            extraRightOffset: extraRightOffset,
-            extraBottomOffset: extraBottomOffset,
-            extraLeftOffset: extraLeftOffset,
-            drawMarkers: drawMarkers,
-            resolveGestureHorizontalConflict: resolveGestureHorizontalConflict,
-            resolveGestureVerticalConflict: resolveGestureVerticalConflict,
-            descTextSize: descTextSize,
-            infoTextSize: infoTextSize,
-            descTextColor: descTextColor,
-            infoBgColor: infoBgColor,
-            infoTextColor: infoTextColor);
+          marker: marker,
+          description: description,
+          noDataText: noDataText,
+          xAxisSettingFunction: xAxisSettingFunction,
+          legendSettingFunction: legendSettingFunction,
+          rendererSettingFunction: rendererSettingFunction,
+          selectionListener: selectionListener,
+          maxHighlightDistance: maxHighlightDistance,
+          highLightPerTapEnabled: highLightPerTapEnabled,
+          extraTopOffset: extraTopOffset,
+          extraRightOffset: extraRightOffset,
+          extraBottomOffset: extraBottomOffset,
+          extraLeftOffset: extraLeftOffset,
+          drawMarkers: drawMarkers,
+          resolveGestureHorizontalConflict: resolveGestureHorizontalConflict,
+          resolveGestureVerticalConflict: resolveGestureVerticalConflict,
+          descTextSize: descTextSize,
+          infoTextSize: infoTextSize,
+          descTextColor: descTextColor,
+          infoBgColor: infoBgColor,
+          infoTextColor: infoTextColor,
+        );
 
   OnDrawListener? initDrawListener() {
     return null;
@@ -176,18 +177,18 @@ abstract class BarLineScatterCandleBubbleController<
   @override
   void doneBeforePainterInit() {
     super.doneBeforePainterInit();
-    gridBackgroundPaint = Paint()
+    gridBackgroundPaint ??= Paint()
       ..color = gridBackColor == null
           ? Color.fromARGB(255, 240, 240, 240)
           : gridBackColor!
       ..style = PaintingStyle.fill;
 
-    borderPaint = Paint()
+    borderPaint ??= Paint()
       ..color = borderColor == null ? ColorUtils.BLACK : borderColor!
       ..style = PaintingStyle.stroke
       ..strokeWidth = Utils.convertDpToPixel(borderStrokeWidth);
 
-    backgroundPaint = Paint()
+    backgroundPaint ??= Paint()
       ..color = backgroundColor == null ? ColorUtils.WHITE : backgroundColor!;
 
     drawListener ??= initDrawListener();

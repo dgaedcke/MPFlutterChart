@@ -1,3 +1,9 @@
+## 0.3.2 2021-05-26
+* Added missing painter params for line-chart
+* made controller attribute initialization conditional
+* updated version for path_drawing dep
+* tested
+* bumped version #
 ## 0.3.1 2020-10-30
 * Updated for Flutter 1.22.0 to use updated Dart intl package 0.17.0-nullsafety.1.
 ## 0.3.0 2020-09-18
