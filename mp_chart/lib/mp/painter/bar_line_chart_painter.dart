@@ -352,20 +352,21 @@ abstract class BarLineChartBasePainter<
     final double fromX = getLowestVisibleX();
     final double toX = getHighestVisibleX();
 
-    getData()!.calcMinMaxY(fromX, toX);
+    final data = getData()!;
+    data.calcMinMaxY(fromX, toX);
 
-    xAxis!.calculate(getData()!.xMin, getData()!.xMax);
+    xAxis!.calculate(data.xMin, data.xMax);
 
     // calculate axis range (min / max) according to provided data
 
     if (axisLeft!.enabled) {
-      axisLeft!.calculate(getData()!.getYMin2(AxisDependency.LEFT),
-          getData()!.getYMax2(AxisDependency.LEFT));
+      axisLeft!.calculate(data.getYMin2(AxisDependency.LEFT),
+          data.getYMax2(AxisDependency.LEFT));
     }
 
     if (axisRight!.enabled) {
       axisRight!.calculate(getData()!.getYMin2(AxisDependency.RIGHT),
-          getData()!.getYMax2(AxisDependency.RIGHT));
+          data.getYMax2(AxisDependency.RIGHT));
     }
 
     calculateOffsets();
@@ -373,12 +374,13 @@ abstract class BarLineChartBasePainter<
 
   @override
   void calcMinMax() {
-    xAxis!.calculate(getData()!.xMin, getData()!.xMax);
+    final data = getData()!;
+    xAxis!.calculate(data.xMin, data.xMax);
     // calculate axis range (min / max) according to provided data
-    _axisLeft!.calculate(getData()!.getYMin2(AxisDependency.LEFT),
-        getData()!.getYMax2(AxisDependency.LEFT));
-    _axisRight!.calculate(getData()!.getYMin2(AxisDependency.RIGHT),
-        getData()!.getYMax2(AxisDependency.RIGHT));
+    _axisLeft!.calculate(
+        data.getYMin2(AxisDependency.LEFT), data.getYMax2(AxisDependency.LEFT));
+    _axisRight!.calculate(data.getYMin2(AxisDependency.RIGHT),
+        data.getYMax2(AxisDependency.RIGHT));
   }
 
   Rect calculateLegendOffsets(Rect offsets) {
@@ -391,9 +393,10 @@ abstract class BarLineChartBasePainter<
             case LegendHorizontalAlignment.LEFT:
               offsets = Rect.fromLTRB(
                   min(
-                          legend!.neededWidth,
-                          viewPortHandler!.getChartWidth() *
-                              legend!.maxSizePercent) +
+                        legend!.neededWidth,
+                        viewPortHandler!.getChartWidth() *
+                            legend!.maxSizePercent,
+                      ) +
                       legend!.xOffset,
                   0.0,
                   0.0,
@@ -405,9 +408,10 @@ abstract class BarLineChartBasePainter<
                   0.0,
                   0.0,
                   min(
-                          legend!.neededWidth,
-                          viewPortHandler!.getChartWidth() *
-                              legend!.maxSizePercent) +
+                        legend!.neededWidth,
+                        viewPortHandler!.getChartWidth() *
+                            legend!.maxSizePercent,
+                      ) +
                       legend!.xOffset,
                   0.0);
               break;
@@ -418,9 +422,10 @@ abstract class BarLineChartBasePainter<
                   offsets = Rect.fromLTRB(
                       0.0,
                       min(
-                              legend!.neededHeight,
-                              viewPortHandler!.getChartHeight() *
-                                  legend!.maxSizePercent) +
+                            legend!.neededHeight,
+                            viewPortHandler!.getChartHeight() *
+                                legend!.maxSizePercent,
+                          ) +
                           legend!.yOffset,
                       0.0,
                       0.0);
@@ -428,14 +433,16 @@ abstract class BarLineChartBasePainter<
 
                 case LegendVerticalAlignment.BOTTOM:
                   offsets = Rect.fromLTRB(
-                      0.0,
-                      0.0,
-                      0.0,
-                      min(
-                              legend!.neededHeight,
-                              viewPortHandler!.getChartHeight() *
-                                  legend!.maxSizePercent) +
-                          legend!.yOffset);
+                    0.0,
+                    0.0,
+                    0.0,
+                    min(
+                          legend!.neededHeight,
+                          viewPortHandler!.getChartHeight() *
+                              legend!.maxSizePercent,
+                        ) +
+                        legend!.yOffset,
+                  );
                   break;
 
                 default:
@@ -451,9 +458,10 @@ abstract class BarLineChartBasePainter<
               offsets = Rect.fromLTRB(
                   0.0,
                   min(
-                          legend!.neededHeight,
-                          viewPortHandler!.getChartHeight() *
-                              legend!.maxSizePercent) +
+                        legend!.neededHeight,
+                        viewPortHandler!.getChartHeight() *
+                            legend!.maxSizePercent,
+                      ) +
                       legend!.yOffset,
                   0.0,
                   0.0);
@@ -461,14 +469,16 @@ abstract class BarLineChartBasePainter<
 
             case LegendVerticalAlignment.BOTTOM:
               offsets = Rect.fromLTRB(
-                  0.0,
-                  0.0,
-                  0.0,
-                  min(
-                          legend!.neededHeight,
-                          viewPortHandler!.getChartHeight() *
-                              legend!.maxSizePercent) +
-                      legend!.yOffset);
+                0.0,
+                0.0,
+                0.0,
+                min(
+                      legend!.neededHeight,
+                      viewPortHandler!.getChartHeight() *
+                          legend!.maxSizePercent,
+                    ) +
+                    legend!.yOffset,
+              );
               break;
 
             default:
@@ -487,17 +497,26 @@ abstract class BarLineChartBasePainter<
 
     if (_axisLeft!.enabled) {
       _axisRendererLeft!.computeAxis(
-          _axisLeft!.axisMinimum, _axisLeft!.axisMaximum, _axisLeft!.inverted);
+        _axisLeft!.axisMinimum,
+        _axisLeft!.axisMaximum,
+        _axisLeft!.inverted,
+      );
     }
 
     if (_axisRight!.enabled) {
-      _axisRendererRight!.computeAxis(_axisRight!.axisMinimum,
-          _axisRight!.axisMaximum, _axisRight!.inverted);
+      _axisRendererRight!.computeAxis(
+        _axisRight!.axisMinimum,
+        _axisRight!.axisMaximum,
+        _axisRight!.inverted,
+      );
     }
 
     if (xAxis!.enabled) {
-      _xAxisRenderer!
-          .computeAxis(xAxis!.axisMinimum, xAxis!.axisMaximum, false);
+      _xAxisRenderer!.computeAxis(
+        xAxis!.axisMinimum,
+        xAxis!.axisMaximum,
+        false,
+      );
     }
   }
 
@@ -553,10 +572,11 @@ abstract class BarLineChartBasePainter<
       double minOffset = Utils.convertDpToPixel(_minOffset);
 
       viewPortHandler!.restrainViewPort(
-          max(minOffset, offsetLeft),
-          max(minOffset, offsetTop),
-          max(minOffset, offsetRight),
-          max(minOffset, offsetBottom));
+        max(minOffset, offsetLeft),
+        max(minOffset, offsetTop),
+        max(minOffset, offsetRight),
+        max(minOffset, offsetBottom),
+      );
     }
 
     prepareOffsetMatrix();
@@ -594,7 +614,12 @@ abstract class BarLineChartBasePainter<
   /// @param scaleY if < 1f --> zoom out, if > 1f --> zoom in
   /// @param x
   /// @param y
-  void zoom(double scaleX, double scaleY, double? x, double? y) {
+  void zoom(
+    double scaleX,
+    double scaleY,
+    double? x,
+    double? y,
+  ) {
     if (scaleX.isInfinite ||
         scaleX.isNaN ||
         scaleY.isInfinite ||
@@ -626,6 +651,7 @@ abstract class BarLineChartBasePainter<
   void setVisibleYRangeMaximum(double maxYRange, AxisDependency axis) {
     double yScale = getAxisRange(axis) / maxYRange;
     viewPortHandler!.setMinimumScaleY(yScale);
+    // viewPortHandler!.setMinimumScaleY(100);
   }
 
   /// Sets the size of the area (range on the y-axis) that should be minimum visible at once, no further zooming in possible.
@@ -635,6 +661,7 @@ abstract class BarLineChartBasePainter<
   void setVisibleYRangeMinimum(double minYRange, AxisDependency axis) {
     double yScale = getAxisRange(axis) / minYRange;
     viewPortHandler!.setMaximumScaleY(yScale);
+    // viewPortHandler!.setMaximumScaleY(100);
   }
 
   /// Limits the maximum and minimum y range that can be visible by pinching and zooming.
@@ -643,7 +670,10 @@ abstract class BarLineChartBasePainter<
   /// @param maxYRange
   /// @param axis
   void setVisibleYRange(
-      double minYRange, double maxYRange, AxisDependency axis) {
+    double minYRange,
+    double maxYRange,
+    AxisDependency axis,
+  ) {
     double minScale = getAxisRange(axis) / minYRange;
     double maxScale = getAxisRange(axis) / maxYRange;
     viewPortHandler!.setMinMaxScaleY(minScale, maxScale);
