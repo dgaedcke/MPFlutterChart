@@ -14,7 +14,7 @@ dependencies:
   image_gallery_saver: ^1.6.9
   optimized_gesture_detector:
     git:
-        url: git@github.com:greensopinion/OptimizedGestureDetector.git
+        url: git@github.com:Pathoz-LLC/OptimizedGestureDetector.git
         ref: master
   vector_math: ^2.1.0
   flutter:
