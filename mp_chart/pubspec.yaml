@@ -1,22 +1,21 @@
 name: mp_chart
 description: A Flutter chart package just like AndroidMPChart, apply easy to use chart for Flutter.
-version: 0.3.4
-author: SunPointed<410338643@qq.com>
-homepage: https://github.com/SunPointed/MPFlutterChart
+version: 0.4.0
+homepage: https://github.com/Pathoz-LLC/MPFlutterChart
 publish_to: none
 
 environment:
-  sdk: '>=2.16.0 <3.0.0'
+  sdk: ">=2.19.2 <3.0.0"
 
 dependencies:
-  intl: ^0.17.0
+  intl: ^0.18.0
   path_drawing: ^1.0.1
-  image_gallery_saver: ^1.6.9
+  image_gallery_saver: ^1.7.1
   optimized_gesture_detector:
     git:
-        url: git@github.com:Pathoz-LLC/OptimizedGestureDetector.git
-        ref: master
-  vector_math: ^2.1.0
+      url: git@github.com:Pathoz-LLC/OptimizedGestureDetector.git
+      ref: master
+  vector_math: ^2.1.4
   flutter:
     sdk: flutter
 
@@ -29,7 +28,6 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
-
 # To add assets to your package, add an assets section, like this:
 # assets:
 #  - images/a_dot_burr.jpeg
