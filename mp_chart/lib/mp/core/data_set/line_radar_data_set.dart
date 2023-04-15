@@ -39,7 +39,7 @@ abstract class LineRadarDataSet<T extends Entry>
   /// Resets an eventually set "fillDrawable".
   ///
   /// @param color
-  void setFillColor(Color color) {
+  void setFillColor(Color? color) {
     if(color != null) {
       _fillColor = color;
 //    mFillDrawable = null;
@@ -47,7 +47,7 @@ abstract class LineRadarDataSet<T extends Entry>
     }
   }
 
-  void setGradientColor(Color start, Color end) {
+  void setGradientColor(Color? start, Color? end) {
     if(start != null && end != null) {
       super.setGradientColor(start, end);
       setGradientFilled(true);

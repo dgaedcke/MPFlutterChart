@@ -279,7 +279,7 @@ class LineDataSet extends LineRadarDataSet<Entry> implements ILineDataSet {
   /// filled-line for each DataSet. Set this to null to use the default logic.
   ///
   /// @param formatter
-  void setFillFormatter(IFillFormatter formatter) {
+  void setFillFormatter(IFillFormatter? formatter) {
     if (formatter == null)
       _fillFormatter = DefaultFillFormatter();
     else

@@ -343,7 +343,7 @@ class ViewPortHandler {
   /// limits the maximum scale and X translation of the given matrix
   ///
   /// @param matrix
-  void limitTransAndScale(Matrix4 matrix, Rect content) {
+  void limitTransAndScale(Matrix4 matrix, Rect? content) {
     for (int i = 0; i < 16; i++) {
       matrixBuffer[i] = matrix.storage[i];
     }

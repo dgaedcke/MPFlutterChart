@@ -3,11 +3,11 @@ import 'dart:ui';
 import 'package:path_drawing/path_drawing.dart';
 
 class DashPathEffect {
-  CircularIntervalList<double> _circularIntervalList;
+  CircularIntervalList<double>? _circularIntervalList;
 
   DashOffset _dashOffset;
 
-  CircularIntervalList<double> get circularIntervalList =>
+  CircularIntervalList<double>? get circularIntervalList =>
       _circularIntervalList;
 
   DashPathEffect(double lineLength, double spaceLength, double value)
@@ -20,7 +20,7 @@ class DashPathEffect {
       return path;
     }
     return dashPath(path,
-        dashArray: _circularIntervalList, dashOffset: _dashOffset);
+        dashArray: _circularIntervalList!, dashOffset: _dashOffset);
   }
 
   @override

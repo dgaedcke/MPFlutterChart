@@ -4,8 +4,6 @@ import 'package:mp_chart/mp/core/enums/x_axis_position.dart';
 import 'package:mp_chart/mp/core/utils/painter_utils.dart';
 import 'package:mp_chart/mp/core/utils/utils.dart';
 
-import '../enums/x_axis_position.dart';
-
 class XAxis extends AxisBase {
   /// width of the x-axis labels in pixels - this is automatically
   /// calculated by the computeSize() methods in the renderers

@@ -282,7 +282,7 @@ class ChartData<T extends IDataSet<Entry>> {
   /// Adds a DataSet dynamically.
   ///
   /// @param d
-  void addDataSet(T d) {
+  void addDataSet(T? d) {
     if (d == null) return;
 
     calcMinMax3(d);
@@ -295,7 +295,7 @@ class ChartData<T extends IDataSet<Entry>> {
   /// if no DataSet could be removed.
   ///
   /// @param d
-  bool removeDataSet1(T d) {
+  bool removeDataSet1(T? d) {
     if (d == null) return false;
 
     bool removed = _dataSets!.remove(d);
@@ -398,11 +398,11 @@ class ChartData<T extends IDataSet<Entry>> {
   ///
   /// @param e
   /// @param dataSetIndex
-  bool removeEntry1(Entry e, int dataSetIndex) {
+  bool removeEntry1(Entry? e, int dataSetIndex) {
     // entry null, outofbounds
     if (e == null || dataSetIndex >= _dataSets!.length) return false;
 
-    IDataSet set = _dataSets![dataSetIndex];
+    IDataSet? set = _dataSets?[dataSetIndex];
 
     if (set != null) {
       // remove the entry from the dataset
@@ -440,7 +440,7 @@ class ChartData<T extends IDataSet<Entry>> {
   ///
   /// @param e
   /// @return
-  T? getDataSetForEntry(Entry e) {
+  T? getDataSetForEntry(Entry? e) {
     if (e == null) return null;
 
     for (int i = 0; i < _dataSets!.length; i++) {
@@ -515,7 +515,7 @@ class ChartData<T extends IDataSet<Entry>> {
   /// Sets a custom IValueFormatter for all DataSets this data object contains.
   ///
   /// @param f
-  void setValueFormatter(ValueFormatter f) {
+  void setValueFormatter(ValueFormatter? f) {
     if (f == null)
       return;
     else {

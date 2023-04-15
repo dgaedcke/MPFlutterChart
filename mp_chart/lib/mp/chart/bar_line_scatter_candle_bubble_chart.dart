@@ -7,8 +7,8 @@ import 'package:mp_chart/mp/core/poolable/point.dart';
 import 'package:mp_chart/mp/core/touch_listener.dart';
 import 'package:mp_chart/mp/core/utils/highlight_utils.dart';
 import 'package:mp_chart/mp/core/utils/utils.dart';
-import 'package:optimized_gesture_detector/details.dart';
-import 'package:optimized_gesture_detector/direction.dart';
+import '../../optimized_gesture_detector/details.dart';
+import '../../optimized_gesture_detector/direction.dart';
 
 abstract class BarLineScatterCandleBubbleChart<
     C extends BarLineScatterCandleBubbleController> extends Chart<C> {
