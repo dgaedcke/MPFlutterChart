@@ -1,4 +1,3 @@
-import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
 import 'package:mp_chart/mp/chart/line_chart.dart';
 import 'package:mp_chart/mp/controller/bar_line_scatter_candle_bubble_controller.dart';
@@ -201,9 +200,7 @@ class LineChartController
     return LineChartState();
   }
 
-  /**
-   * Highlights the given values and triggers a state change (redraw).
-   */
+  /// Highlights the given values and triggers a state change (redraw).
   void highlight(List<Highlight> highlights) {
     painter?.highlightValues(highlights);
     state?.lastHighlighted = highlights.length == 0 ? null : highlights[0];

@@ -123,7 +123,7 @@ abstract class DataSet<T extends Entry> extends BaseDataSet<T> {
   String toSimpleString() {
     StringBuffer buffer = StringBuffer();
     buffer.write("DataSet, label: " +
-        (getLabel() == null ? "" : getLabel()) +
+        (getLabel()) +
         ", entries:${_values!.length}\n");
     return buffer.toString();
   }

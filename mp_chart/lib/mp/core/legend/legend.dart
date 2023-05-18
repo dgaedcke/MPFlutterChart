@@ -91,7 +91,7 @@ class Legend extends ComponentBase {
   /// Constructor. Provide entries for the legend.
   ///
   /// @param entries
-  Legend.fromList(List<LegendEntry> entries) {
+  Legend.fromList(List<LegendEntry>? entries) {
     this.textSize = Utils.convertDpToPixel(10);
     this.xOffset = Utils.convertDpToPixel(5);
     this.yOffset = Utils.convertDpToPixel(3);

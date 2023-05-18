@@ -187,7 +187,7 @@ class ChartHighlighter<T extends BarLineScatterCandleBubbleDataProvider>
   /// @param minSelectionDistance
   /// @return
   Highlight? getClosestHighlightByPixel(List<Highlight> closestValues, double x,
-      double y, AxisDependency axis, double? minSelectionDistance) {
+      double y, AxisDependency? axis, double? minSelectionDistance) {
     Highlight? closest;
     double? distance = minSelectionDistance;
 

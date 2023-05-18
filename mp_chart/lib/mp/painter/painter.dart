@@ -281,7 +281,7 @@ abstract class ChartPainter<T extends ChartData<IDataSet<Entry>>>
   bool valuesToHighlight() {
     var res = _indicesToHighlight == null ||
             _indicesToHighlight!.length <= 0 ||
-            _indicesToHighlight![0] == null
+            _indicesToHighlight?[0] == null
         ? false
         : true;
     return res;
