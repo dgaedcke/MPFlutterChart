@@ -187,14 +187,14 @@ class OptimizedGestureDetector extends StatelessWidget {
           _isRealScale = !(details.verticalScale == 1.0 &&
               details.horizontalScale == 1.0 &&
               details.rotation == 0.0);
-          if (_isRealScale ?? false) {
+          if (_isRealScale != null) {
             _moveCancel();
           } else {
             _scaleCancel();
           }
         }
 
-        if (_isRealScale ?? false) {
+        if (_isRealScale != null) {
           _scaleUpdate(details);
         } else {
           _moveUpdate(details);
@@ -218,14 +218,14 @@ class OptimizedGestureDetector extends StatelessWidget {
   void _singleTap(TapUpDetails details) {
     Util.L1("_singleTap", details);
     if (_singleTapCallback != null) {
-      _singleTapCallback!(details);
+      _singleTapCallback(details);
     }
   }
 
   void _doubleTap(TapUpDetails details) {
     Util.L1("_doubleTap", details);
     if (_doubleTapCallback != null) {
-      _doubleTapCallback!(details);
+      _doubleTapCallback(details);
     }
   }
 
@@ -233,21 +233,21 @@ class OptimizedGestureDetector extends StatelessWidget {
   void _dragStart(LongPressStartDetails details) {
     Util.L1("_dragStart", details);
     if (_dragStartCallback != null) {
-      _dragStartCallback!(details);
+      _dragStartCallback(details);
     }
   }
 
   void _dragUpdate(LongPressMoveUpdateDetails details) {
     Util.L1("_dragUpdate", details);
     if (_dragUpdateCallback != null) {
-      _dragUpdateCallback!(details);
+      _dragUpdateCallback(details);
     }
   }
 
   void _dragEnd(LongPressEndDetails details) {
     Util.L1("_dragEnd", details);
     if (_dragEndCallback != null) {
-      _dragEndCallback!(details);
+      _dragEndCallback(details);
     }
   }
 
@@ -256,14 +256,14 @@ class OptimizedGestureDetector extends StatelessWidget {
     Util.L1("_moveStart", details);
     _resetLastMoveUpdatePos();
     if (_moveStartCallback != null) {
-      _moveStartCallback!(DetailsUtils.toOpsMoveStartDetails(details));
+      _moveStartCallback(DetailsUtils.toOpsMoveStartDetails(details));
     }
   }
 
   void _moveUpdate(scale.OpsSUpdateDetails details) {
     Util.L1("_moveUpdate", details);
     if (_moveUpdateCallback != null) {
-      _moveUpdateCallback!(DetailsUtils.toOpsMoveUpdateDetails(details));
+      _moveUpdateCallback(DetailsUtils.toOpsMoveUpdateDetails(details));
     }
     _lastMoveUpdateGolbalPos = details.focalPoint;
     _lastMoveUpdateLocalPos = details.localFocalPoint;
@@ -272,7 +272,7 @@ class OptimizedGestureDetector extends StatelessWidget {
   void _moveEnd(scale.OpsSEndDetails details) {
     Util.L1("_moveEnd", details);
     if (_moveEndCallback != null) {
-      _moveEndCallback!(DetailsUtils.toOpsMoveEndDetails(details,
+      _moveEndCallback(DetailsUtils.toOpsMoveEndDetails(details,
           _lastMoveUpdateGolbalPos ?? ZERO, _lastMoveUpdateLocalPos ?? ZERO));
     }
     _resetLastMoveUpdatePos();
@@ -283,7 +283,7 @@ class OptimizedGestureDetector extends StatelessWidget {
     _isMoveCancel = true;
     _resetLastMoveUpdatePos();
     if (_moveCancelCallback != null) {
-      _moveCancelCallback!();
+      _moveCancelCallback();
     }
   }
 
@@ -293,7 +293,7 @@ class OptimizedGestureDetector extends StatelessWidget {
     _resetScaleDirection();
     _resetLastScaleUpdatePos();
     if (_scaleStartCallback != null) {
-      _scaleStartCallback!(DetailsUtils.toOpsScaleStartDetails(details));
+      _scaleStartCallback(DetailsUtils.toOpsScaleStartDetails(details));
     }
   }
 
@@ -318,7 +318,7 @@ class OptimizedGestureDetector extends StatelessWidget {
 
         Util.L2("direction $_scaleMainDirection");
         if (_scaleUpdateCallback != null) {
-          _scaleUpdateCallback!(DetailsUtils.toOpsScaleUpdateDetails(
+          _scaleUpdateCallback(DetailsUtils.toOpsScaleUpdateDetails(
               details, _scaleMainDirection!));
         }
       }
@@ -363,7 +363,7 @@ class OptimizedGestureDetector extends StatelessWidget {
   }
 
   void _cancelAndResetSingleTapTimer() {
-    _singleTapTimer!.cancel();
+    _singleTapTimer?.cancel();
     _singleTapTimer = null;
   }
 }
